@@ -23,4 +23,7 @@ public class MemberRepository {
         return sql.selectOne("Member.duplicate", memberId);
     }
 
+    public MemberDTO login(MemberDTO memberDTO) {
+        return sql.selectOne("Member.login", memberDTO);
+    }
 }
