@@ -61,10 +61,12 @@ public class MemberController {
             model.addAttribute("loginMember", loginMember);
             session.setAttribute("loginMemberId", loginMember.getMemberId());
             session.setAttribute("loginId", loginMember.getId());
-            return "redirect:/board/paging";
+            return "redirect:/paging";
         } else {
             return "";
         }
     }
+
+
 
 }

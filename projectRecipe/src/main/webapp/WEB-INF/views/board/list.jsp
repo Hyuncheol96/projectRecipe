@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <title>Title</title>
@@ -26,7 +28,7 @@
     <table class="table">
         <tr>
             <th>
-                <form action="/board/search" method="get">
+                <form action="/search" method="get">
                     <select name="searchType">
                         <option value="boardTitle">제목</option>
                         <option value="boardWriter"></option>
