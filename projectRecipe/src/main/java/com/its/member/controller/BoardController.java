@@ -9,15 +9,13 @@ import com.its.member.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.List;
 
 @Controller
+@RequestMapping("/board")
 public class BoardController {
     @Autowired
     private BoardService boardService;
@@ -89,7 +87,7 @@ public class BoardController {
     @PostMapping("/update")
     public String update(@ModelAttribute BoardDTO boardDTO) {
         boardService.update(boardDTO);
-        return "redirect:/detail?id="+boardDTO.getId(); // 수정처리 후 해당 글의 상세페이지 요청
+        return "redirect:/board/detail?id="+boardDTO.getId(); // 수정처리 후 해당 글의 상세페이지 요청
     }
 
 
