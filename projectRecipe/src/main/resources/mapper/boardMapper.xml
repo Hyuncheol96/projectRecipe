@@ -17,6 +17,15 @@
                                             like concat('%', #{q}, '%') order by id desc;
     </select>
 
+    <insert id="saveFile" parameterType="board">
+        insert into board_table(boardWriter, boardTitle, boardContents, boardCreatedDate, boardFileName)
+        values (#{boardWriter}, #{boardTitle}, #{boardContents}, now(), #{boardFileName})
+    </insert>
+
+    <delete id="delete" parameterType="Long">
+        delete from board_table where id=#{id}
+    </delete>
+
 </mapper>
 
 

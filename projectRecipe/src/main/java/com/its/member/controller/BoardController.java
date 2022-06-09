@@ -8,8 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -34,6 +37,26 @@ public class BoardController {
         List<BoardDTO> searchList = boardService.search(searchType, q);
         model.addAttribute("boardList", searchList);
         return "board/list";
+    }
+
+    // 글 작성화면
+    @GetMapping("/saveFile-form")
+    public String saveFileForm() {
+        return "board/saveFile";
+    }
+
+    // 글 작성화면 처리
+    @PostMapping("/saveFile-form")
+    public String saveFile(@ModelAttribute BoardDTO boardDTO) throws IOException {
+        boardService.saveFile(boardDTO);
+        return "redirect:/paging";
+    }
+
+    // 삭제처리
+    @GetMapping("/delete")
+    public String delete(@RequestParam("id") Long id) {
+        boardService.delete(id);
+        return "redirect:/board/paging";
     }
 
 

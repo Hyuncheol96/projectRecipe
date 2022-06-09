@@ -5,7 +5,10 @@ import com.its.member.dto.PageDTO;
 import com.its.member.repository.BoardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -52,7 +55,22 @@ public class BoardService {
         searchParam.put("q", q);
         List<BoardDTO> searchList = boardRepository.search(searchParam);
         return searchList;
+    }
 
+    public void saveFile(BoardDTO boardDTO) throws IOException {
+        MultipartFile boardFile = boardDTO.getBoardFile();
+        String boardFileName = boardFile.getOriginalFilename();
+        boardFileName = System.currentTimeMillis() + "-" + boardFileName;
+        boardDTO.setBoardFileName(boardFileName);
+        String savePath = "C:\\KHC_development\\project\\recipe_img\\" + boardFileName;
+        if (!boardFile.isEmpty()) {
+            boardFile.transferTo(new File(savePath));
+        }
+        boardRepository.saveFile(boardDTO);
+    }
+
+    public void delete(Long id) {
+        boardRepository.delete(id);
     }
 
 }

@@ -25,4 +25,12 @@ public class BoardRepository {
         return sql.selectList("Board.search", searchParam);
     }
 
+    public void delete(Long id) {
+        sql.delete("Board.delete", id);
+    }
+
+    public void saveFile(BoardDTO boardDTO) {
+        sql.insert("Board.saveFile", boardDTO);
+    }
+
 }
