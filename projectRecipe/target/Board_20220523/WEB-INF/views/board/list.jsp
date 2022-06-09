@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
     <script>
         const saveFileForm = () => {
-            location.href = "/saveFile-form";
+            location.href = "/board/saveFile-form";
         }
         const paging = () => {
             location.href = "/board/paging";

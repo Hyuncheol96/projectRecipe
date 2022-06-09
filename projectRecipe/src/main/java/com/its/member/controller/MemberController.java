@@ -67,6 +67,12 @@ public class MemberController {
             return "";
         }
     }
+    // 로그아웃 처리
+    @RequestMapping(value = "/logout-form",method=RequestMethod.GET)
+    public String getLogout(HttpSession session) throws Exception{
+        session.invalidate();
+        return "redirect:/";
+    }
 
     @GetMapping("/update-form")
     public String updateForm(HttpSession session, Model model) {

@@ -51,14 +51,14 @@ public class BoardController {
     @PostMapping("/saveFile-form")
     public String saveFile(@ModelAttribute BoardDTO boardDTO) throws IOException {
         boardService.saveFile(boardDTO);
-        return "redirect:/paging";
+        return "redirect:/board/paging";
     }
 
     // 삭제처리
     @GetMapping("/delete")
     public String delete(@RequestParam("id") Long id) {
         boardService.delete(id);
-        return "redirect:/paging";
+        return "redirect:/board/paging";
     }
 
     // 글 상세조회

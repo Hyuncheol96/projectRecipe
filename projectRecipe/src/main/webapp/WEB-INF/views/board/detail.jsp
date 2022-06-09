@@ -32,7 +32,7 @@
          alt="" height="100" width="100">
     <br><c:if test="${sessionScope.loginMemberId eq board.boardWriter}"><button class="btn btn-primary" onclick="boardUpdate()">수정</button></c:if>&nbsp;
     <%-- 삭제처리 --%>
-    <c:if test="${sessionScope.loginMemberId eq board.boardWriter or sessionScope.loginMemberId == 'admin'}"><a href="/delete?id=${board.id}"role="button" class="btn btn-primary">삭제</a></c:if>&nbsp;
+    <c:if test="${sessionScope.loginMemberId eq board.boardWriter or sessionScope.loginMemberId == 'admin'}"><a href="/board/delete?id=${board.id}"role="button" class="btn btn-primary">삭제</a></c:if>&nbsp;
     <button onclick="paging()" class="btn btn-primary">목록</button>
 </div>
 <div class="container mb-5">
