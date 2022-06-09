@@ -2,8 +2,10 @@ package com.its.member.controller;
 
 
 import com.its.member.dto.BoardDTO;
+import com.its.member.dto.CommentDTO;
 import com.its.member.dto.PageDTO;
 import com.its.member.service.BoardService;
+import com.its.member.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +21,8 @@ import java.util.List;
 public class BoardController {
     @Autowired
     private BoardService boardService;
+    @Autowired
+    private CommentService commentService;
 
     // 페이징처리
     @GetMapping("/paging")
@@ -57,6 +61,20 @@ public class BoardController {
     public String delete(@RequestParam("id") Long id) {
         boardService.delete(id);
         return "redirect:/board/paging";
+    }
+
+    // 글 상세조회
+    @GetMapping("/detail")
+    public String findById(@RequestParam("id") Long id, Model model,
+                           @RequestParam(value="page", required = false, defaultValue = "1") int page) {
+        BoardDTO boardDTO = boardService.findById(id); // 방법 1
+//        model.addAttribute("board", boardService.findById(id)); // 방법 2
+        model.addAttribute("board", boardDTO);
+        model.addAttribute("page", page);
+        // 댓글 목록도 가져가야 함.
+        List<CommentDTO> commentDTOList = commentService.findAll(id);
+        model.addAttribute("commentList", commentDTOList);
+        return "board/detail";
     }
 
 

@@ -73,4 +73,10 @@ public class BoardService {
         boardRepository.delete(id);
     }
 
+    public BoardDTO findById(Long id) {
+        boardRepository.updateHits(id);
+        return boardRepository.findById(id);
+    }
+
+
 }
