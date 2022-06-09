@@ -60,7 +60,7 @@ public class BoardController {
     @GetMapping("/delete")
     public String delete(@RequestParam("id") Long id) {
         boardService.delete(id);
-        return "redirect:/board/paging";
+        return "redirect:/paging";
     }
 
     // 글 상세조회
@@ -75,6 +75,21 @@ public class BoardController {
         List<CommentDTO> commentDTOList = commentService.findAll(id);
         model.addAttribute("commentList", commentDTOList);
         return "board/detail";
+    }
+
+    // 글 수정화면 요청
+    @GetMapping("/update")
+    public String updateForm(@RequestParam("id") Long id, Model model) {
+        BoardDTO boardDTO = boardService.findById(id);
+        model.addAttribute("boardUpdate", boardDTO);
+        return "board/update";
+    }
+
+    // 수정처리
+    @PostMapping("/update")
+    public String update(@ModelAttribute BoardDTO boardDTO) {
+        boardService.update(boardDTO);
+        return "redirect:/detail?id="+boardDTO.getId(); // 수정처리 후 해당 글의 상세페이지 요청
     }
 
 

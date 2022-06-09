@@ -32,7 +32,7 @@
          alt="" height="100" width="100">
     <br><c:if test="${sessionScope.loginMemberId eq board.boardWriter}"><button class="btn btn-primary" onclick="boardUpdate()">수정</button></c:if>&nbsp;
     <%-- 삭제처리 --%>
-    <c:if test="${sessionScope.loginMemberId eq board.boardWriter or sessionScope.loginMemberId == 'admin'}"><a href="/board/delete?id=${board.id}"role="button" class="btn btn-primary">삭제</a></c:if>&nbsp;
+    <c:if test="${sessionScope.loginMemberId eq board.boardWriter or sessionScope.loginMemberId == 'admin'}"><a href="/delete?id=${board.id}"role="button" class="btn btn-primary">삭제</a></c:if>&nbsp;
     <button onclick="paging()" class="btn btn-primary">목록</button>
 </div>
 <div class="container mb-5">
@@ -111,5 +111,22 @@
             }
         });
     });
+
+    const boardUpdate = () => {
+        console.log("함수호출")
+        // 수정을 위한 화면(update.jsp)을 출력하고, 비밀번호를 입력받아서
+        // 비밀번호 일치하면 수정처리, 일치하지 않으면 alert(회원 수정이랑 프로세스 같음.)
+        location.href = "/update?id=${board.id}";
+    }
+
+    <%--const boardDelete = () => {--%>
+    <%--    // 비밀번호 체크를 위한 화면(passwordCheck.jsp)을 출력하고, 비밀번호 입력받아서--%>
+    <%--    // 비밀번호 일치하면 삭제처리 후 목록 출력, 일치하지 않으면 alert 띄우고 상세화면으로--%>
+    <%--    location.href = "/board/passwordCheck?id=${board.id}";--%>
+    <%--}--%>
+
+    const paging = () => {
+        location.href = "/paging?page=${page}"; // 직전에 있었던 페이지 값을 컨트롤러로 요청
+    }
 </script>
 </html>
