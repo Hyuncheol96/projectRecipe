@@ -1,7 +1,12 @@
-
+<%--
+  Created by IntelliJ IDEA.
+  User: khc_9
+  Date: 2022-06-10
+  Time: 오후 1:28
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <title>index.jsp</title>
@@ -19,34 +24,6 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="\resources\css/main.css"/>
-    <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
-    <script src="/resources/js/jquery.js"></script>
-    <style>
-        .table {
-            border: 1px solid;
-            width: 1100px;
-        }
-        thead {
-            border-bottom: 1px solid gray;
-        }
-        .member {
-            border: 1px solid;
-        }
-        .member:hover {
-            transition: all 0.3s;
-            background: #DED369;
-        }
-        #search {
-            border: 1px solid lightgray;
-        }
-        /*.container {*/
-        /*    display: flex;*/
-        /*    justify-content: center;*/
-        /*}*/
-        /*.memberCenter {*/
-        /*    text-align: center;*/
-        /*}*/
-    </style>
 </head>
 
 <body class="is-preload">
@@ -60,33 +37,34 @@
 
             <!-- Header -->
             <header id="header">
-
-
                 <%--                <table>--%>
                 <%--                    <th><a href="/member/save-form" class="logo"><strong>회원가입</strong></a></th>--%>
                 <%--                    <th><a href="/member/login-form" class="logo"><strong>로그인</strong></a></th>--%>
                 <%--                    <th><a href="/board/paging" class="logo"><strong>글목록</strong></a></th>--%>
                 <%--                </table>--%>
+<%--                <table>--%>
+<%--                    <th>--%>
 
-                <ul class="icons">
-                    <c:choose>
-                        <c:when test="${sessionScope.loginId == null}">
-                            <%--        <li><a href="/">Home</a></td>--%>
-                            <%--        <li><a href="/member/login-form">로그인</a></td>--%>
-                            <%--        <li><a href="/member/save-form">회원가입</a></td>--%>
-                        </c:when>
-                        <c:when test="${sessionScope.loginMemberId == 'admin'}">
-                            <li><a href="/member/findAll">관리자페이지</a></li>
-                            <li><a href="/member/logout-form">로그아웃</a></li>
-                            <li><a href="/member/update-form">마이페이지</a></li>
-                        </c:when>
-                        <c:otherwise>
-                            <li><a href="/member/logout-form">로그아웃</a></li>
-                            <li><a href="/member/update-form">마이페이지</a></li>
-                        </c:otherwise>
-                    </c:choose>
-                    <%--        <li><a href="/board/paging">글목록</a></td>--%>
-                </ul>
+<%--                        <c:choose>--%>
+<%--                        <c:when test="${sessionScope.loginId == null}">--%>
+<%--                    <td><a href="/">Home</a></td>--%>
+<%--                    <td><a href="/member/login-form">로그인</a></td>--%>
+<%--                    <td><a href="/member/save-form">회원가입</a></td>--%>
+<%--                    </c:when>--%>
+<%--                    <c:when test="${sessionScope.loginMemberId == 'admin'}">--%>
+<%--                        <td><a href="/member/admin-form">관리자페이지</a></td>--%>
+<%--                        <td><a href="/member/logout-form">로그아웃</a></td>--%>
+<%--                        <td><a href="/member/update-form">마이페이지</a></td>--%>
+<%--                    </c:when>--%>
+<%--                    <c:otherwise>--%>
+<%--                        <td><a href="/member/logout-form">로그아웃</a></td>--%>
+<%--                        <td><a href="/member/update-form">마이페이지</a></td>--%>
+<%--                    </c:otherwise>--%>
+<%--                    </c:choose>--%>
+<%--                    <td><a href="/board/paging">글목록</a></td>--%>
+<%--                    </th>--%>
+
+<%--                </table>--%>
 
 
                 <%--                <a href="projectFront/index.html" class="logo"><strong>Editorial</strong> by HTML5 UP</a>--%>
@@ -99,51 +77,19 @@
                 <%--                </ul>--%>
             </header>
 
-            <!-- Banner -->
-            <section id="banner">
-                <div class="content">
-                    <header>
-                        <div class="container mt-3"></div> <%-- mt-3 = 자기 기준으로 위를 3만큼 띄움 --%>
-                        <div id="comment-list">
-                            <table class="table">
-                                <tr>
-                                    <th>번호</th>
-                                    <th>아이디</th>
-                                    <th>이름</th>
-                                    <th>이메일</th>
-                                    <th>전화번호</th>
-                                    <th>삭제</th>
+            <!-- Content -->
+            <section>
+                <header class="main">
+                    <h1>음식</h1>
+                </header>
 
-                                </tr>
-                                <c:forEach items="${memberList}" var="member">
-                                    <tr>
-                                        <td>${member.id}</td>
-                                        <td>${member.memberId}</td>
-                                        <td>${member.memberName}</td>
-                                        <td>${member.memberEmail}</td>
-                                        <td>${member.memberMobile}</td>
+                <span class="image main"><img src="\resources\img/2.jpg" width="50" height="600" alt="" /></span>
 
-                                        <td><a href="/member/delete?id=${member.id}">삭제</a></td>
-                                            <%--                <td><a href="/delete?id=${member.id}">삭제</a></td>--%>
-                                    </tr>
-                                </c:forEach>
-                            </table>
-                        </div>
-                    </header>
-                    <ul class="actions">
-                        <li><c:choose>
-                            <c:when test="${sessionScope.loginId == null}">
-                                <td><a href="/member/save-form" class="button big">시작하기</a></td>
-                                <td><a href="/member/login-form" class="button big">로그인</a></td>
-                            </c:when>
-                            <c:otherwise>
+                <h2>음식에는 두 가지 뜻이 있다.</h2>
+                <p>첫 번째는 인간이 먹음으로써 활동에 필요한 영양분을 얻을 수 있도록 만들어진 사물을 말하며, 두 번째는 인간이 먹고 마시는 행위 자체를 말한다. 그러나 두 번째 뜻은 보통 '식음'이나 '식사'라고 부르고, 일반적으로 '음식'이라고 하면 첫 번째 뜻, 즉 불이나 도구를 사용해 불필요한 부위를 제거하거나 먹기 쉽게 가공한 것을 의미한다. 먹을 수 있는 것 자체를 의미하는 식량과는 포괄하는 범위가 다르다. 생존에 직결되는 만큼 과거부터 매우 중요하게 생각됐으며 인간이 살아가는 데 있어 꼭 필요한 3요소인 의식주(衣食住) 중 하나로 꼽힌다.</p>
+                <hr class="major" />
 
-                            </c:otherwise>
-                        </c:choose></li>
-                    </ul>
-                </div>
             </section>
-
 
         </div>
     </div>
@@ -152,13 +98,20 @@
     <div id="sidebar">
         <div class="inner">
 
+            <!-- Search -->
+            <section id="search" class="alt">
+                <form method="post" action="#">
+                    <input type="text" name="query" id="query" placeholder="Search" />
+                </form>
+            </section>
+
             <!-- Menu -->
             <nav id="menu">
                 <header class="major">
                     <h2>Menu</h2>
                 </header>
                 <ul>
-                    <li><a href="#">Home</a></li>
+                    <li><a href="/">Home</a></li>
                     <li><a href="/board/food-form">Food</a></li>
                     <li>
                         <span class="opener">Food recipe</span>
@@ -187,6 +140,29 @@
                 </ul>
             </nav>
 
+            <!-- Section -->
+            <section>
+                <header class="major">
+                    <h2>Ante interdum</h2>
+                </header>
+                <div class="mini-posts">
+                    <article>
+                        <a href="#" class="image"><img src="images/pic07.jpg" alt="" /></a>
+                        <p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
+                    </article>
+                    <article>
+                        <a href="#" class="image"><img src="images/pic08.jpg" alt="" /></a>
+                        <p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
+                    </article>
+                    <article>
+                        <a href="#" class="image"><img src="images/pic09.jpg" alt="" /></a>
+                        <p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
+                    </article>
+                </div>
+                <ul class="actions">
+                    <li><a href="#" class="button">More</a></li>
+                </ul>
+            </section>
 
             <!-- Section -->
             <section>

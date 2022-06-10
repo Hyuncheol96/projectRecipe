@@ -28,13 +28,17 @@
     <table class="table">
         <tr>
             <th>
-                <form action="/board/search" method="get">
-                    <select name="searchType">
+                <form action="/board/search" size="10" method="get">
+                    <table>
+                        <th>
+                        <td><select name="searchType">
                         <option value="boardTitle">제목</option>
-                        <option value="boardWriter"></option>
-                    </select>
-                    <input type="text" name="q" placeholder="검색어입력..">
-                    <input type="submit" value="검색">
+                        <option value="boardWriter">작성자</option>
+                    </select></td>
+                        <td><input type="text" name="q" placeholder="검색어입력.."></td>
+                        <td><input type="submit" value="검색"></td>
+                        </th>
+                    </table>
                 </form>
             </th>
             <th></th>

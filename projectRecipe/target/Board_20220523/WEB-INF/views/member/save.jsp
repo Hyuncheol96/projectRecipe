@@ -53,7 +53,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 </head>
 <body cellpadding="0" cellspacing="0" marginleft="0" margintop="0" width="100%" height="100%" align="center">
-<jsp:include page="../layout/header.jsp" flush="false"></jsp:include>
+
 
 <div class="card align-middle" style="width:45rem; border-radius:20px;">
     <div class="card-title" style="margin-top:30px;">
