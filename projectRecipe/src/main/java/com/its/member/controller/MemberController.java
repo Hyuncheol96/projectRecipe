@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 
 @Controller
@@ -27,6 +28,7 @@ public class MemberController {
         return "member/save";
     }
 
+    // 회원가입 처리
     @PostMapping("/save")
     public String save(@ModelAttribute MemberDTO memberDTO) {
         System.out.println("memberDTO = " + memberDTO);
@@ -39,6 +41,7 @@ public class MemberController {
     }
 
 
+    // 아이디 중복 확인
     @PostMapping("/duplicate-check")
     public @ResponseBody String duplicateCheck(@RequestParam("memberId") String memberId) {
         System.out.println("memberId = " + memberId);
@@ -48,6 +51,7 @@ public class MemberController {
         return checkResult; // ok.jsp 또는 no.jsp 를 찾음.
     }
 
+    // 로그인 화면 이동
     @GetMapping("/login-form")
     public String loginForm() {
         return "member/login";
@@ -74,6 +78,7 @@ public class MemberController {
         return "redirect:/";
     }
 
+    // 회원정보 수정화면 이동
     @GetMapping("/update-form")
     public String updateForm(HttpSession session, Model model) {
         // 로그인을 한 상태기 때문에 세션에 id, memberId가 들어있고
@@ -86,7 +91,7 @@ public class MemberController {
         return "member/mypage";
     }
 
-    // 회원정보 수정화면 이동
+    // 회원정보 수정화면 처리
     @PostMapping("/update")
     public String update(@ModelAttribute MemberDTO memberDTO) {
         System.out.println("memberDTO = " + memberDTO);
@@ -100,7 +105,7 @@ public class MemberController {
         }
     }
 
-    // 회원정보 수정 처리
+    // 회원정보 수정시 비밀번호 확인
     @GetMapping("/mypage")
     public String mypageForm() {
         return "member/mypage";
@@ -121,5 +126,32 @@ public class MemberController {
         return "member/memberDetail";
     }
 
+    // 관리자 페이지 화면 이동
+    @GetMapping("/admin-form")
+    public String adminForm() {
+        return "/member/admin";
+    }
+
+    // 회원정보 목록
+    @GetMapping("/findAll") // 아래 findAll 안에 Model model = 전체 데이터를 가져가야 하기때문에 사용
+    public String findAll(Model model) {
+        List<MemberDTO> memberDTOList = memberService.findAll();
+        model.addAttribute("memberList", memberDTOList);
+        return "member/memberList";
+    }
+
+    // 삭제처리
+    @GetMapping("/delete")
+    public String delete(@RequestParam("id") Long id) {
+        System.out.println("id = " + id);
+        boolean deleteResult = memberService.delete(id);
+        if (deleteResult) {
+            // redirect: 컨트롤러의 메서드에서 다른 메서드의 주소를 호출
+            // redirect를 이용하여 findAll 주소 요청
+            return "redirect:/member/findAll";
+        } else {
+            return "delete-fail";
+        }
+    }
 
 }

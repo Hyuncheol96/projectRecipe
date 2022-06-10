@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
 </head>
 <body>
+<jsp:include page="../layout/header.jsp" flush="false"></jsp:include>
 <div class="container mt-3"></div> <%-- mt-3 = 자기 기준으로 위를 3만큼 띄움 --%>
 <div class="container">
     <h2>회원정보가 수정되었습니다.</h2>

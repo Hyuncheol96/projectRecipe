@@ -53,6 +53,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 </head>
 <body cellpadding="0" cellspacing="0" marginleft="0" margintop="0" width="100%" height="100%" align="center">
+<jsp:include page="../layout/header.jsp" flush="false"></jsp:include>
 
 <div class="card align-middle" style="width:45rem; border-radius:20px;">
     <div class="card-title" style="margin-top:30px;">
@@ -61,7 +62,7 @@
     <div class="container mt-3"></div> <%-- mt-3 = 자기 기준으로 위를 3만큼 띄움 --%>
     <div class="container" style="color: #6f6d74;">
         <div class="py-5 ">
-            <form action="/save" method="post" enctype="multipart/form-data">
+            <form action="/member/save" method="post" enctype="multipart/form-data">
                 <i id="idIcon-result" class="bi bi-tags-fill"></i>아이디<br><input class="form-control mb-2" type="text" onblur="duplicateCheck()" id="memberId" name="memberId" placeholder="ID를 만들어주세요 띄어쓰기 없이 영/숫자 6-10자"><p id="check-result"></p>
                 <p id="memberId-result"></p>
                 <span id="dup-check-result"></span><br>
@@ -86,7 +87,7 @@
         const checkResult = document.getElementById("dup-check-result");
         $.ajax({
             type: "post", // http request method
-            url: "/duplicate-check", // 요청주소 (컨트롤러 주소값)
+            url: "/member/duplicate-check", // 요청주소 (컨트롤러 주소값)
             data: {"memberId": memberId}, // 전송하는 파라미터
             dataType: "text", // 리턴받을 데이터 형식
             success: function (result) {
