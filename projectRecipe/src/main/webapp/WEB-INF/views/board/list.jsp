@@ -28,7 +28,7 @@
     <table class="table">
         <tr>
             <th>
-                <form action="/search" method="get">
+                <form action="/board/search" method="get">
                     <select name="searchType">
                         <option value="boardTitle">제목</option>
                         <option value="boardWriter"></option>

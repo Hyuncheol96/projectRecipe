@@ -16,6 +16,7 @@
     </script>
 </head>
 <body>
+
 <button class="btn btn-outline-success" onclick="saveForm()">회원가입</button>
 <button class="btn btn-outline-success" onclick="loginForm()">로그인</button>
 <button class="btn btn-outline-success" onclick="listForm()">글목록</button>

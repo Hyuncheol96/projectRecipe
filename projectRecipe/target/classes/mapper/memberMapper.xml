@@ -25,7 +25,13 @@
         update member_table set memberPassword=#{memberPassword}, memberEmail=#{memberEmail}, memberMobile=#{memberMobile} where id=#{id}
     </update>
 
+    <select id="findAll" resultType="member">
+        select * from member_table
+    </select>
 
+    <delete id="delete" parameterType="Long">
+        delete from member_table where id = #{id}
+    </delete>
 </mapper>
 
 

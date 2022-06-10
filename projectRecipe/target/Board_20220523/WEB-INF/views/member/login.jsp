@@ -17,6 +17,7 @@
   </style>
 </head>
 <body>
+<jsp:include page="../layout/header.jsp" flush="false"></jsp:include>
 <div class="container mt-3">
   <h2 class="display-4">로그인</h2>
   <div class="py-5 text-center">
