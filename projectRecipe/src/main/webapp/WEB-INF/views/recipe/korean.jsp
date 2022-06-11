@@ -7,6 +7,8 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <html>
 <head>
     <title>index.jsp</title>
@@ -49,8 +51,8 @@
                     <c:choose>
                         <c:when test="${sessionScope.loginId == null}">
                             <%--        <li><a href="/">Home</a></td>--%>
-                            <%--        <li><a href="/member/login-form">로그인</a></td>--%>
-                            <%--        <li><a href="/member/save-form">회원가입</a></td>--%>
+                            <li><a href="/member/login-form">로그인</a></li>
+                            <li><a href="/member/save-form">회원가입</a></li>
                         </c:when>
                         <c:when test="${sessionScope.loginMemberId == 'admin'}">
                             <li><a href="/member/findAll">관리자페이지</a></li>
@@ -79,7 +81,7 @@
             <!-- Content -->
             <section>
                 <header class="main">
-                    <h3>Korean...</h3>
+                    <h3>KOREAN</h3>
                 </header>
 
                 <div class="container mt-3">
@@ -185,12 +187,6 @@
     <div id="sidebar">
         <div class="inner">
 
-            <!-- Search -->
-            <section id="search" class="alt">
-                <form method="post" action="#">
-                    <input type="text" name="query" id="query" placeholder="Search" />
-                </form>
-            </section>
 
             <!-- Menu -->
             <nav id="menu">
@@ -205,8 +201,8 @@
                         <slection>
                             <ul>
                                 <li><a href="/recipe/korean-form">Korean</a></li>
-                                <li><a href="#">Western</a></li>
-                                <li><a href="#">Dessert</a></li>
+                                <li><a href="/recipe/western-form">Western</a></li>
+                                <li><a href="/recipe/dessert-form">Dessert</a></li>
                             </ul>
                         </slection>
                     </li>

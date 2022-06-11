@@ -98,13 +98,6 @@
     <div id="sidebar">
         <div class="inner">
 
-            <!-- Search -->
-            <section id="search" class="alt">
-                <form method="post" action="#">
-                    <input type="text" name="query" id="query" placeholder="Search" />
-                </form>
-            </section>
-
             <!-- Menu -->
             <nav id="menu">
                 <header class="major">
@@ -118,8 +111,8 @@
                         <slection>
                             <ul>
                                 <li><a href="/recipe/korean-form">Korean</a></li>
-                                <li><a href="#">Western</a></li>
-                                <li><a href="#">Dessert</a></li>
+                                <li><a href="/recipe/western-form">Western</a></li>
+                                <li><a href="/recipe/dessert-form">Dessert</a></li>
                             </ul>
                         </slection>
                     </li>

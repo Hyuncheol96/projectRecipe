@@ -13,8 +13,19 @@ public class RecipeController {
     private RecipeService recipeService;
 
     @GetMapping("/korean-form")
-    public String recipeForm() {
+    public String koreanRecipe() {
         return "recipe/korean";
     }
+
+    @GetMapping("/western-form")
+    public String westernRecipe() {
+        return "recipe/western";
+    }
+
+    @GetMapping("/dessert-form")
+    public String dessertRecipe() {
+        return "recipe/dessert";
+    }
+
 
 }

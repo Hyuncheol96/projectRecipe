@@ -158,15 +158,15 @@
                     <h2>Menu</h2>
                 </header>
                 <ul>
-                    <li><a href="#">Home</a></li>
+                    <li><a href="/">Home</a></li>
                     <li><a href="/board/food-form">Food</a></li>
                     <li>
                         <span class="opener">Food recipe</span>
                         <slection>
                             <ul>
                                 <li><a href="/recipe/korean-form">Korean</a></li>
-                                <li><a href="#">Western</a></li>
-                                <li><a href="#">Dessert</a></li>
+                                <li><a href="/recipe/western-form">Western</a></li>
+                                <li><a href="/recipe/dessert-form">Dessert</a></li>
                             </ul>
                         </slection>
                     </li>

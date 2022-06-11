@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: khc_9
-  Date: 2022-06-10
-  Time: 오후 2:18
+  Date: 2022-06-11
+  Time: 오후 7:51
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -81,7 +81,7 @@
             <!-- Content -->
             <section>
                 <header class="main">
-                    <h3>KOREAN</h3>
+                    <h3>DESSERT</h3>
                 </header>
 
                 <div class="container mt-3">

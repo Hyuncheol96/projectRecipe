@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: khc_9
-  Date: 2022-06-10
-  Time: 오후 2:18
+  Date: 2022-06-11
+  Time: 오후 7:46
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -51,8 +51,8 @@
                     <c:choose>
                         <c:when test="${sessionScope.loginId == null}">
                             <%--        <li><a href="/">Home</a></td>--%>
-                            <li><a href="/member/login-form">로그인</a></li>
-                            <li><a href="/member/save-form">회원가입</a></li>
+                                    <li><a href="/member/login-form">로그인</a></li>
+                                    <li><a href="/member/save-form">회원가입</a></li>
                         </c:when>
                         <c:when test="${sessionScope.loginMemberId == 'admin'}">
                             <li><a href="/member/findAll">관리자페이지</a></li>
@@ -81,7 +81,7 @@
             <!-- Content -->
             <section>
                 <header class="main">
-                    <h3>KOREAN</h3>
+                    <h3>WESTERN</h3>
                 </header>
 
                 <div class="container mt-3">
