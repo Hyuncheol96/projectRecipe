@@ -5,32 +5,32 @@
 
 <mapper namespace="Member">
     <insert id="save" parameterType="member">
-        insert into member_table(memberId, memberPassword, memberName, memberEmail, memberMobile)
+        insert into memberRecipe_table(memberId, memberPassword, memberName, memberEmail, memberMobile)
         values (#{memberId}, #{memberPassword}, #{memberName}, #{memberEmail}, #{memberMobile})
     </insert>
 
     <select id="duplicate" parameterType="String" resultType="String">
-        select memberId from member_table where memberId=#{memberId}
+        select memberId from memberRecipe_table where memberId=#{memberId}
     </select>
 
     <select id="login" parameterType="member" resultType="member">
-        select * from member_table where memberId=#{memberId} and memberPassword=#{memberPassword}
+        select * from memberRecipe_table where memberId=#{memberId} and memberPassword=#{memberPassword}
     </select>
 
     <select id="findById" parameterType="Long" resultType="member">
-        select * from member_table where id=#{id}
+        select * from memberRecipe_table where id=#{id}
     </select>
 
     <update id="update" parameterType="member">
-        update member_table set memberPassword=#{memberPassword}, memberEmail=#{memberEmail}, memberMobile=#{memberMobile} where id=#{id}
+        update memberRecipe_table set memberPassword=#{memberPassword}, memberEmail=#{memberEmail}, memberMobile=#{memberMobile} where id=#{id}
     </update>
 
     <select id="findAll" resultType="member">
-        select * from member_table
+        select * from memberRecipe_table
     </select>
 
     <delete id="delete" parameterType="Long">
-        delete from member_table where id = #{id}
+        delete from memberRecipe_table where id = #{id}
     </delete>
 </mapper>
 

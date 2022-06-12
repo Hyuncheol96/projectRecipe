@@ -23,13 +23,22 @@ public class BoardController {
     private CommentService commentService;
 
     // 페이징처리
-    @GetMapping("/paging")
-    public String paging(@RequestParam(value = "page", required = false, defaultValue = "1") int page, Model model) {
-        List<BoardDTO> boardList = boardService.pagingList(page);
+//    @GetMapping("/paging")
+//    public String paging(@RequestParam(value = "page", required = false, defaultValue = "1") int page, Model model) {
+//        List<BoardDTO> dessertBoardList = boardService.dessertPagingList(page);
+//        PageDTO paging = boardService.paging(page);     // 해당페이지의 하단 글의 번호 호출
+//        model.addAttribute("dessertBoardList", dessertBoardList);
+//        model.addAttribute("paging", paging);
+//        return "board/dessertList";
+//    }
+
+    @GetMapping("/dessertWritePaging")
+    public String dessertWritePaging(@RequestParam(value = "page", required = false, defaultValue = "1") int page, Model model) {
+        List<BoardDTO> dessertBoardList = boardService.dessertPagingList(page);
         PageDTO paging = boardService.paging(page);     // 해당페이지의 하단 글의 번호 호출
-        model.addAttribute("boardList", boardList);
+        model.addAttribute("dessertBoardList", dessertBoardList);
         model.addAttribute("paging", paging);
-        return "board/list";
+        return "board/dessertList";
     }
 
     // 검색처리
@@ -37,8 +46,8 @@ public class BoardController {
     public String search(@RequestParam("searchType") String searchType,
                          @RequestParam("q") String q, Model model) {
         List<BoardDTO> searchList = boardService.search(searchType, q);
-        model.addAttribute("boardList", searchList);
-        return "board/list";
+        model.addAttribute("dessertBoardList", searchList);
+        return "board/dessertList";
     }
 
     // 글 작성화면
@@ -47,12 +56,12 @@ public class BoardController {
         return "board/saveFile";
     }
 
-    // 글 작성화면 처리
-    @PostMapping("/saveFile-form")
-    public String saveFile(@ModelAttribute BoardDTO boardDTO) throws IOException {
-        boardService.saveFile(boardDTO);
-        return "redirect:/board/paging";
-    }
+//    // 글 작성화면 처리
+//    @PostMapping("/saveFile-form")
+//    public String saveFile(@ModelAttribute BoardDTO boardDTO) throws IOException {
+//        boardService.saveFile(boardDTO);
+//        return "redirect:/board/paging";
+//    }
 
     // 삭제처리
     @GetMapping("/delete")
@@ -61,19 +70,19 @@ public class BoardController {
         return "redirect:/board/paging";
     }
 
-    // 글 상세조회
-    @GetMapping("/detail")
-    public String findById(@RequestParam("id") Long id, Model model,
-                           @RequestParam(value="page", required = false, defaultValue = "1") int page) {
-        BoardDTO boardDTO = boardService.findById(id); // 방법 1
-//        model.addAttribute("board", boardService.findById(id)); // 방법 2
-        model.addAttribute("board", boardDTO);
-        model.addAttribute("page", page);
-        // 댓글 목록도 가져가야 함.
-        List<CommentDTO> commentDTOList = commentService.findAll(id);
-        model.addAttribute("commentList", commentDTOList);
-        return "board/detail";
-    }
+//    // 글 상세조회
+//    @GetMapping("/detail")
+//    public String findById(@RequestParam("id") Long id, Model model,
+//                           @RequestParam(value="page", required = false, defaultValue = "1") int page) {
+//        BoardDTO boardDTO = boardService.findById(id); // 방법 1
+////        model.addAttribute("board", boardService.findById(id)); // 방법 2
+//        model.addAttribute("board", boardDTO);
+//        model.addAttribute("page", page);
+//        // 댓글 목록도 가져가야 함.
+//        List<CommentDTO> commentDTOList = commentService.findAll(id);
+//        model.addAttribute("commentList", commentDTOList);
+//        return "board/detail";
+//    }
 
     // 글 수정화면 요청
     @GetMapping("/update")
@@ -95,5 +104,82 @@ public class BoardController {
     public String foodForm() {
         return "board/food";
     }
+
+//    // 페이징처리
+//    @GetMapping("/dessertPaging")
+//    public String dessertPaging(@RequestParam(value = "page", required = false, defaultValue = "1") int page, Model model) {
+//        List<BoardDTO> boardList = boardService.dessertPagingList(page);
+//        PageDTO paging = boardService.paging(page);     // 해당페이지의 하단 글의 번호 호출
+//        model.addAttribute("boardList", boardList);
+//        model.addAttribute("paging", paging);
+//        return "board/dessertList";
+//    }
+
+    // 글 목록 출력
+    @GetMapping("/findAll")
+    public String findAll(Model model) {
+        List<BoardDTO> boardDTOList = boardService.findAll();
+        model.addAttribute("dessertBoardList", boardDTOList);
+        return "/board/dessertList";
+    }
+
+    // 상세조회
+    @GetMapping("/dessertDetail")
+    public String findById(@RequestParam("id") Long id, Model model,
+                           @RequestParam(value="page", required = false, defaultValue = "1") int page) {
+        BoardDTO boardDTO = boardService.findById(id); // 방법 1
+//        model.addAttribute("board", boardService.findById(id)); // 방법 2
+        model.addAttribute("board", boardDTO);
+        model.addAttribute("page", page);
+        // 댓글 목록도 가져가야 함.
+        List<CommentDTO> commentDTOList = commentService.findAll(id);
+        model.addAttribute("commentList", commentDTOList);
+        return "/board/dessertDetail";
+    }
+    // korean 글 리스트 이동
+    @GetMapping("/korean-form")
+    public String koreanRecipe() {
+        return "board/koreanList";
+    }
+
+    // western 글 리스트 이동
+    @GetMapping("/western-form")
+    public String westernRecipe() {
+        return "board/westernList";
+    }
+
+    // // dessert 글 리스트 이동
+    @GetMapping("/dessert-form")
+    public String dessertRecipe() {
+        return "board/dessertList";
+    }
+
+    // dessert 글 작성화면 이동
+    @GetMapping("/dessertWrite-form")
+    public String dessertWriteForm() {
+        return "board/dessertWrite";
+    }
+
+    // dessert 글 작성화면 처리
+    @PostMapping("/dessertWrite-form")
+    public String dessertWrite(@ModelAttribute BoardDTO boardDTO) {
+        boolean result = boardService.dessertWrite(boardDTO);
+        if(result) {
+            return "redirect:/board/dessertWritePaging";
+        } else {
+            return "board/fail";
+        }
+    }
+
+//    @PostMapping("/dessertWrite-form")
+//    public String dessertWriteForm(@ModelAttribute BoardDTO boardDTO) throws IOException {
+//        boolean result =boardService.dessertWrite(boardDTO);
+//        if(result) {
+//            return "redirect:/board/dessert-formPaging";
+//        } else {
+//            return "board/save-fail";
+//        }
+//    }
+
 
 }

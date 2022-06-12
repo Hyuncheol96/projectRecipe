@@ -57,17 +57,17 @@ public class BoardService {
         return searchList;
     }
 
-    public void saveFile(BoardDTO boardDTO) throws IOException {
-        MultipartFile boardFile = boardDTO.getBoardFile();
-        String boardFileName = boardFile.getOriginalFilename();
-        boardFileName = System.currentTimeMillis() + "-" + boardFileName;
-        boardDTO.setBoardFileName(boardFileName);
-        String savePath = "C:\\KHC_development\\project\\recipe_img\\" + boardFileName;
-        if (!boardFile.isEmpty()) {
-            boardFile.transferTo(new File(savePath));
-        }
-        boardRepository.saveFile(boardDTO);
-    }
+//    public void saveFile(BoardDTO boardDTO) throws IOException {
+//        MultipartFile boardFile = boardDTO.getBoardFile();
+//        String boardFileName = boardFile.getOriginalFilename();
+//        boardFileName = System.currentTimeMillis() + "-" + boardFileName;
+//        boardDTO.setBoardFileName(boardFileName);
+//        String savePath = "C:\\KHC_development\\project\\recipe_img\\" + boardFileName;
+//        if (!boardFile.isEmpty()) {
+//            boardFile.transferTo(new File(savePath));
+//        }
+//        boardRepository.saveFile(boardDTO);
+//    }
 
     public void delete(Long id) {
         boardRepository.delete(id);
@@ -82,4 +82,26 @@ public class BoardService {
         boardRepository.update(boardDTO);
     }
 
+    public boolean dessertWrite(BoardDTO boardDTO) {
+        int saveResult = boardRepository.dessertWrite(boardDTO);
+        if (saveResult > 0) {
+            return true;
+        } else {
+            return  false;
+        }
+    }
+
+
+    public List<BoardDTO> dessertPagingList(int page) {
+        int pagingStart = (page-1) * PAGE_LIMIT;
+        Map<String, Integer> pagingParam = new HashMap<>();
+        pagingParam.put("start", pagingStart);
+        pagingParam.put("limit", PAGE_LIMIT);
+        List<BoardDTO> dessertPagingList = boardRepository.dessertPagingList(pagingParam);
+        return dessertPagingList;
+    }
+
+    public List<BoardDTO> findAll() {
+        return boardRepository.findAll();
+    }
 }

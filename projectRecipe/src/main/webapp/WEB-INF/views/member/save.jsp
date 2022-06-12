@@ -150,9 +150,9 @@
                         <span class="opener">Food recipe</span>
                         <slection>
                             <ul>
-                                <li><a href="/recipe/korean-form">Korean</a></li>
-                                <li><a href="/recipe/western-form">Western</a></li>
-                                <li><a href="/recipe/dessert-form">Dessert</a></li>
+                                <li><a href="/board/korean-form">Korean</a></li>
+                                <li><a href="/board/western-form">Western</a></li>
+                                <li><a href="/board/dessert-form">Dessert</a></li>
                             </ul>
                         </slection>
                     </li>
@@ -207,4 +207,32 @@
 
 <script src="/resources/js/jquery.js"></script>
 </body>
+<script>
+    const duplicateCheck = () => {
+        const memberId = document.getElementById("memberId").value;
+        const checkResult = document.getElementById("dup-check-result");
+        $.ajax({
+            type: "post", // http request method
+            url: "/member/duplicate-check", // 요청주소 (컨트롤러 주소값)
+            data: {"memberId": memberId}, // 전송하는 파라미터
+            dataType: "text", // 리턴받을 데이터 형식
+            success: function (result) {
+                if (result == "ok") {
+                    // 사용 가능한 아이디
+                    checkResult.innerHTML = "사용가능한 아이디 입니다.";
+                    checkResult.style.color = "green";
+                } else {
+                    // 이미 사용중인 아이디
+                    checkResult.innerHTML = "이미 사용중인 아이디 입니다.";
+                    checkResult.style.color = "red";
+                }
+                // alert("ajax 성공");
+            },
+            error: function () {
+                alert("오타체크");
+            }
+        });
+
+    }
+</script>
 </html>

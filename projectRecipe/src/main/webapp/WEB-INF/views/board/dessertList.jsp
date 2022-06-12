@@ -2,7 +2,7 @@
   Created by IntelliJ IDEA.
   User: khc_9
   Date: 2022-06-11
-  Time: 오후 7:46
+  Time: 오후 7:51
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -13,8 +13,8 @@
 <head>
     <title>index.jsp</title>
     <script>
-        const saveForm = () => {
-            location.href = "/member/save-form";
+        const dessertWriteForm = () => {
+            location.href = "/board/dessertWrite-form";
         }
         const loginForm = () => {
             location.href = "/member/login-form";
@@ -40,19 +40,12 @@
             <!-- Header -->
             <header id="header">
 
-
-                <%--                <table>--%>
-                <%--                    <th><a href="/member/save-form" class="logo"><strong>회원가입</strong></a></th>--%>
-                <%--                    <th><a href="/member/login-form" class="logo"><strong>로그인</strong></a></th>--%>
-                <%--                    <th><a href="/board/paging" class="logo"><strong>글목록</strong></a></th>--%>
-                <%--                </table>--%>
-
                 <ul class="icons">
                     <c:choose>
                         <c:when test="${sessionScope.loginId == null}">
                             <%--        <li><a href="/">Home</a></td>--%>
-                                    <li><a href="/member/login-form">로그인</a></li>
-                                    <li><a href="/member/save-form">회원가입</a></li>
+                            <li><a href="/member/login-form">로그인</a></li>
+                            <li><a href="/member/save-form">회원가입</a></li>
                         </c:when>
                         <c:when test="${sessionScope.loginMemberId == 'admin'}">
                             <li><a href="/member/findAll">관리자페이지</a></li>
@@ -66,22 +59,12 @@
                     </c:choose>
                     <%--        <li><a href="/board/paging">글목록</a></td>--%>
                 </ul>
-
-
-                <%--                <a href="projectFront/index.html" class="logo"><strong>Editorial</strong> by HTML5 UP</a>--%>
-                <%--                <ul class="icons">--%>
-                <%--                    <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>--%>
-                <%--                    <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>--%>
-                <%--                    <li><a href="#" class="icon brands fa-snapchat-ghost"><span class="label">Snapchat</span></a></li>--%>
-                <%--                    <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>--%>
-                <%--                    <li><a href="#" class="icon brands fa-medium-m"><span class="label">Medium</span></a></li>--%>
-                <%--                </ul>--%>
             </header>
 
             <!-- Content -->
             <section>
                 <header class="main">
-                    <h3>WESTERN</h3>
+                    <h3>DESSERT</h3>
                 </header>
 
                 <div class="container mt-3">
@@ -105,7 +88,7 @@
                             <th></th>
                             <th></th>
                             <%-- 로그인시 글쓰기 작성 버튼 생성 --%>
-                            <th><c:if test="${sessionScope.loginMemberId!=null}"><button class="btn btn-primary" onclick="saveFileForm()">글 작성</button></c:if></th>
+                            <th><c:if test="${sessionScope.loginMemberId!=null}"><button class="btn btn-primary" onclick="dessertWriteForm()">글 작성</button></c:if></th>
                         </tr>
                         <tr>
                             <th>글번호</th>
@@ -114,11 +97,11 @@
                             <th>작성시간</th>
                             <th>조회수</th>
                         </tr>
-                        <c:forEach items="${boardList}" var="board">
+                        <c:forEach items="${dessertBoardList}" var="board">
                             <tr>
                                 <td>${board.id}</td>
                                 <td>${board.boardWriter}</td>
-                                <td><a href="/board/detail?page${paging.page}&id=${board.id}">${board.boardTitle}</a></td>
+                                <td><a href="/board/dessertDetail?page${paging.page}&id=${board.id}">${board.boardTitle}</a></td>
                                 <td><fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss"
                                                     value="${board.boardCreatedDate}"></fmt:formatDate></td>
                                 <td>${board.boardHits}</td>
@@ -200,9 +183,9 @@
                         <span class="opener">Food recipe</span>
                         <slection>
                             <ul>
-                                <li><a href="/recipe/korean-form">Korean</a></li>
-                                <li><a href="/recipe/western-form">Western</a></li>
-                                <li><a href="/recipe/dessert-form">Dessert</a></li>
+                                <li><a href="/board/korean-form">Korean</a></li>
+                                <li><a href="/board/western-form">Western</a></li>
+                                <li><a href="/board/dessert-form">Dessert</a></li>
                             </ul>
                         </slection>
                     </li>

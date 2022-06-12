@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: khc_9
-  Date: 2022-06-11
-  Time: 오후 7:51
+  Date: 2022-06-10
+  Time: 오후 2:18
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -81,7 +81,7 @@
             <!-- Content -->
             <section>
                 <header class="main">
-                    <h3>DESSERT</h3>
+                    <h3>KOREAN</h3>
                 </header>
 
                 <div class="container mt-3">
@@ -200,9 +200,9 @@
                         <span class="opener">Food recipe</span>
                         <slection>
                             <ul>
-                                <li><a href="/recipe/korean-form">Korean</a></li>
-                                <li><a href="/recipe/western-form">Western</a></li>
-                                <li><a href="/recipe/dessert-form">Dessert</a></li>
+                                <li><a href="/board/korean-form">Korean</a></li>
+                                <li><a href="/board/western-form">Western</a></li>
+                                <li><a href="/board/dessert-form">Dessert</a></li>
                             </ul>
                         </slection>
                     </li>

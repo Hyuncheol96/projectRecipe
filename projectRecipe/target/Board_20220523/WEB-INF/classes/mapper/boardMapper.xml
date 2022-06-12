@@ -5,38 +5,51 @@
 
 <mapper namespace="Board">
     <select id="pagingList" parameterType="java.util.HashMap" resultType="board">
-        select * from board_table order by id desc limit #{start}, #{limit}
+        select * from boardRecipe_table order by id desc limit #{start}, #{limit}
     </select>
 
     <select id="count" resultType="int">
-        select count(id) from board_table
+        select count(id) from boardRecipe_table
     </select>
 
     <select id="search" parameterType="java.util.HashMap" resultType="board">
-        select * from board_table where ${type}
+        select * from boardRecipe_table where ${type}
                                             like concat('%', #{q}, '%') order by id desc;
     </select>
 
-    <insert id="saveFile" parameterType="board">
-        insert into board_table(boardWriter, boardTitle, boardContents, boardCreatedDate, boardFileName)
-        values (#{boardWriter}, #{boardTitle}, #{boardContents}, now(), #{boardFileName})
-    </insert>
+<!--    <insert id="saveFile" parameterType="board">-->
+<!--        insert into board_table(boardWriter, boardTitle, boardContents, boardCreatedDate, boardFileName)-->
+<!--        values (#{boardWriter}, #{boardTitle}, #{boardContents}, now(), #{boardFileName})-->
+<!--    </insert>-->
 
     <delete id="delete" parameterType="Long">
-        delete from board_table where id=#{id}
+        delete from boardRecipe_table where id=#{id}
     </delete>
 
     <select id="updateHits" parameterType="Long">
-        update board_table set boardHits=boardHits+1 where id=#{id}
+        update boardRecipe_table set boardHits=boardHits+1 where id=#{id}
     </select>
 
     <select id="findById" parameterType="Long" resultType="board">
-        select * from board_table where id=#{id}
+        select * from boardRecipe_table where id=#{id}
     </select>
 
     <update id="update" parameterType="board">
-        update board_table set boardTitle=#{boardTitle}, boardContents=#{boardContents} where id=#{id}
+        update boardRecipe_table set boardTitle=#{boardTitle}, boardContents=#{boardContents} where id=#{id}
     </update>
+
+    <insert id="dessertWrite" parameterType="board">
+        insert into boardRecipe_table(boardWriter, boardTitle, boardContents, boardCreatedDate)
+        values (#{boardWriter}, #{boardTitle}, #{boardContents}, now())
+    </insert>
+
+    <select id="dessertPagingList" parameterType="java.util.HashMap" resultType="board">
+        select * from boardRecipe_table order by id desc limit #{start}, #{limit}
+    </select>
+
+    <select id="findAll" resultType="board">
+        select * from boardRecipe_table order by id desc
+    </select>
 
 </mapper>
 

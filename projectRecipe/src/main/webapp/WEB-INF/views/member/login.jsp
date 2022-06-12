@@ -129,9 +129,9 @@
             <span class="opener">Food recipe</span>
             <slection>
               <ul>
-                <li><a href="/recipe/korean-form">Korean</a></li>
-                <li><a href="/recipe/western-form">Western</a></li>
-                <li><a href="/recipe/dessert-form">Dessert</a></li>
+                <li><a href="/board/korean-form">Korean</a></li>
+                <li><a href="/board/western-form">Western</a></li>
+                <li><a href="/board/dessert-form">Dessert</a></li>
               </ul>
             </slection>
           </li>
