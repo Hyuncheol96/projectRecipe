@@ -7,9 +7,15 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <title>index.jsp</title>
+    <style>
+        #comment-write {
+            max-width: 600px;
+        }
+    </style>
     <script>
         const saveForm = () => {
             location.href = "/member/save-form";
@@ -24,15 +30,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="\resources\css/main.css"/>
-
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-
-    <style>
-        #comment-write {
-            max-width: 600px;
-        }
-
-    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 </head>
 
 <body class="is-preload">
@@ -78,58 +77,49 @@
 
             <!-- Banner -->
             <section id="banner">
-                <div class="content">
-                    <header>
-                    </header>
-                    <div class="container">
-
-                        글번호: ${board.id} <br>
-                        제목: ${board.boardTitle} <br>
-                        작성자: ${board.boardWriter} <br>
-                        내용: ${board.boardContents} <br>
-                        조회수: ${board.boardHits} <br>
-                        작성일자: ${board.boardCreatedDate} <br>
-                        <br><c:if test="${sessionScope.loginMemberId eq board.boardWriter}"><button class="btn btn-primary" onclick="dessertUpdate()">수정</button></c:if>&nbsp;
-                        <%-- 삭제처리 --%>
-                        <c:if test="${sessionScope.loginMemberId eq board.boardWriter or sessionScope.loginMemberId == 'admin'}"><a href="/board/delete?id=${board.id}"role="button" class="button big">삭제</a></c:if>&nbsp;
-                        <a href="/board/dessertPaging" class="button big">글목록</a>
-                    </div><br>
-                    <div class="container mb-5">
-                        <div id="comment-write" class="input-group mb-3">
-                            <table>
-                                <th>
-                                <td><div class="form-floating">
-                                <input type="text" id="commentWriter" class="form-control" value="${sessionScope.loginMemberId}" readonly>
-                                <%--                <label for="commentWriter">작성자</label>--%>
-                            </div></td>
-                            <td><div class="form-floating">
-                                <input type="text" id="commentContents" class="form-control" placeholder="내용">
-<%--                                <label for="commentContents">내용</label><br>--%>
-                            </div></td><br>
-                            <td><button id="comment-write-btn" class="">댓글작성</button></td>
-                                </th>
-                            </table>
+                <div class="container">
+                    글번호: ${board.id} <br>
+                    제목: ${board.boardTitle} <br>
+                    작성자: ${board.boardWriter} <br>
+                    내용: ${board.boardContents} <br>
+                    조회수: ${board.boardHits} <br>
+                    작성일자: ${board.boardCreatedDate} <br>
+                    <br><c:if test="${sessionScope.loginMemberId eq board.boardWriter}"><button class="btn btn-primary" onclick="dessertUpdate()">수정</button></c:if>&nbsp;
+                    <%-- 삭제처리 --%>
+                    <c:if test="${sessionScope.loginMemberId eq board.boardWriter or sessionScope.loginMemberId == 'admin'}"><a href="/board/delete?id=${board.id}"role="button" class="btn btn-primary">삭제</a></c:if>&nbsp;
+                    <a href="/board/dessertPaging" class="btn btn-primary">글목록</a>
+                </div>
+                <div class="container mb-5">
+                    <div id="comment-write" class="input-group mb-3">
+                        <div class="form-floating">
+                            <input type="text" id="commentWriter" class="form-control" value="${sessionScope.loginMemberId}" readonly>
+                            <%--                <label for="commentWriter">작성자</label>--%>
                         </div>
+                        <div class="form-floating">
+                            <input type="text" id="commentContents" class="form-control" placeholder="내용">
+                            <label for="commentContents">내용</label><br>
+                        </div>
+                        <button id="comment-write-btn" class="btn btn-primary">댓글작성</button>
+                    </div>
 
-                        <div id="comment-list">
-                            <table class="table">
+                    <div id="comment-list">
+                        <table class="table">
+                            <tr>
+                                <th>댓글번호</th>
+                                <th>작성자</th>
+                                <th>내용</th>
+                                <th>작성시간</th>
+                            </tr>
+                            <c:forEach items="${commentList}" var="comment">
                                 <tr>
-                                    <th>댓글번호</th>
-                                    <th>작성자</th>
-                                    <th>내용</th>
-                                    <th>작성시간</th>
+                                    <td>${comment.id}</td>
+                                    <td>${comment.commentWriter}</td>
+                                    <td>${comment.commentContents}</td>
+                                    <td><fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss" value="${comment.commentCreatedDate}"></fmt:formatDate></td>  <%-- 초 까지만 나옴. --%>
                                 </tr>
-                                <c:forEach items="${commentList}" var="comment">
-                                    <tr>
-                                        <td>${comment.id}</td>
-                                        <td>${comment.commentWriter}</td>
-                                        <td>${comment.commentContents}</td>
-                                        <td><fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss" value="${comment.commentCreatedDate}"></fmt:formatDate></td>  <%-- 초 까지만 나옴. --%>
-                                    </tr>
-                                </c:forEach>
-                            </table>
+                            </c:forEach>
+                        </table>
 
-                        </div>
                     </div>
                 </div>
             </section>
