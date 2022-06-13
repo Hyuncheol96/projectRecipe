@@ -17,8 +17,16 @@ public class BoardRepository {
         return sql.selectList("Board.pagingList", pagingParam);
     }
 
-    public int boardCount() {
-        return sql.selectOne("Board.count");
+    public int koreanCount() {
+        return sql.selectOne("Board.koreanCount");
+    }
+
+    public int westernCount() {
+        return sql.selectOne("Board.westernCount");
+    }
+
+    public int dessertCount() {
+        return sql.selectOne("Board.dessertCount");
     }
 
     public List<BoardDTO> search(Map<String, String> searchParam) {
@@ -33,8 +41,16 @@ public class BoardRepository {
 //        sql.insert("Board.saveFile", boardDTO);
 //    }
 
-    public BoardDTO findById(Long id) {
-        return sql.selectOne("Board.findById", id);
+
+    public BoardDTO koreanFindById(Long id) {
+        return sql.selectOne("Board.koreanFindById", id);
+    }
+    public BoardDTO dessertFindById(Long id) {
+        return sql.selectOne("Board.dessertFindById", id);
+    }
+
+    public BoardDTO westernFindById(Long id) {
+        return sql.selectOne("Board.westernFindById", id);
     }
 
     public void updateHits(Long id) {
@@ -45,15 +61,35 @@ public class BoardRepository {
         sql.update("Board.update", boardDTO);
     }
 
+
+    public int koreanWrite(BoardDTO boardDTO) {
+        return sql.insert("Board.koreanWrite", boardDTO);
+    }
+    public int westernWrite(BoardDTO boardDTO) {
+        return sql.insert("Board.westernWrite", boardDTO);
+    }
+
     public int dessertWrite(BoardDTO boardDTO) {
         return sql.insert("Board.dessertWrite", boardDTO);
+    }
+
+
+    public List<BoardDTO> koreanPagingList(Map<String, Integer> pagingParam) {
+        return sql.selectList("Board.koreanPagingList", pagingParam);
+    }
+
+    public List<BoardDTO> westernPagingList(Map<String, Integer> pagingParam) {
+        return sql.selectList("Board.westernPagingList", pagingParam);
     }
 
     public List<BoardDTO> dessertPagingList(Map<String, Integer> pagingParam) {
         return sql.selectList("Board.dessertPagingList", pagingParam);
     }
 
+
+
     public List<BoardDTO> findAll() {
         return sql.selectList("Board.findAll");
     }
+
 }

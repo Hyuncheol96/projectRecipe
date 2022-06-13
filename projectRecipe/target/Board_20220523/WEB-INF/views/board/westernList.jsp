@@ -13,14 +13,8 @@
 <head>
     <title>index.jsp</title>
     <script>
-        const saveForm = () => {
-            location.href = "/member/save-form";
-        }
-        const loginForm = () => {
-            location.href = "/member/login-form";
-        }
-        const listForm = () => {
-            location.href = "/board/paging";
+        const westernWriteForm = () => {
+            location.href = "/board/westernWrite-form";
         }
     </script>
     <meta charset="utf-8" />
@@ -105,7 +99,7 @@
                             <th></th>
                             <th></th>
                             <%-- 로그인시 글쓰기 작성 버튼 생성 --%>
-                            <th><c:if test="${sessionScope.loginMemberId!=null}"><button class="btn btn-primary" onclick="saveFileForm()">글 작성</button></c:if></th>
+                            <th><c:if test="${sessionScope.loginMemberId!=null}"><button class="btn btn-primary" onclick="westernWriteForm()">글 작성</button></c:if></th>
                         </tr>
                         <tr>
                             <th>글번호</th>
@@ -114,16 +108,19 @@
                             <th>작성시간</th>
                             <th>조회수</th>
                         </tr>
-                        <c:forEach items="${boardList}" var="board">
+                        <c:forEach items="${westernBoardList}" var="board">
+                            <c:if test="${board.boardCategory eq 'western'}">
                             <tr>
                                 <td>${board.id}</td>
                                 <td>${board.boardWriter}</td>
-                                <td><a href="/board/detail?page${paging.page}&id=${board.id}">${board.boardTitle}</a></td>
+                                <td><a href="/board/westernDetail?page${paging.page}&id=${board.id}">${board.boardTitle}</a></td>
                                 <td><fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss"
                                                     value="${board.boardCreatedDate}"></fmt:formatDate></td>
                                 <td>${board.boardHits}</td>
                             </tr>
+                            </c:if>
                         </c:forEach>
+
                     </table>
                 </div>
                 <div class="container">
@@ -139,7 +136,7 @@
                             <%-- 1페이지가 아닌 경우에는 [이전]을 클릭하면 현재페이지보다 1 작은 페이지 요청 --%>
                             <c:otherwise>
                                 <li class="page-item">
-                                    <a class="page-link" href="/board/paging?page=${paging.page-1}">[이전]</a>
+                                    <a class="page-link" href="/board/westernPaging?page=${paging.page-1}">[이전]</a>
                                 </li>
                             </c:otherwise>
                         </c:choose>
@@ -156,7 +153,7 @@
                                 <%-- 번호블럭에 마우스 올리면 커서 모양이 바뀜 --%>
                                 <c:otherwise>
                                     <li class="page-item">
-                                        <a class="page-link" href="/board/paging?page=${i}">${i}</a>
+                                        <a class="page-link" href="/board/westernPaging?page=${i}">${i}</a>
                                     </li>
                                 </c:otherwise>
                             </c:choose>
@@ -171,7 +168,7 @@
                             <%-- 마지막페이지가 아닌 경우에는 [다음]을 클릭하면 현재페이지보다 1 큰 페이지 요청 --%>
                             <c:otherwise>
                                 <li class="page-item">
-                                    <a class="page-link" href="/board/paging?page=${paging.page+1}">[다음]</a>
+                                    <a class="page-link" href="/board/westernPaging?page=${paging.page+1}">[다음]</a>
                                 </li>
                             </c:otherwise>
                         </c:choose>
@@ -200,9 +197,9 @@
                         <span class="opener">Food recipe</span>
                         <slection>
                             <ul>
-                                <li><a href="/board/korean-form">Korean</a></li>
-                                <li><a href="/board/western-form">Western</a></li>
-                                <li><a href="/board/dessert-form">Dessert</a></li>
+                                <li><a href="/board/koreanPaging">Korean</a></li>
+                                <li><a href="/board/westernPaging">Western</a></li>
+                                <li><a href="/board/dessertPaging">Dessert</a></li>
                             </ul>
                         </slection>
                     </li>
