@@ -32,12 +32,6 @@ public class BoardController {
         return "board/dessertList";
     }
 
-    // 글 작성화면
-//    @GetMapping("/saveFile-form")
-//    public String saveFileForm() {
-//        return "board/saveFile";
-//    }
-
 
 
     // 삭제처리
@@ -69,11 +63,19 @@ public class BoardController {
 //                "pdate";
 //    }
 
-    // 수정처리
-    @PostMapping("/update")
-    public String update(@ModelAttribute BoardDTO boardDTO) {
-        boardService.update(boardDTO);
-        return "redirect:/board/detail?id="+boardDTO.getId(); // 수정처리 후 해당 글의 상세페이지 요청
+    // dessert 글 수정화면 요청
+    @GetMapping("/dessertUpdate")
+    public String dessertUpdate(@RequestParam("id") Long id, Model model) {
+        BoardDTO boardDTO = boardService.dessertFindById(id);
+        model.addAttribute("boardUpdate", boardDTO);
+        return "board/dessertUpdate";
+    }
+
+    // dessert 수정처리
+    @PostMapping("/dessertUpdate")
+    public String dessertUpdate(@ModelAttribute BoardDTO boardDTO) {
+        boardService.dessertUpdate(boardDTO);
+        return "redirect:/board/dessertDetail?id="+boardDTO.getId(); // 수정처리 후 해당 글의 상세페이지 요청
     }
 
     // food.jsp 이동

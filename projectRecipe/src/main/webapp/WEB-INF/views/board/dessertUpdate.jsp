@@ -1,4 +1,10 @@
-
+<%--
+  Created by IntelliJ IDEA.
+  User: khc_9
+  Date: 2022-06-13
+  Time: 오후 2:05
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
@@ -33,31 +39,31 @@
             <header id="header">
 
 
-            <%--                <table>--%>
-<%--                    <th><a href="/member/save-form" class="logo"><strong>회원가입</strong></a></th>--%>
-<%--                    <th><a href="/member/login-form" class="logo"><strong>로그인</strong></a></th>--%>
-<%--                    <th><a href="/board/paging" class="logo"><strong>글목록</strong></a></th>--%>
-<%--                </table>--%>
+                <%--                <table>--%>
+                <%--                    <th><a href="/member/save-form" class="logo"><strong>회원가입</strong></a></th>--%>
+                <%--                    <th><a href="/member/login-form" class="logo"><strong>로그인</strong></a></th>--%>
+                <%--                    <th><a href="/board/paging" class="logo"><strong>글목록</strong></a></th>--%>
+                <%--                </table>--%>
 
-        <ul class="icons">
-            <c:choose>
-            <c:when test="${sessionScope.loginId == null}">
-<%--        <li><a href="/">Home</a></td>--%>
-<%--        <li><a href="/member/login-form">로그인</a></td>--%>
-<%--        <li><a href="/member/save-form">회원가입</a></td>--%>
-        </c:when>
-        <c:when test="${sessionScope.loginMemberId == 'admin'}">
-            <li><a href="/member/findAll">관리자페이지</a></li>
-            <li><a href="/member/logout-form">로그아웃</a></li>
-            <li><a href="/member/update-form">마이페이지</a></li>
-        </c:when>
-        <c:otherwise>
-            <li><a href="/member/logout-form">로그아웃</a></li>
-            <li><a href="/member/update-form">마이페이지</a></li>
-        </c:otherwise>
-        </c:choose>
-<%--        <li><a href="/board/paging">글목록</a></td>--%>
-        </ul>
+                <ul class="icons">
+                    <c:choose>
+                        <c:when test="${sessionScope.loginId == null}">
+                            <%--        <li><a href="/">Home</a></td>--%>
+                            <%--        <li><a href="/member/login-form">로그인</a></td>--%>
+                            <%--        <li><a href="/member/save-form">회원가입</a></td>--%>
+                        </c:when>
+                        <c:when test="${sessionScope.loginMemberId == 'admin'}">
+                            <li><a href="/member/findAll">관리자페이지</a></li>
+                            <li><a href="/member/logout-form">로그아웃</a></li>
+                            <li><a href="/member/update-form">마이페이지</a></li>
+                        </c:when>
+                        <c:otherwise>
+                            <li><a href="/member/logout-form">로그아웃</a></li>
+                            <li><a href="/member/update-form">마이페이지</a></li>
+                        </c:otherwise>
+                    </c:choose>
+                    <%--        <li><a href="/board/paging">글목록</a></td>--%>
+                </ul>
 
             </header>
 
@@ -65,26 +71,20 @@
             <section id="banner">
                 <div class="content">
                     <header>
-                        <h2>모든 레시피를 무제한으로.<br />
-                            월 단돈 5천원!!!</h2>
-                        <p>맛있는 음식의 레시피를 볼 준비가 되셨나요?!<br/>
-                            하단 회원가입 고고씽~</p>
-                    </header>
-                    <ul class="actions">
-                        <li><c:choose>
-                            <c:when test="${sessionScope.loginId == null}">
-                                <td><a href="/member/save-form" class="button big">시작하기</a></td>
-                                <td><a href="/member/login-form" class="button big">로그인</a></td>
-                            </c:when>
-                            <c:otherwise>
 
-                            </c:otherwise>
-                        </c:choose></li>
-                    </ul>
-                </div>
-                <span class="image object">
-										<img src="\resources\img/3.jpg" alt="" />
-									</span>
+                    </header>
+                    <div class="container">
+                        <h2 class="display-4 fw-normal">글수정 페이지</h2>
+                        <div class="py-5 text-center">
+                            <form action="/board/dessertUpdate" method="post" name="updateForm">
+                                글번호: <input class="form-control mb-2" type="text" name="id" value="${boardUpdate.id}" readonly>
+                                제목: <input class="form-control mb-2" type="text" name="boardTitle" value="${boardUpdate.boardTitle}">
+                                작성자: <input class="form-control mb-2" type="text" name="boardWriter" value="${boardUpdate.boardWriter}" readonly>
+                                내용<br><textarea name="boardContents" cols="60" rows="20">${boardUpdate.boardContents}</textarea><br>
+                                <input class="btn btn-primary" type="submit" value="수정완료">
+                            </form>
+                        </div>
+                    </div>
             </section>
 
 
@@ -106,11 +106,11 @@
                     <li>
                         <span class="opener">Food recipe</span>
                         <slection>
-                        <ul>
-                            <li><a href="/board/koreanPaging">Korean</a></li>
-                            <li><a href="/board/westernPaging">Western</a></li>
-                            <li><a href="/board/dessertPaging">Dessert</a></li>
-                        </ul>
+                            <ul>
+                                <li><a href="/board/koreanPaging">Korean</a></li>
+                                <li><a href="/board/westernPaging">Western</a></li>
+                                <li><a href="/board/dessertPaging">Dessert</a></li>
+                            </ul>
                         </slection>
                     </li>
                     <li><a href="#">Etiam Dolore</a></li>

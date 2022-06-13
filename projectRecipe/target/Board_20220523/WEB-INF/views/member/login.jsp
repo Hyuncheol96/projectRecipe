@@ -27,7 +27,7 @@
 <%--  <link rel="stylesheet" href="/resources/css/bootstrap.min.css">--%>
   <style>
     .container {
-      max-width: 500px;
+      max-width: 600px;
       float: none;
       margin: 0 auto;
     }

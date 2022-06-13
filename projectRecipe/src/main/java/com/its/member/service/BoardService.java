@@ -52,8 +52,8 @@ public class BoardService {
     }
 
 
-    public void update(BoardDTO boardDTO) {
-        boardRepository.update(boardDTO);
+    public void dessertUpdate(BoardDTO boardDTO) {
+        boardRepository.dessertUpdate(boardDTO);
     }
 
 

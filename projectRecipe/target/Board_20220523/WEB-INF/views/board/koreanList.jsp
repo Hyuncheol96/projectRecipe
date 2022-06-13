@@ -122,7 +122,7 @@
                         </c:forEach>
                     </table>
                 </div>
-                <div class="container">
+                <div class="container align-center">
                     <ul class="pagination justify-content-center">
                         <%-- c:choose c:when 등을 쓰려면 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 태그를 써야함 --%>
                         <c:choose> <%-- else if문과 같음 --%>
@@ -135,7 +135,7 @@
                             <%-- 1페이지가 아닌 경우에는 [이전]을 클릭하면 현재페이지보다 1 작은 페이지 요청 --%>
                             <c:otherwise>
                                 <li class="page-item">
-                                    <a class="page-link" href="/board/paging?page=${paging.page-1}">[이전]</a>
+                                    <a class="page-link" href="/board/koreanPaging?page=${paging.page-1}">[이전]</a>
                                 </li>
                             </c:otherwise>
                         </c:choose>
@@ -152,7 +152,7 @@
                                 <%-- 번호블럭에 마우스 올리면 커서 모양이 바뀜 --%>
                                 <c:otherwise>
                                     <li class="page-item">
-                                        <a class="page-link" href="/board/paging?page=${i}">${i}</a>
+                                        <a class="page-link" href="/board/koreanPaging?page=${i}">${i}</a>
                                     </li>
                                 </c:otherwise>
                             </c:choose>
@@ -167,7 +167,7 @@
                             <%-- 마지막페이지가 아닌 경우에는 [다음]을 클릭하면 현재페이지보다 1 큰 페이지 요청 --%>
                             <c:otherwise>
                                 <li class="page-item">
-                                    <a class="page-link" href="/board/paging?page=${paging.page+1}">[다음]</a>
+                                    <a class="page-link" href="/board/koreanPaging?page=${paging.page+1}">[다음]</a>
                                 </li>
                             </c:otherwise>
                         </c:choose>
@@ -218,30 +218,6 @@
                     <li><a href="#">Amet Lacinia</a></li>
                 </ul>
             </nav>
-
-            <!-- Section -->
-            <section>
-                <header class="major">
-                    <h2>Ante interdum</h2>
-                </header>
-                <div class="mini-posts">
-                    <article>
-                        <a href="#" class="image"><img src="images/pic07.jpg" alt="" /></a>
-                        <p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
-                    </article>
-                    <article>
-                        <a href="#" class="image"><img src="images/pic08.jpg" alt="" /></a>
-                        <p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
-                    </article>
-                    <article>
-                        <a href="#" class="image"><img src="images/pic09.jpg" alt="" /></a>
-                        <p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
-                    </article>
-                </div>
-                <ul class="actions">
-                    <li><a href="#" class="button">More</a></li>
-                </ul>
-            </section>
 
             <!-- Section -->
             <section>

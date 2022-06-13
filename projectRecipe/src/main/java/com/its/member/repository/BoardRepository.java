@@ -13,9 +13,6 @@ public class BoardRepository {
     @Autowired
     private SqlSessionTemplate sql;
 
-    public List<BoardDTO> pagingList(Map<String, Integer> pagingParam) {
-        return sql.selectList("Board.pagingList", pagingParam);
-    }
 
     public int koreanCount() {
         return sql.selectOne("Board.koreanCount");
@@ -57,8 +54,8 @@ public class BoardRepository {
         sql.update("Board.updateHits", id);
     }
 
-    public void update(BoardDTO boardDTO) {
-        sql.update("Board.update", boardDTO);
+    public void dessertUpdate(BoardDTO boardDTO) {
+        sql.update("Board.dessertUpdate", boardDTO);
     }
 
 

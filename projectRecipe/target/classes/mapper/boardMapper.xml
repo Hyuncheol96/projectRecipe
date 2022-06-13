@@ -48,7 +48,7 @@
     </select>
 
 
-    <update id="update" parameterType="board">
+    <update id="dessertUpdate" parameterType="board">
         update boardRecipe_table set boardTitle=#{boardTitle}, boardContents=#{boardContents} where id=#{id}
     </update>
 
