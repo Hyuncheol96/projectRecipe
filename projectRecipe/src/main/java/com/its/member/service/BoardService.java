@@ -46,8 +46,16 @@ public class BoardService {
     }
 
 
-    public void delete(Long id) {
-        boardRepository.delete(id);
+    public void koreanDelete(Long id) {
+        boardRepository.koreanDelete(id);
+    }
+
+    public void westernDelete(Long id) {
+        boardRepository.westernDelete(id);
+    }
+
+    public void dessertDelete(Long id) {
+        boardRepository.dessertDelete(id);
     }
 
     public BoardDTO koreanFindById(Long id) {

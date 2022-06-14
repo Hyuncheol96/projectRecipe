@@ -52,12 +52,30 @@ public class BoardController {
 
 
 
-    // 삭제처리
-    @GetMapping("/delete")
-    public String delete(@RequestParam("id") Long id) {
-        boardService.delete(id);
-        return "redirect:/board/paging";
+    // korean 삭제처리
+    @GetMapping("/koreanDelete")
+    public String koreanDelete(@RequestParam("id") Long id) {
+        boardService.koreanDelete(id);
+        return "redirect:/board/koreanPaging";
     }
+
+
+    // western 삭제처리
+    @GetMapping("/westernDelete")
+    public String westernDelete(@RequestParam("id") Long id) {
+        boardService.westernDelete(id);
+        return "redirect:/board/westernPaging";
+    }
+
+
+    // dessert 삭제처리
+    @GetMapping("/dessertDelete")
+    public String delete(@RequestParam("id") Long id) {
+        boardService.dessertDelete(id);
+        return "redirect:/board/dessertPaging";
+    }
+
+
 
     // korean 글 수정화면 요청
     @GetMapping("/koreanUpdate")

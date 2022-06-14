@@ -37,7 +37,15 @@
 <!--        values (#{boardWriter}, #{boardTitle}, #{boardContents}, now(), #{boardFileName})-->
 <!--    </insert>-->
 
-    <delete id="delete" parameterType="Long">
+    <delete id="koreanDelete" parameterType="Long">
+        delete from boardRecipe_table where id=#{id}
+    </delete>
+
+    <delete id="westernDelete" parameterType="Long">
+        delete from boardRecipe_table where id=#{id}
+    </delete>
+
+    <delete id="dessertDelete" parameterType="Long">
         delete from boardRecipe_table where id=#{id}
     </delete>
 

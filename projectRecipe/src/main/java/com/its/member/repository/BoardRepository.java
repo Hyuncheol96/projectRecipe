@@ -38,8 +38,16 @@ public class BoardRepository {
         return sql.selectList("Board.dessertSearch", searchParam);
     }
 
-    public void delete(Long id) {
-        sql.delete("Board.delete", id);
+    public void koreanDelete(Long id) {
+        sql.delete("Board.koreanDelete", id);
+    }
+
+    public void westernDelete(Long id) {
+        sql.delete("Board.westernDelete", id);
+    }
+
+    public void dessertDelete(Long id) {
+        sql.delete("Board.dessertDelete", id);
     }
 
 //    public void saveFile(BoardDTO boardDTO) {
