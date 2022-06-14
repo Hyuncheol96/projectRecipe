@@ -47,6 +47,9 @@
         select * from boardRecipe_table where id=#{id}
     </select>
 
+    <update id="westernUpdate" parameterType="board">
+        update boardRecipe_table set boardTitle=#{boardTitle}, boardContents=#{boardContents} where id=#{id}
+    </update>
 
     <update id="dessertUpdate" parameterType="board">
         update boardRecipe_table set boardTitle=#{boardTitle}, boardContents=#{boardContents} where id=#{id}

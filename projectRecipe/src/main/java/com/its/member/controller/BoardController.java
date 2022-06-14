@@ -42,33 +42,27 @@ public class BoardController {
     }
 
 
-
-//    // dessert 글 수정화면 요청
-//    @GetMapping("/dessertUpdate")
-//    public String updateForm(@RequestParam("id") Long id, Model model) {
-//        BoardDTO boardDTO = boardService.findById(id);
-//        model.addAttribute("boardUpdate", boardDTO);
-//        return "board/u" +
-//                "" +
-//                "pdate";
-//    }
-//
-//    // western 글 수정화면 요청
-//    @GetMapping("/update")
-//    public String updateForm(@RequestParam("id") Long id, Model model) {
-//        BoardDTO boardDTO = boardService.findById(id);
-//        model.addAttribute("boardUpdate", boardDTO);
-//        return "board/u" +
-//                "" +
-//                "pdate";
-//    }
+    // western 글 수정화면 요청
+    @GetMapping("/westernUpdate")
+    public String westernUpdate(@RequestParam("id") Long id, Model model) {
+        BoardDTO boardDTO = boardService.westernFindById(id);
+        model.addAttribute("westernBoardUpdate", boardDTO);
+        return "board/westernUpdate";
+    }
 
     // dessert 글 수정화면 요청
     @GetMapping("/dessertUpdate")
     public String dessertUpdate(@RequestParam("id") Long id, Model model) {
         BoardDTO boardDTO = boardService.dessertFindById(id);
-        model.addAttribute("boardUpdate", boardDTO);
+        model.addAttribute("dessertBoardUpdate", boardDTO);
         return "board/dessertUpdate";
+    }
+
+    // western 수정처리
+    @PostMapping("/westernUpdate")
+    public String westernUpdate(@ModelAttribute BoardDTO boardDTO) {
+        boardService.westernUpdate(boardDTO);
+        return "redirect:/board/westernDetail?id="+boardDTO.getId(); // 수정처리 후 해당 글의 상세페이지 요청
     }
 
     // dessert 수정처리
@@ -86,13 +80,6 @@ public class BoardController {
 
 
 
-//    // 글 목록 출력
-//    @GetMapping("/findAll")
-//    public String findAll(Model model) {
-//        List<BoardDTO> boardDTOList = boardService.findAll();
-//        model.addAttribute("dessertBoardList", boardDTOList);
-//        return "/board/dessertList";
-//    }
 
     // korean 상세조회
     @GetMapping("/koreanDetail")
@@ -108,19 +95,6 @@ public class BoardController {
         return "/board/dessertDetail";
     }
 
-    // dessert 상세조회
-    @GetMapping("/dessertDetail")
-    public String dessertFindById(@RequestParam("id") Long id, Model model,
-                           @RequestParam(value="page", required = false, defaultValue = "1") int page) {
-        BoardDTO boardDTO = boardService.dessertFindById(id); // 방법 1
-//        model.addAttribute("board", boardService.findById(id)); // 방법 2
-        model.addAttribute("board", boardDTO);
-        model.addAttribute("page", page);
-        // 댓글 목록도 가져가야 함.
-        List<CommentDTO> commentDTOList = commentService.findAll(id);
-        model.addAttribute("commentList", commentDTOList);
-        return "/board/dessertDetail";
-    }
 
     // western 상세조회
     @GetMapping("/westernDetail")
@@ -136,6 +110,19 @@ public class BoardController {
         return "/board/westernDetail";
     }
 
+    // dessert 상세조회
+    @GetMapping("/dessertDetail")
+    public String dessertFindById(@RequestParam("id") Long id, Model model,
+                           @RequestParam(value="page", required = false, defaultValue = "1") int page) {
+        BoardDTO boardDTO = boardService.dessertFindById(id); // 방법 1
+//        model.addAttribute("board", boardService.findById(id)); // 방법 2
+        model.addAttribute("board", boardDTO);
+        model.addAttribute("page", page);
+        // 댓글 목록도 가져가야 함.
+        List<CommentDTO> commentDTOList = commentService.findAll(id);
+        model.addAttribute("commentList", commentDTOList);
+        return "/board/dessertDetail";
+    }
 
     // korean 글 리스트 이동
     @GetMapping("/korean-form")

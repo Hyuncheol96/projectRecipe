@@ -41,16 +41,20 @@ public class BoardService {
         return boardRepository.koreanFindById(id);
     }
 
-    public BoardDTO dessertFindById(Long id) {
-        boardRepository.updateHits(id);
-        return boardRepository.dessertFindById(id);
-    }
 
     public BoardDTO westernFindById(Long id) {
         boardRepository.updateHits(id);
         return boardRepository.westernFindById(id);
     }
 
+    public BoardDTO dessertFindById(Long id) {
+        boardRepository.updateHits(id);
+        return boardRepository.dessertFindById(id);
+    }
+
+    public void westernUpdate(BoardDTO boardDTO) {
+        boardRepository.westernUpdate(boardDTO);
+    }
 
     public void dessertUpdate(BoardDTO boardDTO) {
         boardRepository.dessertUpdate(boardDTO);

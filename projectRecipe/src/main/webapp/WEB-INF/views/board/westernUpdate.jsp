@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: khc_9
-  Date: 2022-06-13
-  Time: 오후 2:05
+  Date: 2022-06-14
+  Time: 오전 8:56
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -76,11 +76,11 @@
                     <div class="container">
                         <h2 class="display-4 fw-normal">글수정 페이지</h2>
                         <div class="py-5 text-center">
-                            <form action="/board/dessertUpdate" method="post" name="updateForm">
-                                글번호: <input class="form-control mb-2" type="text" name="id" value="${dessertBoardUpdate.id}" readonly>
-                                제목: <input class="form-control mb-2" type="text" name="boardTitle" value="${dessertBoardUpdate.boardTitle}">
-                                작성자: <input class="form-control mb-2" type="text" name="boardWriter" value="${dessertBoardUpdate.boardWriter}" readonly>
-                                내용<br><textarea name="boardContents" cols="60" rows="20">${dessertBoardUpdate.boardContents}</textarea><br>
+                            <form action="/board/westernUpdate" method="post" name="updateForm">
+                                글번호: <input class="form-control mb-2" type="text" name="id" value="${westernBoardUpdate.id}" readonly>
+                                제목: <input class="form-control mb-2" type="text" name="boardTitle" value="${westernBoardUpdate.boardTitle}">
+                                작성자: <input class="form-control mb-2" type="text" name="boardWriter" value="${westernBoardUpdate.boardWriter}" readonly>
+                                내용<br><textarea name="boardContents" cols="60" rows="20">${westernBoardUpdate.boardContents}</textarea><br>
                                 <input class="btn btn-primary" type="submit" value="수정완료">
                             </form>
                         </div>
