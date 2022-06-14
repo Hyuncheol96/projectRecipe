@@ -84,10 +84,10 @@
                     내용: ${board.boardContents} <br>
                     조회수: ${board.boardHits} <br>
                     작성일자: <fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss" value="${board.boardCreatedDate}"></fmt:formatDate> <br>
-                    <br><c:if test="${sessionScope.loginMemberId eq board.boardWriter}"><button class="btn btn-primary" onclick="westernUpdate()">수정</button></c:if>&nbsp;
+                    <br><c:if test="${sessionScope.loginMemberId eq board.boardWriter}"><button class="button big" onclick="westernUpdate()">수정</button></c:if>&nbsp;
                     <%-- 삭제처리 --%>
                     <c:if test="${sessionScope.loginMemberId eq board.boardWriter or sessionScope.loginMemberId == 'admin'}"><a href="/board/westernDelete?id=${board.id}"role="button" class="btn btn-primary">삭제</a></c:if>&nbsp;
-                    <a href="/board/westernPaging" class="btn btn-primary">글목록</a>
+                    <a href="/board/westernPaging" class="button big">글목록</a>
                 </div>
                 <div class="container mb-5">
                     <div id="comment-write" class="input-group mb-3">
@@ -101,6 +101,7 @@
                         </div>
                         <button id="comment-write-btn" class="btn btn-primary">댓글작성</button>
                     </div>
+                </div>
 
                     <div id="comment-list">
                         <table class="table">
@@ -121,7 +122,6 @@
                         </table>
 
                     </div>
-                </div>
             </section>
 
 

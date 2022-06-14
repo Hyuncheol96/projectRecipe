@@ -24,27 +24,16 @@
     </script>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="\resources\css/main.css"/><link rel="stylesheet" href="/resources/css/bootstrap.min.css">
+    <link rel="stylesheet" href="\resources\css/main.css"/><link rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+
     <style>
         @import url("http://fonts.googleapis.com/earlyaccess/nanumgothic.css");
 
-        html {
-            height: 100%;
-        }
         .container {
-            max-width: 500px;
-        }
-        body {
-            width:100%;
-            height:100%;
-            margin: 0;
-            padding-top: 80px;
-            padding-bottom: 40px;
-            font-family: "Nanum Gothic", arial, helvetica, sans-serif;
-            background-repeat: no-repeat;
-            background-size: 2000px;
-
+            max-width: 600px;
+            float: none;
+            margin: 0 auto;
         }
         .card {
             margin: 0 auto; /* Added */
@@ -52,22 +41,11 @@
             margin-bottom: 10px; /* Added */
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         }
-        .form-signin .form-control {
-            position: relative;
-            height: auto;
-            -webkit-box-sizing: border-box;
-            -moz-box-sizing: border-box;
-            box-sizing: border-box;
-            padding: 10px;
-            font-size: 16px;
-        }
 
     </style>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 
-<body cellpadding="0" cellspacing="0" marginleft="0" margintop="0" width="100%" height="100%" align="center">
+<body class="is-preload">
 
 <!-- Wrapper -->
 <div id="wrapper">
@@ -78,6 +56,14 @@
 
             <!-- Header -->
             <header id="header">
+
+
+                <%--                <table>--%>
+                <%--                    <th><a href="/member/save-form" class="logo"><strong>회원가입</strong></a></th>--%>
+                <%--                    <th><a href="/member/login-form" class="logo"><strong>로그인</strong></a></th>--%>
+                <%--                    <th><a href="/board/paging" class="logo"><strong>글목록</strong></a></th>--%>
+                <%--                </table>--%>
+
                 <ul class="icons">
                     <c:choose>
                         <c:when test="${sessionScope.loginId == null}">
@@ -98,31 +84,42 @@
                     <%--        <li><a href="/board/paging">글목록</a></td>--%>
                 </ul>
 
+
+                <%--                <a href="projectFront/index.html" class="logo"><strong>Editorial</strong> by HTML5 UP</a>--%>
+                <%--                <ul class="icons">--%>
+                <%--                    <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>--%>
+                <%--                    <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>--%>
+                <%--                    <li><a href="#" class="icon brands fa-snapchat-ghost"><span class="label">Snapchat</span></a></li>--%>
+                <%--                    <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>--%>
+                <%--                    <li><a href="#" class="icon brands fa-medium-m"><span class="label">Medium</span></a></li>--%>
+                <%--                </ul>--%>
             </header>
 
             <!-- Banner -->
             <section id="banner">
                 <div class="content">
                     <div class="card align-middle" style="width:45rem; border-radius:20px;">
-                        <div class="card-title" style="margin-top:30px;">
-                            <h2 class="card-title text-center" style="color:#113366;">회원가입</h2>
+                        <div class="card-title" style="margin: auto">
+                            <h2 class="card-title text-center" style="color:#113366;" align="center">회원가입</h2>
                         </div>
                         <div class="container mt-3"></div> <%-- mt-3 = 자기 기준으로 위를 3만큼 띄움 --%>
                         <div class="container" style="color: #6f6d74;">
                             <div class="py-5 ">
                                 <form action="/member/save" method="post" enctype="multipart/form-data">
-                                    <i id="idIcon-result" class="bi bi-tags-fill"></i>아이디<br><input class="form-control mb-2" type="text" onblur="duplicateCheck()" id="memberId" name="memberId" placeholder="ID를 만들어주세요 띄어쓰기 없이 영/숫자 6-10자"><p id="check-result"></p>
-                                    <p id="memberId-result"></p>
+                                    <i id="idIcon-result" class="bi bi-tags-fill"></i>아이디<br><input class="form-control mb-2" type="text" onblur="duplicateCheck()" id="memberId" name="memberId" placeholder="ID를 만들어주세요 띄어쓰기 없이 영/숫자 6-10자">
                                     <span id="dup-check-result"></span><br>
                                     <i id="pwIcon-result" class="bi bi-tags-fill"></i> 비밀번호<br><input class="form-control mb-2" type="password" onblur="pw()" name="memberPassword" placeholder="비밀번호 입력 8-15자의 영문 대소문자, 숫자, 특수문자(-_!#$) 조합">
                                     <p id="pw-result"></p>
                                     <i id="pwcIcon-result" class="bi bi-tags-fill"></i> 비밀번호 확인<br><input class="form-control mb-2" type="password" onblur="pwC()" name="memberPassword2"  placeholder="위의 비밀번호를 다시 입력해주세요.">
                                     <p id="memberPassword2-result"></p>
-                                    <i id="nameIcon-result" class="bi bi-tags-fill"></i> 이름<input class="form-control mb-2" type="text"  name="memberName" placeholder="이름">
-                                    <i id="emailIcon-result" class="bi bi-tags-fill"></i> Email<input class="form-control mb-2" type="text" name="memberEmail" placeholder="이메일">
-                                    <i id="mobileIcon-result" class="bi bi-tags-fill"></i> 전화번호<input class="form-control mb-2" type="text" name="memberMobile" placeholder="전화번호">
+                                    <i id="nameIcon-result" class="bi bi-tags-fill"></i> 이름<br><input class="form-control mb-2" type="text"  name="memberName" placeholder="이름">
+                                    <p id="memberName-result"></p>
+                                    <i id="emailIcon-result" class="bi bi-tags-fill"></i> Email<br><input class="form-control mb-2" type="text" name="memberEmail" placeholder="이메일">
+                                    <p id="memberEmail-result"></p>
+                                    <i id="mobileIcon-result" class="bi bi-tags-fill"></i> 전화번호<br><input class="form-control mb-2" type="text" name="memberMobile" placeholder="전화번호">
+                                    <p id="memberMobile-result"></p>
                                     <%--            <input class="form-control mb-2" type="text" onblur="memberMobile()" name="memberMobile" placeholder="전화번호">--%>
-                                    <a href="/"  class="button big">처음으로</a>
+                                    <a href="/"  class="button big">처음으로</a> &nbsp;
                                     <input class="btn btn-primary" type="submit" value="가입">
                                 </form>
                             </div>
@@ -130,6 +127,7 @@
                     </div>
                 </div>
             </section>
+
 
         </div>
     </div>

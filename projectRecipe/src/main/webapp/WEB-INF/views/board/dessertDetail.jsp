@@ -15,6 +15,11 @@
         #comment-write {
             max-width: 600px;
         }
+        .container {
+            max-width: 600px;
+            float: none;
+            margin: 0 auto;
+        }
     </style>
     <script>
         const saveForm = () => {
@@ -77,6 +82,7 @@
 
             <!-- Banner -->
             <section id="banner">
+
                 <div class="container">
                     글번호: ${board.id} <br>
                     제목: ${board.boardTitle} <br>
@@ -86,8 +92,8 @@
                     작성일자: <fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss" value="${board.boardCreatedDate}"></fmt:formatDate> <br>
                     <br><c:if test="${sessionScope.loginMemberId eq board.boardWriter}"><button class="btn btn-primary" onclick="dessertUpdate()">수정</button></c:if>&nbsp;
                     <%-- 삭제처리 --%>
-                    <c:if test="${sessionScope.loginMemberId eq board.boardWriter or sessionScope.loginMemberId == 'admin'}"><a href="/board/dessertDelete?id=${board.id}"role="button" class="btn btn-primary">삭제</a></c:if>&nbsp;
-                    <a href="/board/dessertPaging" class="btn btn-primary">글목록</a>
+                    <c:if test="${sessionScope.loginMemberId eq board.boardWriter or sessionScope.loginMemberId == 'admin'}"><a href="/board/dessertDelete?id=${board.id}"role="button" class="button big">삭제</a></c:if>&nbsp;
+                    <a href="/board/dessertPaging" class="button big">글목록</a>
                 </div>
                 <div class="container mb-5">
                     <div id="comment-write" class="input-group mb-3">
@@ -101,7 +107,7 @@
                         </div>
                         <button id="comment-write-btn" class="btn btn-primary">댓글작성</button>
                     </div>
-
+                </div>
                     <div id="comment-list">
                         <table class="table">
                             <tr>
@@ -121,7 +127,6 @@
                         </table>
 
                     </div>
-                </div>
             </section>
 
 
