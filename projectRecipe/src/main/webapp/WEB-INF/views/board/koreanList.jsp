@@ -109,7 +109,7 @@
                             <th>조회수</th>
                         </tr>
                         <c:forEach items="${koreanBoardList}" var="board">
-                            <c:if test="${board.boardCategory eq 'korean'}">
+<%--                            <c:if test="${board.boardCategory eq 'korean'}">--%>
                             <tr>
                                 <td>${board.boardCategory}</td>
                                 <td><a href="/board/koreanDetail?page${paging.page}&id=${board.id}">${board.boardTitle}</a></td>
@@ -118,7 +118,7 @@
                                                     value="${board.boardCreatedDate}"></fmt:formatDate></td>
                                 <td>${board.boardHits}</td>
                             </tr>
-                        </c:if>
+<%--                        </c:if>--%>
                         </c:forEach>
                     </table>
                 </div>

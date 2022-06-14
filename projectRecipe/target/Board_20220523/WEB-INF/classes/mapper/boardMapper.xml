@@ -6,15 +6,15 @@
 <mapper namespace="Board">
 
     <select id="koreanCount" resultType="int">
-        select count(id) from boardRecipe_table where boardCategory like '%korean%'
+        select count(id) from boardRecipe_table where boardCategory = 'korean'
     </select>
 
     <select id="westernCount" resultType="int">
-        select count(id) from boardRecipe_table where boardCategory like '%western%'
+        select count(id) from boardRecipe_table where boardCategory = 'western'
     </select>
 
     <select id="dessertCount" resultType="int">
-        select count(id) from boardRecipe_table where boardCategory like '%dessert%'
+        select count(id) from boardRecipe_table where boardCategory = 'dessert'
     </select>
 
     <select id="koreanSearch" parameterType="java.util.HashMap" resultType="board">
@@ -41,13 +41,13 @@
         delete from boardRecipe_table where id=#{id}
     </delete>
 
-    <delete id="westernDelete" parameterType="Long">
-        delete from boardRecipe_table where id=#{id}
-    </delete>
+<!--    <delete id="westernDelete" parameterType="Long">-->
+<!--        delete from boardRecipe_table where id=#{id}-->
+<!--    </delete>-->
 
-    <delete id="dessertDelete" parameterType="Long">
-        delete from boardRecipe_table where id=#{id}
-    </delete>
+<!--    <delete id="dessertDelete" parameterType="Long">-->
+<!--        delete from boardRecipe_table where id=#{id}-->
+<!--    </delete>-->
 
     <select id="updateHits" parameterType="Long">
         update boardRecipe_table set boardHits=boardHits+1 where id=#{id}
@@ -57,52 +57,52 @@
         select * from boardRecipe_table where id=#{id}
     </select>
 
-    <select id="westernFindById" parameterType="Long" resultType="board">
-        select * from boardRecipe_table where id=#{id}
-    </select>
+<!--    <select id="westernFindById" parameterType="Long" resultType="board">-->
+<!--        select * from boardRecipe_table where id=#{id}-->
+<!--    </select>-->
 
-    <select id="dessertFindById" parameterType="Long" resultType="board">
-        select * from boardRecipe_table where id=#{id}
-    </select>
+<!--    <select id="dessertFindById" parameterType="Long" resultType="board">-->
+<!--        select * from boardRecipe_table where id=#{id}-->
+<!--    </select>-->
 
     <update id="koreanUpdate" parameterType="board">
         update boardRecipe_table set boardTitle=#{boardTitle}, boardContents=#{boardContents} where id=#{id}
     </update>
 
-    <update id="westernUpdate" parameterType="board">
-        update boardRecipe_table set boardTitle=#{boardTitle}, boardContents=#{boardContents} where id=#{id}
-    </update>
+<!--    <update id="westernUpdate" parameterType="board">-->
+<!--        update boardRecipe_table set boardTitle=#{boardTitle}, boardContents=#{boardContents} where id=#{id}-->
+<!--    </update>-->
 
-    <update id="dessertUpdate" parameterType="board">
-        update boardRecipe_table set boardTitle=#{boardTitle}, boardContents=#{boardContents} where id=#{id}
-    </update>
+<!--    <update id="dessertUpdate" parameterType="board">-->
+<!--        update boardRecipe_table set boardTitle=#{boardTitle}, boardContents=#{boardContents} where id=#{id}-->
+<!--    </update>-->
 
     <insert id="koreanWrite" parameterType="board">
         insert into boardRecipe_table(boardWriter, boardTitle, boardContents, boardCreatedDate, boardCategory)
         values (#{boardWriter}, #{boardTitle}, #{boardContents}, now(), #{boardCategory})
     </insert>
 
-    <insert id="westernWrite" parameterType="board">
-        insert into boardRecipe_table(boardWriter, boardTitle, boardContents, boardCreatedDate, boardCategory)
-        values (#{boardWriter}, #{boardTitle}, #{boardContents}, now(), #{boardCategory})
-    </insert>
+<!--    <insert id="westernWrite" parameterType="board">-->
+<!--        insert into boardRecipe_table(boardWriter, boardTitle, boardContents, boardCreatedDate, boardCategory)-->
+<!--        values (#{boardWriter}, #{boardTitle}, #{boardContents}, now(), #{boardCategory})-->
+<!--    </insert>-->
 
-    <insert id="dessertWrite" parameterType="board">
-        insert into boardRecipe_table(boardWriter, boardTitle, boardContents, boardCreatedDate, boardCategory)
-        values (#{boardWriter}, #{boardTitle}, #{boardContents}, now(), #{boardCategory})
-    </insert>
+<!--    <insert id="dessertWrite" parameterType="board">-->
+<!--        insert into boardRecipe_table(boardWriter, boardTitle, boardContents, boardCreatedDate, boardCategory)-->
+<!--        values (#{boardWriter}, #{boardTitle}, #{boardContents}, now(), #{boardCategory})-->
+<!--    </insert>-->
 
     <select id="koreanPagingList" parameterType="java.util.HashMap" resultType="board">
         select * from boardRecipe_table order by id desc limit #{start}, #{limit}
     </select>
 
-    <select id="westernPagingList" parameterType="java.util.HashMap" resultType="board">
-        select * from boardRecipe_table order by id desc limit #{start}, #{limit}
-    </select>
+<!--    <select id="westernPagingList" parameterType="java.util.HashMap" resultType="board">-->
+<!--        select * from boardRecipe_table order by id desc limit #{start}, #{limit}-->
+<!--    </select>-->
 
-    <select id="dessertPagingList" parameterType="java.util.HashMap" resultType="board">
-        select * from boardRecipe_table order by id desc limit #{start}, #{limit}
-    </select>
+<!--    <select id="dessertPagingList" parameterType="java.util.HashMap" resultType="board">-->
+<!--        select * from boardRecipe_table order by id desc limit #{start}, #{limit}-->
+<!--    </select>-->
 
 
 <!--    <select id="findAll" resultType="board">-->

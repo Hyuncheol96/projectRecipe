@@ -32,23 +32,23 @@ public class BoardController {
         return "board/koreanList";
     }
 
-    // western 검색처리
-    @GetMapping("/westernSearch")
-    public String westernSearch(@RequestParam("searchType") String searchType,
-                         @RequestParam("q") String q, Model model) {
-        List<BoardDTO> westernSearchList = boardService.westernSearch(searchType, q);
-        model.addAttribute("westernBoardList", westernSearchList);
-        return "board/westernList";
-    }
-
-    // dessert 검색처리
-    @GetMapping("/dessertSearch")
-    public String dessertSearch(@RequestParam("searchType") String searchType,
-                         @RequestParam("q") String q, Model model) {
-        List<BoardDTO> dessertSearchList = boardService.dessertSearch(searchType, q);
-        model.addAttribute("dessertBoardList", dessertSearchList);
-        return "board/dessertList";
-    }
+//    // western 검색처리
+//    @GetMapping("/westernSearch")
+//    public String westernSearch(@RequestParam("searchType") String searchType,
+//                         @RequestParam("q") String q, Model model) {
+//        List<BoardDTO> westernSearchList = boardService.westernSearch(searchType, q);
+//        model.addAttribute("westernBoardList", westernSearchList);
+//        return "board/westernList";
+//    }
+//
+//    // dessert 검색처리
+//    @GetMapping("/dessertSearch")
+//    public String dessertSearch(@RequestParam("searchType") String searchType,
+//                         @RequestParam("q") String q, Model model) {
+//        List<BoardDTO> dessertSearchList = boardService.dessertSearch(searchType, q);
+//        model.addAttribute("dessertBoardList", dessertSearchList);
+//        return "board/dessertList";
+//    }
 
 
 
@@ -60,20 +60,20 @@ public class BoardController {
     }
 
 
-    // western 삭제처리
-    @GetMapping("/westernDelete")
-    public String westernDelete(@RequestParam("id") Long id) {
-        boardService.westernDelete(id);
-        return "redirect:/board/westernPaging";
-    }
-
-
-    // dessert 삭제처리
-    @GetMapping("/dessertDelete")
-    public String delete(@RequestParam("id") Long id) {
-        boardService.dessertDelete(id);
-        return "redirect:/board/dessertPaging";
-    }
+//    // western 삭제처리
+//    @GetMapping("/westernDelete")
+//    public String westernDelete(@RequestParam("id") Long id) {
+//        boardService.westernDelete(id);
+//        return "redirect:/board/westernPaging";
+//    }
+//
+//
+//    // dessert 삭제처리
+//    @GetMapping("/dessertDelete")
+//    public String delete(@RequestParam("id") Long id) {
+//        boardService.dessertDelete(id);
+//        return "redirect:/board/dessertPaging";
+//    }
 
 
 
@@ -86,21 +86,21 @@ public class BoardController {
     }
 
 
-    // western 글 수정화면 요청
-    @GetMapping("/westernUpdate")
-    public String westernUpdate(@RequestParam("id") Long id, Model model) {
-        BoardDTO boardDTO = boardService.westernFindById(id);
-        model.addAttribute("westernBoardUpdate", boardDTO);
-        return "board/westernUpdate";
-    }
-
-    // dessert 글 수정화면 요청
-    @GetMapping("/dessertUpdate")
-    public String dessertUpdate(@RequestParam("id") Long id, Model model) {
-        BoardDTO boardDTO = boardService.dessertFindById(id);
-        model.addAttribute("dessertBoardUpdate", boardDTO);
-        return "board/dessertUpdate";
-    }
+//    // western 글 수정화면 요청
+//    @GetMapping("/westernUpdate")
+//    public String westernUpdate(@RequestParam("id") Long id, Model model) {
+//        BoardDTO boardDTO = boardService.westernFindById(id);
+//        model.addAttribute("westernBoardUpdate", boardDTO);
+//        return "board/westernUpdate";
+//    }
+//
+//    // dessert 글 수정화면 요청
+//    @GetMapping("/dessertUpdate")
+//    public String dessertUpdate(@RequestParam("id") Long id, Model model) {
+//        BoardDTO boardDTO = boardService.dessertFindById(id);
+//        model.addAttribute("dessertBoardUpdate", boardDTO);
+//        return "board/dessertUpdate";
+//    }
 
     // korean 수정처리
     @PostMapping("/koreanUpdate")
@@ -109,19 +109,19 @@ public class BoardController {
         return "redirect:/board/koreanDetail?id="+boardDTO.getId(); // 수정처리 후 해당 글의 상세페이지 요청
     }
 
-    // western 수정처리
-    @PostMapping("/westernUpdate")
-    public String westernUpdate(@ModelAttribute BoardDTO boardDTO) {
-        boardService.westernUpdate(boardDTO);
-        return "redirect:/board/westernDetail?id="+boardDTO.getId(); // 수정처리 후 해당 글의 상세페이지 요청
-    }
-
-    // dessert 수정처리
-    @PostMapping("/dessertUpdate")
-    public String dessertUpdate(@ModelAttribute BoardDTO boardDTO) {
-        boardService.dessertUpdate(boardDTO);
-        return "redirect:/board/dessertDetail?id="+boardDTO.getId(); // 수정처리 후 해당 글의 상세페이지 요청
-    }
+//    // western 수정처리
+//    @PostMapping("/westernUpdate")
+//    public String westernUpdate(@ModelAttribute BoardDTO boardDTO) {
+//        boardService.westernUpdate(boardDTO);
+//        return "redirect:/board/westernDetail?id="+boardDTO.getId(); // 수정처리 후 해당 글의 상세페이지 요청
+//    }
+//
+//    // dessert 수정처리
+//    @PostMapping("/dessertUpdate")
+//    public String dessertUpdate(@ModelAttribute BoardDTO boardDTO) {
+//        boardService.dessertUpdate(boardDTO);
+//        return "redirect:/board/dessertDetail?id="+boardDTO.getId(); // 수정처리 후 해당 글의 상세페이지 요청
+//    }
 
     // food.jsp 이동
     @GetMapping("/food-form")
@@ -147,33 +147,33 @@ public class BoardController {
     }
 
 
-    // western 상세조회
-    @GetMapping("/westernDetail")
-    public String westernFindById(@RequestParam("id") Long id, Model model,
-                           @RequestParam(value="page", required = false, defaultValue = "1") int page) {
-        BoardDTO boardDTO = boardService.westernFindById(id); // 방법 1
-//        model.addAttribute("board", boardService.findById(id)); // 방법 2
-        model.addAttribute("board", boardDTO);
-        model.addAttribute("page", page);
-        // 댓글 목록도 가져가야 함.
-        List<CommentDTO> westernCommentList = commentService.westernFindAll(id);
-        model.addAttribute("westernCommentList", westernCommentList);
-        return "/board/westernDetail";
-    }
-
-    // dessert 상세조회
-    @GetMapping("/dessertDetail")
-    public String dessertFindById(@RequestParam("id") Long id, Model model,
-                           @RequestParam(value="page", required = false, defaultValue = "1") int page) {
-        BoardDTO boardDTO = boardService.dessertFindById(id); // 방법 1
-//        model.addAttribute("board", boardService.findById(id)); // 방법 2
-        model.addAttribute("board", boardDTO);
-        model.addAttribute("page", page);
-        // 댓글 목록도 가져가야 함.
-        List<CommentDTO> dessertCommentList = commentService.dessertFindAll(id);
-        model.addAttribute("dessertCommentList", dessertCommentList);
-        return "/board/dessertDetail";
-    }
+//    // western 상세조회
+//    @GetMapping("/westernDetail")
+//    public String westernFindById(@RequestParam("id") Long id, Model model,
+//                           @RequestParam(value="page", required = false, defaultValue = "1") int page) {
+//        BoardDTO boardDTO = boardService.westernFindById(id); // 방법 1
+////        model.addAttribute("board", boardService.findById(id)); // 방법 2
+//        model.addAttribute("board", boardDTO);
+//        model.addAttribute("page", page);
+//        // 댓글 목록도 가져가야 함.
+//        List<CommentDTO> westernCommentList = commentService.westernFindAll(id);
+//        model.addAttribute("westernCommentList", westernCommentList);
+//        return "/board/westernDetail";
+//    }
+//
+//    // dessert 상세조회
+//    @GetMapping("/dessertDetail")
+//    public String dessertFindById(@RequestParam("id") Long id, Model model,
+//                           @RequestParam(value="page", required = false, defaultValue = "1") int page) {
+//        BoardDTO boardDTO = boardService.dessertFindById(id); // 방법 1
+////        model.addAttribute("board", boardService.findById(id)); // 방법 2
+//        model.addAttribute("board", boardDTO);
+//        model.addAttribute("page", page);
+//        // 댓글 목록도 가져가야 함.
+//        List<CommentDTO> dessertCommentList = commentService.dessertFindAll(id);
+//        model.addAttribute("dessertCommentList", dessertCommentList);
+//        return "/board/dessertDetail";
+//    }
 
     // korean 글 리스트 이동
     @GetMapping("/korean-form")
@@ -181,17 +181,17 @@ public class BoardController {
         return "board/koreanList";
     }
 
-    // western 글 리스트 이동
-    @GetMapping("/western-form")
-    public String westernRecipe() {
-        return "board/westernList";
-    }
-
-    // // dessert 글 리스트 이동
-    @GetMapping("/dessert-form")
-    public String dessertRecipe() {
-        return "board/dessertList";
-    }
+//    // western 글 리스트 이동
+//    @GetMapping("/western-form")
+//    public String westernRecipe() {
+//        return "board/westernList";
+//    }
+//
+//    // // dessert 글 리스트 이동
+//    @GetMapping("/dessert-form")
+//    public String dessertRecipe() {
+//        return "board/dessertList";
+//    }
 
 
 
@@ -201,17 +201,17 @@ public class BoardController {
         return "board/koreanWrite";
     }
 
-    // western 글 작성화면 이동
-    @GetMapping("/westernWrite-form")
-    public String westernWriteForm() {
-        return "board/westernWrite";
-    }
-
-    // dessert 글 작성화면 이동
-    @GetMapping("/dessertWrite-form")
-    public String dessertWriteForm() {
-        return "board/dessertWrite";
-    }
+//    // western 글 작성화면 이동
+//    @GetMapping("/westernWrite-form")
+//    public String westernWriteForm() {
+//        return "board/westernWrite";
+//    }
+//
+//    // dessert 글 작성화면 이동
+//    @GetMapping("/dessertWrite-form")
+//    public String dessertWriteForm() {
+//        return "board/dessertWrite";
+//    }
 
 
     // korean 글 작성화면 처리
@@ -221,19 +221,19 @@ public class BoardController {
         return "redirect:/board/koreanPaging";
     }
 
-    // western 글 작성화면 처리
-    @PostMapping("/westernWrite-form")
-    public String westernWrite(@ModelAttribute BoardDTO boardDTO) throws IOException {
-        boardService.westernWrite(boardDTO);
-        return "redirect:/board/westernPaging";
-    }
-
-    // dessert 글 작성화면 처리
-    @PostMapping("/dessertWrite-form")
-    public String dessertWrite(@ModelAttribute BoardDTO boardDTO) throws IOException {
-        boardService.dessertWrite(boardDTO);
-        return "redirect:/board/dessertPaging";
-    }
+//    // western 글 작성화면 처리
+//    @PostMapping("/westernWrite-form")
+//    public String westernWrite(@ModelAttribute BoardDTO boardDTO) throws IOException {
+//        boardService.westernWrite(boardDTO);
+//        return "redirect:/board/westernPaging";
+//    }
+//
+//    // dessert 글 작성화면 처리
+//    @PostMapping("/dessertWrite-form")
+//    public String dessertWrite(@ModelAttribute BoardDTO boardDTO) throws IOException {
+//        boardService.dessertWrite(boardDTO);
+//        return "redirect:/board/dessertPaging";
+//    }
 
     // korean 페이징 처리
     @GetMapping("/koreanPaging")
@@ -246,26 +246,26 @@ public class BoardController {
     }
 
 
-    // western 페이징 처리
-    @GetMapping("/westernPaging")
-    public String westernPaging(@RequestParam(value="page", required=false, defaultValue="1") int page, Model model) {
-        List<BoardDTO> westernBoardList = boardService.westernPagingList(page); // 해당페이지리스트 호출
-        PageDTO paging = boardService.westernPaging(page);     // 해당페이지의 하단 글의 번호 호출
-        model.addAttribute("westernBoardList", westernBoardList);
-        model.addAttribute("paging", paging);
-        return "board/westernList";
-    }
-
-
-    // dessert 페이징 처리
-    @GetMapping("/dessertPaging")
-    public String dessertPaging(@RequestParam(value="page", required=false, defaultValue="1") int page, Model model) {
-        List<BoardDTO> dessertBoardList = boardService.dessertPagingList(page); // 해당페이지리스트 호출
-        PageDTO paging = boardService.dessertPaging(page);     // 해당페이지의 하단 글의 번호 호출
-        model.addAttribute("dessertBoardList", dessertBoardList);
-        model.addAttribute("paging", paging);
-        return "board/dessertList";
-    }
+//    // western 페이징 처리
+//    @GetMapping("/westernPaging")
+//    public String westernPaging(@RequestParam(value="page", required=false, defaultValue="1") int page, Model model) {
+//        List<BoardDTO> westernBoardList = boardService.westernPagingList(page); // 해당페이지리스트 호출
+//        PageDTO paging = boardService.westernPaging(page);     // 해당페이지의 하단 글의 번호 호출
+//        model.addAttribute("westernBoardList", westernBoardList);
+//        model.addAttribute("paging", paging);
+//        return "board/koreanList";
+//    }
+//
+//
+//    // dessert 페이징 처리
+//    @GetMapping("/dessertPaging")
+//    public String dessertPaging(@RequestParam(value="page", required=false, defaultValue="1") int page, Model model) {
+//        List<BoardDTO> dessertBoardList = boardService.dessertPagingList(page); // 해당페이지리스트 호출
+//        PageDTO paging = boardService.dessertPaging(page);     // 해당페이지의 하단 글의 번호 호출
+//        model.addAttribute("dessertBoardList", dessertBoardList);
+//        model.addAttribute("paging", paging);
+//        return "board/dessertList";
+//    }
 
 
 

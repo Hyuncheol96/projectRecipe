@@ -91,7 +91,7 @@
                     작성일자: <fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss" value="${board.boardCreatedDate}"></fmt:formatDate> <br>
                     <br><c:if test="${sessionScope.loginMemberId eq board.boardWriter}"><button class="button big" onclick="koreanUpdate()">수정</button></c:if>&nbsp;
                     <%-- 삭제처리 --%>
-                    <c:if test="${sessionScope.loginMemberId eq board.boardWriter or sessionScope.loginMemberId == 'admin'}"><a href="/board/koreanDelete?id=${board.id}"role="button" class="btn btn-primary">삭제</a></c:if>&nbsp;
+                    <c:if test="${sessionScope.loginMemberId eq board.boardWriter or sessionScope.loginMemberId == 'admin'}"><a href="/board/koreanDelete?id=${board.id}"role="button" class="button big">삭제</a></c:if>&nbsp;
                     <a href="/board/koreanPaging" class="button big">글목록</a>
                 </div>
                 <div class="container mb-5">
