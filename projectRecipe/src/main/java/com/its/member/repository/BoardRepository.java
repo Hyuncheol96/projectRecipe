@@ -54,6 +54,9 @@ public class BoardRepository {
         sql.update("Board.updateHits", id);
     }
 
+    public void koreanUpdate(BoardDTO boardDTO) {
+        sql.update("Board.koreanUpdate", boardDTO);
+    }
 
     public void westernUpdate(BoardDTO boardDTO) {
         sql.update("Board.westernUpdate", boardDTO);

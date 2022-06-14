@@ -52,6 +52,10 @@ public class BoardService {
         return boardRepository.dessertFindById(id);
     }
 
+    public void koreanUpdate(BoardDTO boardDTO) {
+        boardRepository.koreanUpdate(boardDTO);
+    }
+
     public void westernUpdate(BoardDTO boardDTO) {
         boardRepository.westernUpdate(boardDTO);
     }

@@ -41,6 +41,14 @@ public class BoardController {
         return "redirect:/board/paging";
     }
 
+    // korean 글 수정화면 요청
+    @GetMapping("/koreanUpdate")
+    public String koreanUpdate(@RequestParam("id") Long id, Model model) {
+        BoardDTO boardDTO = boardService.koreanFindById(id);
+        model.addAttribute("koreanBoardUpdate", boardDTO);
+        return "board/koreanUpdate";
+    }
+
 
     // western 글 수정화면 요청
     @GetMapping("/westernUpdate")
@@ -56,6 +64,13 @@ public class BoardController {
         BoardDTO boardDTO = boardService.dessertFindById(id);
         model.addAttribute("dessertBoardUpdate", boardDTO);
         return "board/dessertUpdate";
+    }
+
+    // korean 수정처리
+    @PostMapping("/koreanUpdate")
+    public String koreanUpdate(@ModelAttribute BoardDTO boardDTO) {
+        boardService.koreanUpdate(boardDTO);
+        return "redirect:/board/koreanDetail?id="+boardDTO.getId(); // 수정처리 후 해당 글의 상세페이지 요청
     }
 
     // western 수정처리
@@ -92,7 +107,7 @@ public class BoardController {
         // 댓글 목록도 가져가야 함.
         List<CommentDTO> commentDTOList = commentService.findAll(id);
         model.addAttribute("commentList", commentDTOList);
-        return "/board/dessertDetail";
+        return "/board/koreanDetail";
     }
 
 

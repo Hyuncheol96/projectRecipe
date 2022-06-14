@@ -71,10 +71,10 @@
                         <h2 class="display-4 fw-normal">글수정 페이지</h2>
                         <div class="py-5 text-center">
                             <form action="/board/koreanUpdate" method="post" name="updateForm">
-                                글번호: <input class="form-control mb-2" type="text" name="id" value="${boardUpdate.id}" readonly>
-                                제목: <input class="form-control mb-2" type="text" name="boardTitle" value="${boardUpdate.boardTitle}">
-                                작성자: <input class="form-control mb-2" type="text" name="boardWriter" value="${boardUpdate.boardWriter}" readonly>
-                                내용<br><textarea name="boardContents" cols="60" rows="20">${boardUpdate.boardContents}</textarea><br>
+                                글번호: <input class="form-control mb-2" type="text" name="id" value="${koreanBoardUpdate.id}" readonly>
+                                제목: <input class="form-control mb-2" type="text" name="boardTitle" value="${koreanBoardUpdate.boardTitle}">
+                                작성자: <input class="form-control mb-2" type="text" name="boardWriter" value="${koreanBoardUpdate.boardWriter}" readonly>
+                                내용<br><textarea name="boardContents" cols="60" rows="20">${koreanBoardUpdate.boardContents}</textarea><br>
                                 <input class="btn btn-primary" type="submit" value="수정완료">
                             </form>
                         </div>
