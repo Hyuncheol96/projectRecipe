@@ -17,9 +17,19 @@
         select count(id) from boardRecipe_table where boardCategory like '%dessert%'
     </select>
 
-    <select id="search" parameterType="java.util.HashMap" resultType="board">
+    <select id="koreanSearch" parameterType="java.util.HashMap" resultType="board">
         select * from boardRecipe_table where ${type}
                                             like concat('%', #{q}, '%') order by id desc;
+    </select>
+
+    <select id="westernSearch" parameterType="java.util.HashMap" resultType="board">
+        select * from boardRecipe_table where ${type}
+                                                  like concat('%', #{q}, '%') order by id desc;
+    </select>
+
+    <select id="dessertSearch" parameterType="java.util.HashMap" resultType="board">
+        select * from boardRecipe_table where ${type}
+                                                  like concat('%', #{q}, '%') order by id desc;
     </select>
 
 <!--    <insert id="saveFile" parameterType="board">-->

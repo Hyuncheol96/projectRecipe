@@ -26,8 +26,16 @@ public class BoardRepository {
         return sql.selectOne("Board.dessertCount");
     }
 
-    public List<BoardDTO> search(Map<String, String> searchParam) {
-        return sql.selectList("Board.search", searchParam);
+    public List<BoardDTO> koreanSearch(Map<String, String> searchParam) {
+        return sql.selectList("Board.koreanSearch", searchParam);
+    }
+
+    public List<BoardDTO> westernSearch(Map<String, String> searchParam) {
+        return sql.selectList("Board.westernSearch", searchParam);
+    }
+
+    public List<BoardDTO> dessertSearch(Map<String, String> searchParam) {
+        return sql.selectList("Board.dessertSearch", searchParam);
     }
 
     public void delete(Long id) {

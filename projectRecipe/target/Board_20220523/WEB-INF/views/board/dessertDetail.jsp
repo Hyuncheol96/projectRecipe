@@ -83,7 +83,7 @@
                     작성자: ${board.boardWriter} <br>
                     내용: ${board.boardContents} <br>
                     조회수: ${board.boardHits} <br>
-                    작성일자: ${board.boardCreatedDate} <br>
+                    작성일자: <fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss" value="${board.boardCreatedDate}"></fmt:formatDate> <br>
                     <br><c:if test="${sessionScope.loginMemberId eq board.boardWriter}"><button class="btn btn-primary" onclick="dessertUpdate()">수정</button></c:if>&nbsp;
                     <%-- 삭제처리 --%>
                     <c:if test="${sessionScope.loginMemberId eq board.boardWriter or sessionScope.loginMemberId == 'admin'}"><a href="/board/delete?id=${board.id}"role="button" class="btn btn-primary">삭제</a></c:if>&nbsp;

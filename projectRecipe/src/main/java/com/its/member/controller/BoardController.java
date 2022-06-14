@@ -23,12 +23,30 @@ public class BoardController {
     private CommentService commentService;
 
 
-    // 검색처리
-    @GetMapping("/search")
-    public String search(@RequestParam("searchType") String searchType,
+    // korean 검색처리
+    @GetMapping("/koreanSearch")
+    public String koreanSearch(@RequestParam("searchType") String searchType,
                          @RequestParam("q") String q, Model model) {
-        List<BoardDTO> searchList = boardService.search(searchType, q);
-        model.addAttribute("dessertBoardList", searchList);
+        List<BoardDTO> koreanSearchList = boardService.koreanSearch(searchType, q);
+        model.addAttribute("koreanBoardList", koreanSearchList);
+        return "board/koreanList";
+    }
+
+    // western 검색처리
+    @GetMapping("/westernSearch")
+    public String westernSearch(@RequestParam("searchType") String searchType,
+                         @RequestParam("q") String q, Model model) {
+        List<BoardDTO> westernSearchList = boardService.westernSearch(searchType, q);
+        model.addAttribute("westernBoardList", westernSearchList);
+        return "board/westernList";
+    }
+
+    // dessert 검색처리
+    @GetMapping("/dessertSearch")
+    public String dessertSearch(@RequestParam("searchType") String searchType,
+                         @RequestParam("q") String q, Model model) {
+        List<BoardDTO> dessertSearchList = boardService.dessertSearch(searchType, q);
+        model.addAttribute("dessertBoardList", dessertSearchList);
         return "board/dessertList";
     }
 

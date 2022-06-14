@@ -18,17 +18,31 @@ public class BoardService {
     @Autowired
     private BoardRepository boardRepository;
 
-    private static final int PAGE_LIMIT = 5;     // 한 페이지에 보여줄 글 개수
-    private static final int BLOCK_LIMIT = 3;    // 목록페이지 아래 보여줄 버튼 개수
 
 
 
-    public List<BoardDTO> search(String searchType, String q) {
+    public List<BoardDTO> koreanSearch(String searchType, String q) {
         Map<String, String> searchParam = new HashMap<>();
         searchParam.put("type", searchType);
         searchParam.put("q", q);
-        List<BoardDTO> searchList = boardRepository.search(searchParam);
-        return searchList;
+        List<BoardDTO> koreanSearchList = boardRepository.koreanSearch(searchParam);
+        return koreanSearchList;
+    }
+
+    public List<BoardDTO> westernSearch(String searchType, String q) {
+        Map<String, String> searchParam = new HashMap<>();
+        searchParam.put("type", searchType);
+        searchParam.put("q", q);
+        List<BoardDTO> westernSearchList = boardRepository.westernSearch(searchParam);
+        return westernSearchList;
+    }
+
+    public List<BoardDTO> dessertSearch(String searchType, String q) {
+        Map<String, String> searchParam = new HashMap<>();
+        searchParam.put("type", searchType);
+        searchParam.put("q", q);
+        List<BoardDTO> dessertSearchList = boardRepository.dessertSearch(searchParam);
+        return dessertSearchList;
     }
 
 
@@ -91,6 +105,10 @@ public class BoardService {
             return  false;
         }
     }
+
+    private static final int PAGE_LIMIT = 5;     // 한 페이지에 보여줄 글 개수
+    private static final int BLOCK_LIMIT = 100;    // 목록페이지 아래 보여줄 버튼 개수
+
 
     // korean
     public PageDTO koreanPaging(int page) {

@@ -65,7 +65,7 @@
                     <table class="table">
                         <tr>
                             <th>
-                                <form action="/board/search" size="10" method="get">
+                                <form action="/board/dessertSearch" size="10" method="get">
                                     <table>
                                         <th>
                                         <td><select name="searchType">
@@ -85,18 +85,18 @@
                             <th><c:if test="${sessionScope.loginMemberId!=null}"><button class="btn btn-primary" onclick="dessertWriteForm()">글 작성</button></c:if></th>
                         </tr>
                         <tr>
-                            <th>글번호</th>
-                            <th>작성자</th>
+                            <th>분야</th>
                             <th>제목</th>
+                            <th>작성자</th>
                             <th>작성시간</th>
                             <th>조회수</th>
                         </tr>
                         <c:forEach items="${dessertBoardList}" var="board">
                             <c:if test="${board.boardCategory eq 'dessert'}">
                             <tr>
-                                <td>${board.id}</td>
-                                <td>${board.boardWriter}</td>
+                                <td>${board.boardCategory}</td>
                                 <td><a href="/board/dessertDetail?page${paging.page}&id=${board.id}">${board.boardTitle}</a></td>
+                                <td>${board.boardWriter}</td>
                                 <td><fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss"
                                                     value="${board.boardCreatedDate}"></fmt:formatDate></td>
                                 <td>${board.boardHits}</td>
