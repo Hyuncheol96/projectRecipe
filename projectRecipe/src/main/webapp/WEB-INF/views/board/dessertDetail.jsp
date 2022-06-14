@@ -12,7 +12,7 @@
 <head>
     <title>index.jsp</title>
     <style>
-        #comment-write {
+        #dessertComment-write {
             max-width: 600px;
         }
         .container {
@@ -96,7 +96,7 @@
                     <a href="/board/dessertPaging" class="button big">글목록</a>
                 </div>
                 <div class="container mb-5">
-                    <div id="comment-write" class="input-group mb-3">
+                    <div id="dessertComment-write" class="input-group mb-3">
                         <div class="form-floating">
                             <input type="text" id="commentWriter" class="form-control" value="${sessionScope.loginMemberId}" readonly>
                             <%--                <label for="commentWriter">작성자</label>--%>
@@ -105,10 +105,10 @@
                             <input type="text" id="commentContents" class="form-control" placeholder="내용">
                             <label for="commentContents">내용</label><br>
                         </div>
-                        <button id="comment-write-btn" class="btn btn-primary">댓글작성</button>
+                        <button id="dessertComment-write-btn" class="btn btn-primary">댓글작성</button>
                     </div>
                 </div>
-                    <div id="comment-list">
+                    <div id="dessertComment-list">
                         <table class="table">
                             <tr>
                                 <th>댓글번호</th>
@@ -116,7 +116,7 @@
                                 <th>내용</th>
                                 <th>작성시간</th>
                             </tr>
-                            <c:forEach items="${commentList}" var="comment">
+                            <c:forEach items="${dessertCommentList}" var="comment">
                                 <tr>
                                     <td>${comment.id}</td>
                                     <td>${comment.commentWriter}</td>
@@ -206,7 +206,7 @@
 
 </body>
 <script>
-    $("#comment-write-btn").click(function (){
+    $("#dessertComment-write-btn").click(function (){
         // alert("나 눌렀어?");
         // 댓글 작성자, 내용을 가져오고
         // ajax 문법을 활용하여 /comment/save 주소로 post 방식으로 작성자, 내용, 글번호 이렇게
@@ -216,7 +216,7 @@
         const boardId = '${board.id}';
         $.ajax({
             type: "post",
-            url: "/comment/save",
+            url: "/comment/dessertSave",
             data: {
                 "commentWriter": commentWriter,
                 "commentContents": commentContents,
@@ -239,7 +239,7 @@
                     output += "</tr>";
                 }
                 output += "</table>";
-                document.getElementById('comment-list').innerHTML = output;
+                document.getElementById('dessertComment-list').innerHTML = output;
                 document.getElementById('commentContents').value='';
             },
             error: function (result) {

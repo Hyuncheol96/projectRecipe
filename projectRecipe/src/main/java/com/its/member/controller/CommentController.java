@@ -17,17 +17,35 @@ public class CommentController {
     @Autowired
     private CommentService commentService;
 
-    // 댓글 등록
-    @PostMapping("/save")
-    public @ResponseBody List<CommentDTO> save(@ModelAttribute CommentDTO commentDTO) {
-        /**
-         1. ajax 받아온 새로운 댓글 내용을 DB에 저장
-         2. DB에서 해당 글에 대한 댓글 목록을 가져와서 리턴
-         */
+    // korean 댓글 등록
+    @PostMapping("/koreanSave")
+    public @ResponseBody List<CommentDTO> koreanSave(@ModelAttribute CommentDTO commentDTO) {
+
         System.out.println("commentDTO" + commentDTO);
 
-        commentService.save(commentDTO);    // 1.
-        List<CommentDTO> commentDTOList = commentService.findAll(commentDTO.getBoardId());  // 2.
-        return commentDTOList;
+        commentService.koreanSave(commentDTO);    // 1.
+        List<CommentDTO> koreanCommentList = commentService.koreanFindAll(commentDTO.getBoardId());  // 2.
+        return koreanCommentList;
+    }
+
+    // western 댓글 등록
+    @PostMapping("/westernSave")
+    public @ResponseBody List<CommentDTO> westernSave(@ModelAttribute CommentDTO commentDTO) {
+
+        System.out.println("commentDTO" + commentDTO);
+
+        commentService.westernSave(commentDTO);    // 1.
+        List<CommentDTO> westernCommentList = commentService.westernFindAll(commentDTO.getBoardId());  // 2.
+        return westernCommentList;
+    }
+
+    // dessert 댓글 등록
+    @PostMapping("/dessertSave")
+    public @ResponseBody List<CommentDTO> dessertSave(@ModelAttribute CommentDTO commentDTO) {
+        System.out.println("commentDTO" + commentDTO);
+
+        commentService.dessertSave(commentDTO);    // 1.
+        List<CommentDTO> dessertCommentList = commentService.dessertFindAll(commentDTO.getBoardId());  // 2.
+        return dessertCommentList;
     }
 }

@@ -141,8 +141,8 @@ public class BoardController {
         model.addAttribute("board", boardDTO);
         model.addAttribute("page", page);
         // 댓글 목록도 가져가야 함.
-        List<CommentDTO> commentDTOList = commentService.findAll(id);
-        model.addAttribute("commentList", commentDTOList);
+        List<CommentDTO> koreanCommentList = commentService.koreanFindAll(id);
+        model.addAttribute("koreanCommentList", koreanCommentList);
         return "/board/koreanDetail";
     }
 
@@ -156,8 +156,8 @@ public class BoardController {
         model.addAttribute("board", boardDTO);
         model.addAttribute("page", page);
         // 댓글 목록도 가져가야 함.
-        List<CommentDTO> commentDTOList = commentService.findAll(id);
-        model.addAttribute("commentList", commentDTOList);
+        List<CommentDTO> westernCommentList = commentService.westernFindAll(id);
+        model.addAttribute("westernCommentList", westernCommentList);
         return "/board/westernDetail";
     }
 
@@ -170,8 +170,8 @@ public class BoardController {
         model.addAttribute("board", boardDTO);
         model.addAttribute("page", page);
         // 댓글 목록도 가져가야 함.
-        List<CommentDTO> commentDTOList = commentService.findAll(id);
-        model.addAttribute("commentList", commentDTOList);
+        List<CommentDTO> dessertCommentList = commentService.dessertFindAll(id);
+        model.addAttribute("dessertCommentList", dessertCommentList);
         return "/board/dessertDetail";
     }
 

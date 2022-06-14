@@ -4,11 +4,30 @@
 
 
 <mapper namespace="Comment">
-    <insert id="save" parameterType="comment">
+    <insert id="koreanSave" parameterType="comment">
         insert into commentRecipe_table(commentWriter, commentContents, commentCreatedDate, boardId)
             value (#{commentWriter}, #{commentContents}, now(), #{boardId})
     </insert>
-    <select id="findAll" parameterType="Long" resultType="comment">
+
+    <select id="koreanFindAll" parameterType="Long" resultType="comment">
+        select * from commentRecipe_table where boardId=#{boardId} order by id desc
+    </select>
+
+    <insert id="westernSave" parameterType="comment">
+        insert into commentRecipe_table(commentWriter, commentContents, commentCreatedDate, boardId)
+            value (#{commentWriter}, #{commentContents}, now(), #{boardId})
+    </insert>
+
+    <select id="westernFindAll" parameterType="Long" resultType="comment">
+        select * from commentRecipe_table where boardId=#{boardId} order by id desc
+    </select>
+
+    <insert id="dessertSave" parameterType="comment">
+        insert into commentRecipe_table(commentWriter, commentContents, commentCreatedDate, boardId)
+            value (#{commentWriter}, #{commentContents}, now(), #{boardId})
+    </insert>
+
+    <select id="dessertFindAll" parameterType="Long" resultType="comment">
         select * from commentRecipe_table where boardId=#{boardId} order by id desc
     </select>
 
