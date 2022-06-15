@@ -2,7 +2,7 @@
   Created by IntelliJ IDEA.
   User: khc_9
   Date: 2022-06-13
-  Time: 오후 4:03
+  Time: 오전 9:28
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -14,16 +14,19 @@
         const saveForm = () => {
             location.href = "/member/save-form";
         }
-        const loginForm = () => {
-            location.href = "/member/login-form";
-        }
-        const listForm = () => {
-            location.href = "/board/paging";
-        }
+
     </script>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="\resources\css/main.css"/>
+    <%--  <link rel="stylesheet" href="/resources/css/bootstrap.min.css">--%>
+    <style>
+        .container {
+            max-width: 800px;
+            float: none;
+            margin: 0 auto;
+        }
+    </style>
 </head>
 
 <body class="is-preload">
@@ -37,7 +40,6 @@
 
             <!-- Header -->
             <header id="header">
-
 
                 <ul class="icons">
                     <c:choose>
@@ -68,18 +70,20 @@
 
                     </header>
                     <div class="container">
-                        <h2 class="display-4 fw-normal">글수정 페이지</h2>
+                        <h2 class="display-4 fw-normal">글쓰기</h2>
                         <div class="py-5 text-center">
-                            <form action="/board/koreanUpdate" method="post" name="updateForm">
-                                글번호: <input class="form-control mb-2" type="text" name="id" value="${koreanBoardUpdate.id}" readonly>
-                                제목: <input class="form-control mb-2" type="text" name="boardTitle" value="${koreanBoardUpdate.boardTitle}">
-                                작성자: <input class="form-control mb-2" type="text" name="boardWriter" value="${koreanBoardUpdate.boardWriter}" readonly>
-                                내용<br><textarea name="boardContents" cols="60" rows="20">${koreanBoardUpdate.boardContents}</textarea><br>
-                                <input class="btn btn-primary" type="submit" value="수정완료">
+                            <form action="/board/Write-form" method="post" enctype="multipart/form-data">
+                                카테고리: <input class="form-control mb-2" type="text" name="boardCategory" placeholder="카테고리"><br>
+                                제목: <input class="form-control mb-2" type="text" name="boardTitle" placeholder="제목"><br>
+                                작성자: <input class="form-control mb-2" type="text" name="boardWriter" placeholder="${sessionScope.loginMemberId}" value = "${sessionScope.loginMemberId}" readonly><br>
+                                내용: <textarea class="form-control" name="boardContents"cols="30" rows="10"></textarea> <br>
+                                <input class="btn btn-primary" type="submit" value="작성">
+                                <a href="/board/koreanPaging" class="button big">글목록</a>
                             </form>
                         </div>
                     </div>
                 </div>
+
             </section>
 
 
@@ -97,14 +101,12 @@
                 </header>
                 <ul>
                     <li><a href="/">Home</a></li>
-                    <li><a href="/board/food-form">Food</a></li>
                     <li>
-                        <span class="opener">Food recipe</span>
+                        <span class="opener">Food</span>
                         <slection>
                             <ul>
-                                <li><a href="/board/koreanPaging">Korean</a></li>
-                                <li><a href="/board/westernPaging">Western</a></li>
-                                <li><a href="/board/dessertPaging">Dessert</a></li>
+                                <li><a href="/board/food-form">Food Detail</a></li>
+                                <li><a href="/board/paging">Write</a></li>
                             </ul>
                         </slection>
                     </li>

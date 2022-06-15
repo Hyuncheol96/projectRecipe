@@ -158,14 +158,13 @@
                 </header>
                 <ul>
                     <li><a href="/">Home</a></li>
-                    <li><a href="/board/food-form">Food</a></li>
                     <li>
-                        <span class="opener">Food recipe</span>
+                        <span class="opener">Food</span>
                         <slection>
                             <ul>
-                                <li><a href="/board/koreanPaging">Korean</a></li>
-                                <li><a href="/board/westernPaging">Western</a></li>
-                                <li><a href="/board/dessertPaging">Dessert</a></li>
+                                <li><a href="/board/food-form">Food Detail</a></li>
+                                <li><a href="/board/paging">Write</a></li>
+
                             </ul>
                         </slection>
                     </li>

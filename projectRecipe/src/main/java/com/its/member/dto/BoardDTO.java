@@ -12,12 +12,12 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 public class BoardDTO {
     private Long id;
+    private String boardCategory;
     private String boardTitle;
     private String boardWriter;
     private String boardContents;
     private int boardHits;
     private Timestamp boardCreatedDate;
-    private String boardCategory;
 //    private MultipartFile boardRecipeFile;
 //    private String boardFileName;
 }

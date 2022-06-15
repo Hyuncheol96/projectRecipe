@@ -24,12 +24,12 @@ public class BoardController {
 
 
     // korean 검색처리
-    @GetMapping("/koreanSearch")
-    public String koreanSearch(@RequestParam("searchType") String searchType,
+    @GetMapping("/search")
+    public String boardSearch(@RequestParam("searchType") String searchType,
                          @RequestParam("q") String q, Model model) {
-        List<BoardDTO> koreanSearchList = boardService.koreanSearch(searchType, q);
-        model.addAttribute("koreanBoardList", koreanSearchList);
-        return "board/koreanList";
+        List<BoardDTO> searchList = boardService.search(searchType, q);
+        model.addAttribute("boardList", searchList);
+        return "board/list";
     }
 
 //    // western 검색처리
@@ -53,10 +53,10 @@ public class BoardController {
 
 
     // korean 삭제처리
-    @GetMapping("/koreanDelete")
-    public String koreanDelete(@RequestParam("id") Long id) {
-        boardService.koreanDelete(id);
-        return "redirect:/board/koreanPaging";
+    @GetMapping("/delete")
+    public String delete(@RequestParam("id") Long id) {
+        boardService.delete(id);
+        return "redirect:/board/paging";
     }
 
 
@@ -78,11 +78,11 @@ public class BoardController {
 
 
     // korean 글 수정화면 요청
-    @GetMapping("/koreanUpdate")
-    public String koreanUpdate(@RequestParam("id") Long id, Model model) {
-        BoardDTO boardDTO = boardService.koreanFindById(id);
-        model.addAttribute("koreanBoardUpdate", boardDTO);
-        return "board/koreanUpdate";
+    @GetMapping("/update")
+    public String update(@RequestParam("id") Long id, Model model) {
+        BoardDTO boardDTO = boardService.findById(id);
+        model.addAttribute("update", boardDTO);
+        return "board/update";
     }
 
 
@@ -103,10 +103,10 @@ public class BoardController {
 //    }
 
     // korean 수정처리
-    @PostMapping("/koreanUpdate")
-    public String koreanUpdate(@ModelAttribute BoardDTO boardDTO) {
-        boardService.koreanUpdate(boardDTO);
-        return "redirect:/board/koreanDetail?id="+boardDTO.getId(); // 수정처리 후 해당 글의 상세페이지 요청
+    @PostMapping("/update")
+    public String update(@ModelAttribute BoardDTO boardDTO) {
+        boardService.update(boardDTO);
+        return "redirect:/board/detail?id="+boardDTO.getId(); // 수정처리 후 해당 글의 상세페이지 요청
     }
 
 //    // western 수정처리
@@ -133,17 +133,17 @@ public class BoardController {
 
 
     // korean 상세조회
-    @GetMapping("/koreanDetail")
-    public String koreanFindById(@RequestParam("id") Long id, Model model,
+    @GetMapping("/detail")
+    public String findById(@RequestParam("id") Long id, Model model,
                                   @RequestParam(value="page", required = false, defaultValue = "1") int page) {
-        BoardDTO boardDTO = boardService.koreanFindById(id); // 방법 1
+        BoardDTO boardDTO = boardService.findById(id); // 방법 1
 //        model.addAttribute("board", boardService.findById(id)); // 방법 2
         model.addAttribute("board", boardDTO);
         model.addAttribute("page", page);
         // 댓글 목록도 가져가야 함.
-        List<CommentDTO> koreanCommentList = commentService.koreanFindAll(id);
-        model.addAttribute("koreanCommentList", koreanCommentList);
-        return "/board/koreanDetail";
+        List<CommentDTO> commentList = commentService.findAll(id);
+        model.addAttribute("commentList", commentList);
+        return "board/detail";
     }
 
 
@@ -176,9 +176,9 @@ public class BoardController {
 //    }
 
     // korean 글 리스트 이동
-    @GetMapping("/korean-form")
-    public String koreanRecipe() {
-        return "board/koreanList";
+    @GetMapping("/list-form")
+    public String list() {
+        return "board/list";
     }
 
 //    // western 글 리스트 이동
@@ -196,9 +196,9 @@ public class BoardController {
 
 
     // korean 글 작성화면 이동
-    @GetMapping("/koreanWrite-form")
-    public String koreanWriteForm() {
-        return "board/koreanWrite";
+    @GetMapping("/write-form")
+    public String writeForm() {
+        return "board/write";
     }
 
 //    // western 글 작성화면 이동
@@ -215,10 +215,10 @@ public class BoardController {
 
 
     // korean 글 작성화면 처리
-    @PostMapping("/koreanWrite-form")
-    public String koreanWrite(@ModelAttribute BoardDTO boardDTO) throws IOException {
-        boardService.koreanWrite(boardDTO);
-        return "redirect:/board/koreanPaging";
+    @PostMapping("/write-form")
+    public String write(@ModelAttribute BoardDTO boardDTO) throws IOException {
+        boardService.write(boardDTO);
+        return "redirect:/board/paging";
     }
 
 //    // western 글 작성화면 처리
@@ -236,13 +236,13 @@ public class BoardController {
 //    }
 
     // korean 페이징 처리
-    @GetMapping("/koreanPaging")
-    public String koreanPaging(@RequestParam(value="page", required=false, defaultValue="1") int page, Model model) {
-        List<BoardDTO> koreanBoardList = boardService.koreanPagingList(page); // 해당페이지리스트 호출
-        PageDTO paging = boardService.koreanPaging(page);     // 해당페이지의 하단 글의 번호 호출
-        model.addAttribute("koreanBoardList", koreanBoardList);
+    @GetMapping("/paging")
+    public String paging(@RequestParam(value="page", required=false, defaultValue="1") int page, Model model) {
+        List<BoardDTO> boardList = boardService.pagingList(page); // 해당페이지리스트 호출
+        PageDTO paging = boardService.paging(page);     // 해당페이지의 하단 글의 번호 호출
+        model.addAttribute("boardList", boardList);
         model.addAttribute("paging", paging);
-        return "board/koreanList";
+        return "board/list";
     }
 
 

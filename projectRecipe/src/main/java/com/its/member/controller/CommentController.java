@@ -18,34 +18,34 @@ public class CommentController {
     private CommentService commentService;
 
     // korean 댓글 등록
-    @PostMapping("/koreanSave")
-    public @ResponseBody List<CommentDTO> koreanSave(@ModelAttribute CommentDTO commentDTO) {
+    @PostMapping("/save")
+    public @ResponseBody List<CommentDTO> save(@ModelAttribute CommentDTO commentDTO) {
 
         System.out.println("commentDTO" + commentDTO);
 
-        commentService.koreanSave(commentDTO);    // 1.
-        List<CommentDTO> koreanCommentList = commentService.koreanFindAll(commentDTO.getBoardId());  // 2.
-        return koreanCommentList;
+        commentService.save(commentDTO);    // 1.
+        List<CommentDTO> commentList = commentService.findAll(commentDTO.getBoardId());  // 2.
+        return commentList;
     }
 
-    // western 댓글 등록
-    @PostMapping("/westernSave")
-    public @ResponseBody List<CommentDTO> westernSave(@ModelAttribute CommentDTO commentDTO) {
-
-        System.out.println("commentDTO" + commentDTO);
-
-        commentService.westernSave(commentDTO);    // 1.
-        List<CommentDTO> westernCommentList = commentService.westernFindAll(commentDTO.getBoardId());  // 2.
-        return westernCommentList;
-    }
-
-    // dessert 댓글 등록
-    @PostMapping("/dessertSave")
-    public @ResponseBody List<CommentDTO> dessertSave(@ModelAttribute CommentDTO commentDTO) {
-        System.out.println("commentDTO" + commentDTO);
-
-        commentService.dessertSave(commentDTO);    // 1.
-        List<CommentDTO> dessertCommentList = commentService.dessertFindAll(commentDTO.getBoardId());  // 2.
-        return dessertCommentList;
-    }
+//    // western 댓글 등록
+//    @PostMapping("/westernSave")
+//    public @ResponseBody List<CommentDTO> westernSave(@ModelAttribute CommentDTO commentDTO) {
+//
+//        System.out.println("commentDTO" + commentDTO);
+//
+//        commentService.save(commentDTO);    // 1.
+//        List<CommentDTO> commentList = commentService.findAll(commentDTO.getBoardId());  // 2.
+//        return commentList;
+//    }
+//
+//    // dessert 댓글 등록
+//    @PostMapping("/dessertSave")
+//    public @ResponseBody List<CommentDTO> dessertSave(@ModelAttribute CommentDTO commentDTO) {
+//        System.out.println("commentDTO" + commentDTO);
+//
+//        commentService.dessertSave(commentDTO);    // 1.
+//        List<CommentDTO> dessertCommentList = commentService.dessertFindAll(commentDTO.getBoardId());  // 2.
+//        return dessertCommentList;
+//    }
 }

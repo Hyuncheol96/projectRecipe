@@ -13,30 +13,30 @@ public class CommentRepository {
     private SqlSessionTemplate sql;
 
 
-    public void koreanSave(CommentDTO commentDTO) {
+    public void save(CommentDTO commentDTO) {
         System.out.println("commentDTO = " + commentDTO);
-        sql.insert("Comment.koreanSave", commentDTO);
+        sql.insert("Comment.save", commentDTO);
     }
 
-    public List<CommentDTO> koreanFindAll(Long boardId) {
-        return sql.selectList("Comment.koreanFindAll", boardId);
+    public List<CommentDTO> findAll(Long boardId) {
+        return sql.selectList("Comment.findAll", boardId);
     }
 
-    public void westernSave(CommentDTO commentDTO) {
-        System.out.println("commentDTO = " + commentDTO);
-        sql.insert("Comment.westernSave", commentDTO);
-    }
-
-    public List<CommentDTO> westernFindAll(Long boardId) {
-        return sql.selectList("Comment.westernFindAll", boardId);
-    }
-
-    public void dessertSave(CommentDTO commentDTO) {
-        System.out.println("commentDTO = " + commentDTO);
-        sql.insert("Comment.dessertSave", commentDTO);
-    }
-
-    public List<CommentDTO> dessertFindAll(Long boardId) {
-        return sql.selectList("Comment.dessertFindAll", boardId);
-    }
+//    public void westernSave(CommentDTO commentDTO) {
+//        System.out.println("commentDTO = " + commentDTO);
+//        sql.insert("Comment.westernSave", commentDTO);
+//    }
+//
+//    public List<CommentDTO> westernFindAll(Long boardId) {
+//        return sql.selectList("Comment.westernFindAll", boardId);
+//    }
+//
+//    public void dessertSave(CommentDTO commentDTO) {
+//        System.out.println("commentDTO = " + commentDTO);
+//        sql.insert("Comment.dessertSave", commentDTO);
+//    }
+//
+//    public List<CommentDTO> dessertFindAll(Long boardId) {
+//        return sql.selectList("Comment.dessertFindAll", boardId);
+//    }
 }

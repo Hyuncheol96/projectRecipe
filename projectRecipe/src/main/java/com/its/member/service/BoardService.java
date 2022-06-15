@@ -21,12 +21,12 @@ public class BoardService {
 
 
 
-    public List<BoardDTO> koreanSearch(String searchType, String q) {
+    public List<BoardDTO> search(String searchType, String q) {
         Map<String, String> searchParam = new HashMap<>();
         searchParam.put("type", searchType);
         searchParam.put("q", q);
-        List<BoardDTO> koreanSearchList = boardRepository.koreanSearch(searchParam);
-        return koreanSearchList;
+        List<BoardDTO> searchList = boardRepository.search(searchParam);
+        return searchList;
     }
 
 //    public List<BoardDTO> westernSearch(String searchType, String q) {
@@ -46,8 +46,8 @@ public class BoardService {
 //    }
 
 
-    public void koreanDelete(Long id) {
-        boardRepository.koreanDelete(id);
+    public void delete(Long id) {
+        boardRepository.delete(id);
     }
 
 //    public void westernDelete(Long id) {
@@ -58,9 +58,9 @@ public class BoardService {
 //        boardRepository.dessertDelete(id);
 //    }
 
-    public BoardDTO koreanFindById(Long id) {
+    public BoardDTO findById(Long id) {
         boardRepository.updateHits(id);
-        return boardRepository.koreanFindById(id);
+        return boardRepository.findById(id);
     }
 
 
@@ -74,8 +74,8 @@ public class BoardService {
 //        return boardRepository.dessertFindById(id);
 //    }
 
-    public void koreanUpdate(BoardDTO boardDTO) {
-        boardRepository.koreanUpdate(boardDTO);
+    public void update(BoardDTO boardDTO) {
+        boardRepository.update(boardDTO);
     }
 
 //    public void westernUpdate(BoardDTO boardDTO) {
@@ -87,8 +87,8 @@ public class BoardService {
 //    }
 
 
-    public boolean koreanWrite(BoardDTO boardDTO) {
-        int saveResult = boardRepository.koreanWrite(boardDTO);
+    public boolean write(BoardDTO boardDTO) {
+        int saveResult = boardRepository.write(boardDTO);
         if (saveResult > 0) {
             return true;
         } else {
@@ -119,23 +119,23 @@ public class BoardService {
 
 
     // korean
-    public PageDTO koreanPaging(int page) {
-        int koreanCount = boardRepository.koreanCount();
+    public PageDTO paging(int page) {
+        int count = boardRepository.count();
         // 필요한 전체 페이지 개수
         // 10, 3 10/3 = 3.3333 => 4
-        int maxPage = (int)(Math.ceil((double)koreanCount / PAGE_LIMIT));   // int로 강제 형변환
+        int maxPage = (int)(Math.ceil((double)count / PAGE_LIMIT));   // int로 강제 형변환
         // 시작페이지 1 4 7 10 ~~~
         int startPage = (((int)(Math.ceil((double)page / BLOCK_LIMIT))) - 1) * BLOCK_LIMIT + 1;
         // 끝페이지 3 6 9 12 ~~~
         int endPage = startPage + BLOCK_LIMIT - 1;
         if(endPage > maxPage)
             endPage = maxPage;
-        PageDTO koreanPaging = new PageDTO();
-        koreanPaging.setPage(page);
-        koreanPaging.setStartPage(startPage);
-        koreanPaging.setEndPage(endPage);
-        koreanPaging.setMaxPage(maxPage);
-        return koreanPaging;
+        PageDTO paging = new PageDTO();
+        paging.setPage(page);
+        paging.setStartPage(startPage);
+        paging.setEndPage(endPage);
+        paging.setMaxPage(maxPage);
+        return paging;
 
     }
 
@@ -183,13 +183,13 @@ public class BoardService {
 //    }
 
     // korean
-    public List<BoardDTO> koreanPagingList(int page) {
+    public List<BoardDTO> pagingList(int page) {
         int pagingStart = (page-1) * PAGE_LIMIT;
         Map<String, Integer> pagingParam = new HashMap<>();
         pagingParam.put("start", pagingStart);
         pagingParam.put("limit", PAGE_LIMIT);
-        List<BoardDTO> koreanPagingList = boardRepository.koreanPagingList(pagingParam);
-        return koreanPagingList;
+        List<BoardDTO> pagingList = boardRepository.pagingList(pagingParam);
+        return pagingList;
     }
 
 

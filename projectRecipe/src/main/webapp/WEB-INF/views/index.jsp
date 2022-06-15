@@ -33,12 +33,6 @@
             <header id="header">
 
 
-            <%--                <table>--%>
-<%--                    <th><a href="/member/save-form" class="logo"><strong>회원가입</strong></a></th>--%>
-<%--                    <th><a href="/member/login-form" class="logo"><strong>로그인</strong></a></th>--%>
-<%--                    <th><a href="/board/paging" class="logo"><strong>글목록</strong></a></th>--%>
-<%--                </table>--%>
-
         <ul class="icons">
             <c:choose>
             <c:when test="${sessionScope.loginId == null}">
@@ -102,14 +96,12 @@
                 </header>
                 <ul>
                     <li><a href="/">Home</a></li>
-                    <li><a href="/board/food-form">Food</a></li>
                     <li>
-                        <span class="opener">Food recipe</span>
+                        <span class="opener">Food</span>
                         <slection>
                         <ul>
-                            <li><a href="/board/koreanPaging">Korean</a></li>
-                            <li><a href="/board/westernPaging">Western</a></li>
-                            <li><a href="/board/dessertPaging">Dessert</a></li>
+                            <li><a href="/board/food-form">Food Detail</a></li>
+                            <li><a href="/board/paging">Write</a></li>
                         </ul>
                         </slection>
                     </li>

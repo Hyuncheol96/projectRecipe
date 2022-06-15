@@ -14,8 +14,8 @@ public class BoardRepository {
     private SqlSessionTemplate sql;
 
 
-    public int koreanCount() {
-        return sql.selectOne("Board.koreanCount");
+    public int count() {
+        return sql.selectOne("Board.count");
     }
 
 //    public int westernCount() {
@@ -26,8 +26,8 @@ public class BoardRepository {
 //        return sql.selectOne("Board.dessertCount");
 //    }
 
-    public List<BoardDTO> koreanSearch(Map<String, String> searchParam) {
-        return sql.selectList("Board.koreanSearch", searchParam);
+    public List<BoardDTO> search(Map<String, String> searchParam) {
+        return sql.selectList("Board.search", searchParam);
     }
 
 //    public List<BoardDTO> westernSearch(Map<String, String> searchParam) {
@@ -38,8 +38,8 @@ public class BoardRepository {
 //        return sql.selectList("Board.dessertSearch", searchParam);
 //    }
 
-    public void koreanDelete(Long id) {
-        sql.delete("Board.koreanDelete", id);
+    public void delete(Long id) {
+        sql.delete("Board.delete", id);
     }
 
 //    public void westernDelete(Long id) {
@@ -55,8 +55,8 @@ public class BoardRepository {
 //    }
 
 
-    public BoardDTO koreanFindById(Long id) {
-        return sql.selectOne("Board.koreanFindById", id);
+    public BoardDTO findById(Long id) {
+        return sql.selectOne("Board.findById", id);
     }
 //    public BoardDTO dessertFindById(Long id) {
 //        return sql.selectOne("Board.dessertFindById", id);
@@ -70,8 +70,8 @@ public class BoardRepository {
         sql.update("Board.updateHits", id);
     }
 
-    public void koreanUpdate(BoardDTO boardDTO) {
-        sql.update("Board.koreanUpdate", boardDTO);
+    public void update(BoardDTO boardDTO) {
+        sql.update("Board.update", boardDTO);
     }
 
 //    public void westernUpdate(BoardDTO boardDTO) {
@@ -83,8 +83,8 @@ public class BoardRepository {
 //    }
 
 
-    public int koreanWrite(BoardDTO boardDTO) {
-        return sql.insert("Board.koreanWrite", boardDTO);
+    public int write(BoardDTO boardDTO) {
+        return sql.insert("Board.write", boardDTO);
     }
 //    public int westernWrite(BoardDTO boardDTO) {
 //        return sql.insert("Board.westernWrite", boardDTO);
@@ -95,8 +95,8 @@ public class BoardRepository {
 //    }
 
 
-    public List<BoardDTO> koreanPagingList(Map<String, Integer> pagingParam) {
-        return sql.selectList("Board.koreanPagingList", pagingParam);
+    public List<BoardDTO> pagingList(Map<String, Integer> pagingParam) {
+        return sql.selectList("Board.pagingList", pagingParam);
     }
 
 //    public List<BoardDTO> westernPagingList(Map<String, Integer> pagingParam) {
