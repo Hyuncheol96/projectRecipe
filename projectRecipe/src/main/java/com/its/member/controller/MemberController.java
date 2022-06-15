@@ -68,7 +68,7 @@ public class MemberController {
             session.setAttribute("loginId", loginMember.getId());
             return "redirect:/";
         } else {
-            return "";
+            return "member/loginFail";
         }
     }
     // 로그아웃 처리
@@ -78,7 +78,7 @@ public class MemberController {
         return "redirect:/";
     }
 
-    // 회원정보 수정화면 이동
+    // 회원정보 수정 화면 이동
     @GetMapping("/update-form")
     public String updateForm(HttpSession session, Model model) {
         // 로그인을 한 상태기 때문에 세션에 id, memberId가 들어있고
@@ -105,7 +105,7 @@ public class MemberController {
         }
     }
 
-    // 회원정보 수정시 비밀번호 확인
+    // 회원정보 수정 처리
     @GetMapping("/mypage")
     public String mypageForm() {
         return "member/mypage";

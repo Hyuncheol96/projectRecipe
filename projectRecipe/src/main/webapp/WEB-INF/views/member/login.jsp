@@ -88,10 +88,7 @@
       <section id="banner">
         <div class="content">
           <header>
-<%--            <h2>모든 레시피를 무제한으로.<br />--%>
-<%--              월 단돈 5천원!!!</h2>--%>
-<%--            <p>맛있는 음식의 레시피를 볼 준비가 되셨나요?!<br/>--%>
-<%--              하단 회원가입 고고씽~</p>--%>
+
           </header>
           <div class="container mt-3">
             <h2 class="display-4">로그인</h2>

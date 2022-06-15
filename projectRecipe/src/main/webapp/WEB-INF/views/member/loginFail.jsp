@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: khc_9
-  Date: 2022-06-09
-  Time: 오전 9:22
+  Date: 2022-06-15
+  Time: 오후 4:03
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -24,7 +24,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
   <link rel="stylesheet" href="\resources\css/main.css"/>
-<%--  <link rel="stylesheet" href="/resources/css/bootstrap.min.css">--%>
+  <%--  <link rel="stylesheet" href="/resources/css/bootstrap.min.css">--%>
   <style>
     .container {
       max-width: 600px;
@@ -47,12 +47,6 @@
       <header id="header">
 
 
-        <%--                <table>--%>
-        <%--                    <th><a href="/member/save-form" class="logo"><strong>회원가입</strong></a></th>--%>
-        <%--                    <th><a href="/member/login-form" class="logo"><strong>로그인</strong></a></th>--%>
-        <%--                    <th><a href="/board/paging" class="logo"><strong>글목록</strong></a></th>--%>
-        <%--                </table>--%>
-
         <ul class="icons">
           <c:choose>
             <c:when test="${sessionScope.loginId == null}">
@@ -73,15 +67,6 @@
           <%--        <li><a href="/board/paging">글목록</a></td>--%>
         </ul>
 
-
-        <%--                <a href="projectFront/index.html" class="logo"><strong>Editorial</strong> by HTML5 UP</a>--%>
-        <%--                <ul class="icons">--%>
-        <%--                    <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>--%>
-        <%--                    <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>--%>
-        <%--                    <li><a href="#" class="icon brands fa-snapchat-ghost"><span class="label">Snapchat</span></a></li>--%>
-        <%--                    <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>--%>
-        <%--                    <li><a href="#" class="icon brands fa-medium-m"><span class="label">Medium</span></a></li>--%>
-        <%--                </ul>--%>
       </header>
 
       <!-- Banner -->
@@ -91,16 +76,13 @@
 
           </header>
           <div class="container mt-3">
-            <h2 class="display-4">로그인</h2>
+            <h2 class="display-4"></h2>
             <div class="py-5 text-center">
-          <form action="/member/login" method="post">
-            <input class="form-control mb-2" type="text" name="memberId" placeholder="아이디"><br>
-            <input class="form-control mb-2" type="password" name="memberPassword" placeholder="비밀번호"><br>
-            <td><a href="/member/save-form" class="button big">회원가입</a></td>
-            <td><input class="btn btn-primary" type="submit" value="로그인"></td>
-
-          </form>
-        </div>
+              <h2>아이디 또는 비밀번호가 틀립니다.</h2>
+              <h2>다시 로그인 해주세요.</h2>
+              <div class="container mt-3"></div> <%-- mt-3 = 자기 기준으로 위를 3만큼 띄움 --%>
+              <a href="/member/login-form" class="button big">로그인 화면으로 돌아가기</a>
+            </div>
           </div>
         </div>
 

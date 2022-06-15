@@ -70,7 +70,7 @@
                     <div class="container">
                         <h2 class="display-4 fw-normal">글수정 페이지</h2>
                         <div class="py-5 text-center">
-                            <form action="/board/koreanUpdate" method="post" name="updateForm">
+                            <form action="/board/update" method="post" name="updateForm">
                                 글번호: <input class="form-control mb-2" type="text" name="id" value="${koreanBoardUpdate.id}" readonly>
                                 제목: <input class="form-control mb-2" type="text" name="boardTitle" value="${koreanBoardUpdate.boardTitle}">
                                 작성자: <input class="form-control mb-2" type="text" name="boardWriter" value="${koreanBoardUpdate.boardWriter}" readonly>

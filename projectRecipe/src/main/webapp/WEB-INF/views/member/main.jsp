@@ -9,7 +9,7 @@
 <html>
 <head>
     <title>Title</title>
-  <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
 </head>
 <body>
 <h2>main.jsp</h2>
@@ -20,8 +20,8 @@
 <button class="btn btn-primary" onclick="location.href='/update-form'">수정</button> <br>
 </body>
 <script>
-  const updateForm = () => {
-    location.href = "/update-form";
-  }
+    const updateForm = () => {
+        location.href = "/update-form";
+    }
 </script>
 </html>
