@@ -91,9 +91,10 @@
                                     <p id="memberPassword2-result"></p>
                                     <i id="nameIcon-result" class="bi bi-tags-fill"></i> 이름<br><input class="form-control mb-2" type="text" onblur="userName()" id="memberName"  name="memberName" placeholder="이름">
                                     <p id="memberName-result"></p>
-                                    <i id="emailIcon-result" class="bi bi-tags-fill"></i> Email<br><input class="from-control mb-2" type="text" size="27" onblur="email()" id="memberEmail" name="memberEmail" placeholder="이메일">@
-                                    <input class="from-control mb-2" type="text" size="27" onblur="email2()" id="memberEmail2" name="memberEmail" placeholder="이메일">
-                                    <select id="emailCk" onchange="ck()" name = "emailSelect">
+                                    <ul class="icons">
+                                        <i id="emailIcon-result" class="bi bi-tags-fill"></i> Email<br><li><input class="from-control mb-2"  type="text" style="width: 160px" onblur="email()" id="memberEmail" name="memberEmail" placeholder="이메일"></li><li>@</li>
+                                        <li><input class="from-control mb-2" type="text" style="width: 160px" onblur="email2()" id="memberEmail2" name="memberEmail" placeholder="이메일"></li>
+                                    <li><select id="emailCk" onchange="ck()" style="width: 170px" name = "emailSelect">
                                         <option value="직접입력">직접입력</option>
                                         <option value="naver.com">naver.com</option>
                                         <option value="daum.net">daum.net</option>
@@ -108,24 +109,31 @@
                                         <option value="korea.com">korea.com</option>
                                         <option value="gmail.com">gmail.com</option>
                                         <option value="hanmir.com">hanmir.com</option>
-                                    </select><br>
+                                    </select></li>
                                     <p id="memberEmail-result"></p>
-
+                                    </ul>
+                                    <ul class="icons">
                                     <i id="mnIcon-result" class="bi bi-tags-fill"></i> 전화번호<br>
-                                    <select id="memberMobile2" onchange="mobileNumber2()" name = "memberMobile">
+                                        <li>
+                                    <select id="memberMobile2" style="width: 100px" onchange="mobileNumber2()" name = "memberMobile">
                                         <option value="KT">KT</option>
                                         <option value="SKT">SKT</option>
                                         <option value="LG">LG</option>
                                     </select>
-                                    <select id="memberMobile3" onchange="mobileNumber3()" name = "memberMobile">
+                                        </li>
+                                        <li>
+                                    <select id="memberMobile3" style="width: 130px" onchange="mobileNumber3()" name = "memberMobile">
                                         <option value="010">010</option>
                                         <option value="016">016</option>
                                         <option value="017">017</option>
                                         <option value="018">018</option>
                                         <option value="019">019</option>
                                     </select>
-                                    - <input type="text" onblur="mobileNumber()" size="60" id="memberMobile" name="memberMobile" class="from-control"  placeholder="휴대폰번호입력('-'포함)"><br>
-                                    <p id="memberMobile-result"></p>
+                                        </li>
+                                    <li>-</li> <li><input type="text" style="width: 270px" onblur="mobileNumber()" size="60" id="memberMobile" name="memberMobile" class="from-control"  placeholder="휴대폰번호입력('-'포함)">
+                                    </li>
+                                        <p id="memberMobile-result"></p>
+                                    </ul>
 
                                     <a href="/"  class="button big">처음으로</a> &nbsp;
                                     <input class="btn btn-primary" type="submit" value="가입">
@@ -358,19 +366,19 @@
         }
     }
 
-    function mobileNumber2() {
-        const memberMobile2 = document.getElementById("memberMobile2").value;
-        const memberMobileResult = document.getElementById("memberMobile-result");
-        const mnIconResult = document.getElementById("mnIcon-result");
-        if(memberMobile2 == 0){
-
-        } else {
-            memberMobileResult.innerHTML = "사용가능합니다.";
-            memberMobileResult.style.color = "#2183d3";
-            mnIconResult.style.color = "#2183d3";
-
-        }
-    }
+    // function mobileNumber2() {
+    //     const memberMobile2 = document.getElementById("memberMobile2").value;
+    //     const memberMobileResult = document.getElementById("memberMobile-result");
+    //     const mnIconResult = document.getElementById("mnIcon-result");
+    //     if(memberMobile2 == 0){
+    //
+    //     } else {
+    //         memberMobileResult.innerHTML = "사용가능합니다.";
+    //         memberMobileResult.style.color = "#2183d3";
+    //         mnIconResult.style.color = "#2183d3";
+    //
+    //     }
+    // }
 
 
 

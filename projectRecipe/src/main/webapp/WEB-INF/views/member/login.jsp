@@ -96,8 +96,8 @@
           <form action="/member/login" method="post">
             <input class="form-control mb-2" type="text" name="memberId" placeholder="아이디"><br>
             <input class="form-control mb-2" type="password" name="memberPassword" placeholder="비밀번호"><br>
-            <td><a href="/member/save-form" class="button big">회원가입</a></td>
             <td><input class="btn btn-primary" type="submit" value="로그인"></td>
+            <td><a href="/member/save-form" class="button big">회원가입</a></td>
 
           </form>
         </div>
