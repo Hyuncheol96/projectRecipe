@@ -1,4 +1,5 @@
 
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -6,46 +7,11 @@
 <head>
     <title>index.jsp</title>
     <script>
-        const saveForm = () => {
-            location.href = "/member/save-form";
-        }
-        const loginForm = () => {
-            location.href = "/member/login-form";
-        }
-        const listForm = () => {
-            location.href = "/board/paging";
-        }
+
     </script>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="\resources\css/main.css"/>
-    <script src="/resources/js/jquery.js"></script>
-    <style>
-        .table {
-            border: 1px solid;
-            width: 1100px;
-        }
-        thead {
-            border-bottom: 1px solid gray;
-        }
-        .member {
-            border: 1px solid;
-        }
-        .member:hover {
-            transition: all 0.3s;
-            background: #DED369;
-        }
-        #search {
-            border: 1px solid lightgray;
-        }
-        /*.container {*/
-        /*    display: flex;*/
-        /*    justify-content: center;*/
-        /*}*/
-        /*.memberCenter {*/
-        /*    text-align: center;*/
-        /*}*/
-    </style>
 </head>
 
 <body class="is-preload">
@@ -61,12 +27,6 @@
             <header id="header">
 
 
-                <%--                <table>--%>
-                <%--                    <th><a href="/member/save-form" class="logo"><strong>회원가입</strong></a></th>--%>
-                <%--                    <th><a href="/member/login-form" class="logo"><strong>로그인</strong></a></th>--%>
-                <%--                    <th><a href="/board/paging" class="logo"><strong>글목록</strong></a></th>--%>
-                <%--                </table>--%>
-
                 <ul class="icons">
                     <c:choose>
                         <c:when test="${sessionScope.loginId == null}">
@@ -74,7 +34,7 @@
                             <%--        <li><a href="/member/login-form">로그인</a></td>--%>
                             <%--        <li><a href="/member/save-form">회원가입</a></td>--%>
                         </c:when>
-                        <c:when test="${sessionScope.loginMemberId == 'admin'}">
+                        <c:when test="${sessionScope.loginMemberId == 'khc4572'}">
                             <li><a href="/member/findAll">관리자페이지</a></li>
                             <li><a href="/member/logout-form">로그아웃</a></li>
                             <li><a href="/member/update-form">마이페이지</a></li>
@@ -87,47 +47,16 @@
                     <%--        <li><a href="/board/paging">글목록</a></td>--%>
                 </ul>
 
-
-                <%--                <a href="projectFront/index.html" class="logo"><strong>Editorial</strong> by HTML5 UP</a>--%>
-                <%--                <ul class="icons">--%>
-                <%--                    <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>--%>
-                <%--                    <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>--%>
-                <%--                    <li><a href="#" class="icon brands fa-snapchat-ghost"><span class="label">Snapchat</span></a></li>--%>
-                <%--                    <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>--%>
-                <%--                    <li><a href="#" class="icon brands fa-medium-m"><span class="label">Medium</span></a></li>--%>
-                <%--                </ul>--%>
             </header>
 
             <!-- Banner -->
             <section id="banner">
                 <div class="content">
                     <header>
-                        <div class="container mt-3"></div> <%-- mt-3 = 자기 기준으로 위를 3만큼 띄움 --%>
-                        <div id="comment-list">
-                            <table class="table">
-                                <tr>
-                                    <th>번호</th>
-                                    <th>아이디</th>
-                                    <th>이름</th>
-                                    <th>이메일</th>
-                                    <th>전화번호</th>
-                                    <th>삭제</th>
-
-                                </tr>
-                                <c:forEach items="${memberList}" var="member">
-                                    <tr>
-                                        <td>${member.id}</td>
-                                        <td>${member.memberId}</td>
-                                        <td>${member.memberName}</td>
-                                        <td>${member.memberEmail}</td>
-                                        <td>${member.memberMobile}</td>
-
-                                        <td><a href="/member/delete?id=${member.id}">삭제</a></td>
-                                            <%--                <td><a href="/delete?id=${member.id}">삭제</a></td>--%>
-                                    </tr>
-                                </c:forEach>
-                            </table>
-                        </div>
+                        <h2>모든 레시피를 무제한으로.<br />
+                            월 단돈 5천원!!!</h2>
+                        <p>맛있는 음식의 레시피를 볼 준비가 되셨나요?!<br/>
+                            하단 회원가입 고고씽~</p>
                     </header>
                     <ul class="actions">
                         <li><c:choose>
@@ -141,6 +70,9 @@
                         </c:choose></li>
                     </ul>
                 </div>
+                <span class="image object">
+										<img src="\resources\img/3.jpg" alt="" />
+									</span>
             </section>
 
 
@@ -164,7 +96,6 @@
                             <ul>
                                 <li><a href="/board/food-form">Food Detail</a></li>
                                 <li><a href="/board/paging">Write</a></li>
-
                             </ul>
                         </slection>
                     </li>

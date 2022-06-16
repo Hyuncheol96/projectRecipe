@@ -20,6 +20,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="\resources\css/main.css"/>
+
 </head>
 
 <body class="is-preload">
@@ -35,11 +36,6 @@
             <header id="header">
 
 
-                <%--                <table>--%>
-                <%--                    <th><a href="/member/save-form" class="logo"><strong>회원가입</strong></a></th>--%>
-                <%--                    <th><a href="/member/login-form" class="logo"><strong>로그인</strong></a></th>--%>
-                <%--                    <th><a href="/board/paging" class="logo"><strong>글목록</strong></a></th>--%>
-                <%--                </table>--%>
 
                 <ul class="icons">
                     <c:choose>
@@ -48,7 +44,7 @@
                             <li><a href="/member/login-form">로그인</a></li>
                             <li><a href="/member/save-form">회원가입</a></li>
                         </c:when>
-                        <c:when test="${sessionScope.loginMemberId == 'admin'}">
+                        <c:when test="${sessionScope.loginMemberId == 'khc4572'}">
                             <li><a href="/member/findAll">관리자페이지</a></li>
                             <li><a href="/member/logout-form">로그아웃</a></li>
                             <li><a href="/member/update-form">마이페이지</a></li>
@@ -62,14 +58,6 @@
                 </ul>
 
 
-                <%--                <a href="projectFront/index.html" class="logo"><strong>Editorial</strong> by HTML5 UP</a>--%>
-                <%--                <ul class="icons">--%>
-                <%--                    <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>--%>
-                <%--                    <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>--%>
-                <%--                    <li><a href="#" class="icon brands fa-snapchat-ghost"><span class="label">Snapchat</span></a></li>--%>
-                <%--                    <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>--%>
-                <%--                    <li><a href="#" class="icon brands fa-medium-m"><span class="label">Medium</span></a></li>--%>
-                <%--                </ul>--%>
             </header>
 
             <!-- Content -->
@@ -103,12 +91,12 @@
                             <label></label>
 <%--                            <label for="commentContents">내용</label><br>--%>
                         </div>
-                        <button id="Comment-write-btn" class="btn btn-primary">댓글작성</button>
+                        <button id="comment-write-btn" class="btn btn-primary">댓글작성</button>
                         <label></label>
                     </div>
                 </div>
 
-                <div id="comment-list"">
+                <div id="comment-list">
                     <table class="table">
                         <tr>
                             <%--                                <th>댓글번호</th>--%>
@@ -201,10 +189,13 @@
 <script src="assets/js/breakpoints.min.js"></script>
 <script src="assets/js/util.js"></script>
 <script src="assets/js/main.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>     <%-- 제이쿼리 사용할때 필요한 코드 --%>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+
 
 </body>
 <script>
-    $("#Comment-write-btn").click(function (){
+    $("#comment-write-btn").click(function (){
         // alert("나 눌렀어?");
         // 댓글 작성자, 내용을 가져오고
         // ajax 문법을 활용하여 /comment/save 주소로 post 방식으로 작성자, 내용, 글번호 이렇게
@@ -224,13 +215,13 @@
             success: function (result) {
                 console.log(result);
                 let output = "<table class='table'>";
-                // output += "<tr><th>댓글번호</th>";
+                output += "<tr><th>댓글번호</th>";
                 output += "<th>작성자</th>";
                 output += "<th>내용</th>";
                 output += "<th>작성시간</th></tr>";
                 for(let i in result){
                     output += "<tr>";
-                    // output += "<td>"+result[i].id+"</td>";
+                    output += "<td>"+result[i].id+"</td>";
                     output += "<td>"+result[i].commentWriter+"</td>";
                     output += "<td>"+result[i].commentContents+"</td>";
                     output += "<td>"+moment(result[i].commentCreatedDate).format("YYYY-MM-DD HH:mm:ss")+"</td>";
@@ -241,12 +232,12 @@
                 document.getElementById('commentContents').value='';
             },
             error: function (result) {
-                alert("로그인을 해주세요");
+                alert("어디가 틀렸을까");
             }
         });
     });
 
-    const update = () => {
+    const boardUpdate = () => {
         console.log("함수호출")
         // 수정을 위한 화면(update.jsp)을 출력하고, 비밀번호를 입력받아서
         // 비밀번호 일치하면 수정처리, 일치하지 않으면 alert(회원 수정이랑 프로세스 같음.)

@@ -48,7 +48,7 @@
                             <%--        <li><a href="/member/login-form">로그인</a></td>--%>
                             <%--        <li><a href="/member/save-form">회원가입</a></td>--%>
                         </c:when>
-                        <c:when test="${sessionScope.loginMemberId == 'admin'}">
+                        <c:when test="${sessionScope.loginMemberId == 'khc4572'}">
                             <li><a href="/member/findAll">관리자페이지</a></li>
                             <li><a href="/member/logout-form">로그아웃</a></li>
                             <li><a href="/member/update-form">마이페이지</a></li>
@@ -72,13 +72,13 @@
                     <div class="container">
                         <h2 class="display-4 fw-normal">글쓰기</h2>
                         <div class="py-5 text-center">
-                            <form action="/board/Write-form" method="post" enctype="multipart/form-data">
+                            <form action="/board/write-form" method="post" enctype="multipart/form-data">
                                 카테고리: <input class="form-control mb-2" type="text" name="boardCategory" placeholder="카테고리"><br>
                                 제목: <input class="form-control mb-2" type="text" name="boardTitle" placeholder="제목"><br>
                                 작성자: <input class="form-control mb-2" type="text" name="boardWriter" placeholder="${sessionScope.loginMemberId}" value = "${sessionScope.loginMemberId}" readonly><br>
                                 내용: <textarea class="form-control" name="boardContents"cols="30" rows="10"></textarea> <br>
                                 <input class="btn btn-primary" type="submit" value="작성">
-                                <a href="/board/koreanPaging" class="button big">글목록</a>
+                                <a href="/board/paging" class="button big">글목록</a>
                             </form>
                         </div>
                     </div>

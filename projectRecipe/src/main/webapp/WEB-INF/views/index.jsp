@@ -40,7 +40,7 @@
 <%--        <li><a href="/member/login-form">로그인</a></td>--%>
 <%--        <li><a href="/member/save-form">회원가입</a></td>--%>
         </c:when>
-        <c:when test="${sessionScope.loginMemberId == 'admin'}">
+        <c:when test="${sessionScope.loginMemberId == 'khc4572'}">
             <li><a href="/member/findAll">관리자페이지</a></li>
             <li><a href="/member/logout-form">로그아웃</a></li>
             <li><a href="/member/update-form">마이페이지</a></li>

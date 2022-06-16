@@ -47,11 +47,6 @@
       <header id="header">
 
 
-        <%--                <table>--%>
-        <%--                    <th><a href="/member/save-form" class="logo"><strong>회원가입</strong></a></th>--%>
-        <%--                    <th><a href="/member/login-form" class="logo"><strong>로그인</strong></a></th>--%>
-        <%--                    <th><a href="/board/paging" class="logo"><strong>글목록</strong></a></th>--%>
-        <%--                </table>--%>
 
         <ul class="icons">
           <c:choose>
@@ -60,7 +55,7 @@
               <%--        <li><a href="/member/login-form">로그인</a></td>--%>
               <%--        <li><a href="/member/save-form">회원가입</a></td>--%>
             </c:when>
-            <c:when test="${sessionScope.loginMemberId == 'admin'}">
+            <c:when test="${sessionScope.loginMemberId == 'khc4572'}">
               <li><a href="/member/findAll">관리자페이지</a></li>
               <li><a href="/member/logout-form">로그아웃</a></li>
               <li><a href="/member/update-form">마이페이지</a></li>
@@ -74,14 +69,6 @@
         </ul>
 
 
-        <%--                <a href="projectFront/index.html" class="logo"><strong>Editorial</strong> by HTML5 UP</a>--%>
-        <%--                <ul class="icons">--%>
-        <%--                    <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>--%>
-        <%--                    <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>--%>
-        <%--                    <li><a href="#" class="icon brands fa-snapchat-ghost"><span class="label">Snapchat</span></a></li>--%>
-        <%--                    <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>--%>
-        <%--                    <li><a href="#" class="icon brands fa-medium-m"><span class="label">Medium</span></a></li>--%>
-        <%--                </ul>--%>
       </header>
 
       <!-- Banner -->
