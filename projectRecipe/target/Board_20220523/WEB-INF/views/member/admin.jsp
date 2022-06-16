@@ -75,41 +75,6 @@
                     </ul>
                 </div>
 
-                <div class="container admin_container">
-                    <div class="row">
-                        <h1 class="jumbotron" style="text-align: center; margin: 50px 0;">상품 리스트</h1>
-                        <table class="table table-hover">
-                            <thead>
-                            <tr>
-                                <th>상품ID</th>
-                                <th>상품명</th>
-                                <th>상품가격</th>
-                                <th>재고</th>
-                                <th>상품분류</th>
-                                <th>상품정보</th>
-                                <th>상품 등록일</th>
-                                <th>최종 수정일</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <c:forEach items="${productList}" var="dto">
-                                <tr>
-                                    <td>${dto.productId}</td>
-                                    <td>${dto.productName}</td>
-                                    <td>${dto.price}</td>
-                                    <td>${dto.stock}</td>
-                                    <td>${dto.productDist}</td>
-                                    <td>${dto.productInfo}</td>
-                                    <td><fmt:formatDate value="${dto.regDate}" type="date" pattern="yyyy-MM-dd"/> </td>
-                                    <td><fmt:formatDate value="${dto.updateDate}" type="date" pattern="yyyy-MM-dd"/></td>
-                                </tr>
-                            </c:forEach>
-                            </tbody>
-                        </table>
-                    </div>
-                    <!-- class = row -->
-                </div>
-                [출처] [Spring] 쇼핑몰 만들기 5. 관리자 기능 구현(1)|작성자 워니
             </section>
 
 
