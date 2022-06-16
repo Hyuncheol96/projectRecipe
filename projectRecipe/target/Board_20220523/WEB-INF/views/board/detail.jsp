@@ -45,7 +45,7 @@
                             <li><a href="/member/save-form">회원가입</a></li>
                         </c:when>
                         <c:when test="${sessionScope.loginMemberId == 'khc4572'}">
-                            <li><a href="/member/findAll">관리자페이지</a></li>
+                            <li><a href="/member/admin-form">관리자페이지</a></li>
                             <li><a href="/member/logout-form">로그아웃</a></li>
                             <li><a href="/member/update-form">마이페이지</a></li>
                         </c:when>
@@ -72,7 +72,7 @@
                     작성자: ${board.boardWriter} <br>
                     내용: ${board.boardContents} <br>
                     조회수: ${board.boardHits} <br>
-                    작성일자: <fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss" value="${board.boardCreatedDate}"></fmt:formatDate> <br>
+                    작성일자: <fmt:formatDate pattern="yyyy-MM-dd" value="${board.boardCreatedDate}"></fmt:formatDate> <br>
                     <br><c:if test="${sessionScope.loginMemberId eq board.boardWriter}"><button class="button big" onclick="update()">수정</button></c:if>&nbsp;
                     <%-- 삭제처리 --%>
                     <c:if test="${sessionScope.loginMemberId eq board.boardWriter or sessionScope.loginMemberId == 'admin'}"><a href="/board/delete?id=${board.id}"role="button" class="button big">삭제</a></c:if>&nbsp;
@@ -109,7 +109,7 @@
                                     <%--                                    <td>${comment.id}</td>--%>
                                 <td>${comment.commentWriter}</td>
                                 <td>${comment.commentContents}</td>
-                                <td><fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss" value="${comment.commentCreatedDate}"></fmt:formatDate></td>  <%-- 초 까지만 나옴. --%>
+                                <td><fmt:formatDate pattern="yyyy-MM-dd hh:mm" value="${comment.commentCreatedDate}"></fmt:formatDate></td>  <%-- 초 까지만 나옴. --%>
                             </tr>
                         </c:forEach>
                     </table>
@@ -224,7 +224,7 @@
                     output += "<td>"+result[i].id+"</td>";
                     output += "<td>"+result[i].commentWriter+"</td>";
                     output += "<td>"+result[i].commentContents+"</td>";
-                    output += "<td>"+moment(result[i].commentCreatedDate).format("YYYY-MM-DD HH:mm:ss")+"</td>";
+                    output += "<td>"+moment(result[i].commentCreatedDate).format("yyyy-MM-dd hh:mm")+"</td>";
                     output += "</tr>";
                 }
                 output += "</table>";

@@ -1,17 +1,30 @@
 
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <html>
 <head>
     <title>index.jsp</title>
     <script>
-
+        const saveForm = () => {
+            location.href = "/member/save-form";
+        }
+        const loginForm = () => {
+            location.href = "/member/login-form";
+        }
+        const listForm = () => {
+            location.href = "/board/paging";
+        }
     </script>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="\resources\css/main.css"/>
+    <script src="/resources/js/jquery.js"></script>
+
+    <style>
+
+    </style>
 </head>
 
 <body class="is-preload">
@@ -35,7 +48,7 @@
                             <%--        <li><a href="/member/save-form">회원가입</a></td>--%>
                         </c:when>
                         <c:when test="${sessionScope.loginMemberId == 'khc4572'}">
-                            <li><a href="/member/findAll">관리자페이지</a></li>
+                            <li><a href="/member/admin-form">관리자페이지</a></li>
                             <li><a href="/member/logout-form">로그아웃</a></li>
                             <li><a href="/member/update-form">마이페이지</a></li>
                         </c:when>
@@ -51,28 +64,17 @@
 
             <!-- Banner -->
             <section id="banner">
-                <div class="content">
-                    <header>
-                        <h2>모든 레시피를 무제한으로.<br />
-                            월 단돈 5천원!!!</h2>
-                        <p>맛있는 음식의 레시피를 볼 준비가 되셨나요?!<br/>
-                            하단 회원가입 고고씽~</p>
-                    </header>
-                    <ul class="actions">
-                        <li><c:choose>
-                            <c:when test="${sessionScope.loginId == null}">
-                                <td><a href="/member/save-form" class="button big">시작하기</a></td>
-                                <td><a href="/member/login-form" class="button big">로그인</a></td>
-                            </c:when>
-                            <c:otherwise>
-
-                            </c:otherwise>
-                        </c:choose></li>
+                <div class="row side_nav">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li class="li_btns"><a href="/product/orderedList">주문 현황</a></li>
+                        <li class="li_btns active"><a href="/member/memberList-form">회원 관리</a></li>
+                        <li class="li_btns"><a href="/product/insert-form">상품 등록</a></li>
+                        <li class="li_btns"><a href="/product/list-form">상품 조회</a></li>
+                        <li class="li_btns"><a href="/product/update-form">상품 정보 수정</a></li>
+                        <li class="li_btns"><a href="/product/delete-form">상품 삭제</a></li>
                     </ul>
                 </div>
-                <span class="image object">
-										<img src="\resources\img/3.jpg" alt="" />
-									</span>
+
             </section>
 
 
@@ -150,3 +152,4 @@
 
 </body>
 </html>
+

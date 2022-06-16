@@ -1,10 +1,11 @@
 <%--
   Created by IntelliJ IDEA.
   User: khc_9
-  Date: 2022-06-13
-  Time: 오후 4:03
+  Date: 2022-06-16
+  Time: 오후 3:18
   To change this template use File | Settings | File Templates.
 --%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
@@ -24,6 +25,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="\resources\css/main.css"/>
+    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+
 </head>
 
 <body class="is-preload">
@@ -63,23 +66,12 @@
 
             <!-- Banner -->
             <section id="banner">
-                <div class="content">
-                    <header>
+                <h1> kakaoPay api 이용하기 </h1>
 
-                    </header>
-                    <div class="container">
-                        <h2 class="display-4 fw-normal">글수정 페이지</h2>
-                        <div class="py-5 text-center">
-                            <form action="/board/update" method="post" name="updateForm">
-                                글번호: <input class="form-control mb-2" type="text" name="id" value="${koreanBoardUpdate.id}" readonly>
-                                제목: <input class="form-control mb-2" type="text" name="boardTitle" value="${koreanBoardUpdate.boardTitle}">
-                                작성자: <input class="form-control mb-2" type="text" name="boardWriter" value="${koreanBoardUpdate.boardWriter}" readonly>
-                                내용<br><textarea name="boardContents" cols="60" rows="20">${koreanBoardUpdate.boardContents}</textarea><br>
-                                <input class="btn btn-primary" type="submit" value="수정완료">
-                            </form>
-                        </div>
-                    </div>
-                </div>
+                <form method="post" action="/kakaoPay">
+                    <button>카카오페이로 결제하기</button>
+                </form>
+
             </section>
 
 
@@ -154,6 +146,51 @@
 <script src="assets/js/breakpoints.min.js"></script>
 <script src="assets/js/util.js"></script>
 <script src="assets/js/main.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 
 </body>
+<script>
+    $("#check_module").click(function () {
+        var IMP = window.IMP; // 생략가능
+        IMP.init('imp62204713');
+        // i'mport 관리자 페이지 -> 내정보 -> 가맹점식별코드
+        // ''안에 띄어쓰기 없이 가맹점 식별코드를 붙여넣어주세요. 안그러면 결제창이 안뜹니다.
+        IMP.request_pay({
+            pg: 'kakao',
+            pay_method: 'card',
+            merchant_uid: 'merchant_' + new Date().getTime(),
+            /*
+             *  merchant_uid에 경우
+             *  https://docs.iamport.kr/implementation/payment
+             *  위에 url에 따라가시면 넣을 수 있는 방법이 있습니다.
+             */
+            name: '주문명 : 아메리카노',
+            // 결제창에서 보여질 이름
+            // name: '주문명 : ${auction.a_title}',
+            // 위와같이 model에 담은 정보를 넣어 쓸수도 있습니다.
+            amount: 2000,
+            // amount: ${bid.b_bid},
+            // 가격
+            buyer_name: '이름',
+            // 구매자 이름, 구매자 정보도 model값으로 바꿀 수 있습니다.
+            // 구매자 정보에 여러가지도 있으므로, 자세한 내용은 맨 위 링크를 참고해주세요.
+            buyer_postcode: '123-456',
+        }, function (rsp) {
+            console.log(rsp);
+            if (rsp.success) {
+                var msg = '결제가 완료되었습니다.';
+                msg += '결제 금액 : ' + rsp.paid_amount;
+                // success.submit();
+                // 결제 성공 시 정보를 넘겨줘야한다면 body에 form을 만든 뒤 위의 코드를 사용하는 방법이 있습니다.
+                // 자세한 설명은 구글링으로 보시는게 좋습니다.
+            } else {
+                var msg = '결제에 실패하였습니다.';
+                msg += '에러내용 : ' + rsp.error_msg;
+            }
+            alert(msg);
+        });
+    });
+</script>
 </html>
+

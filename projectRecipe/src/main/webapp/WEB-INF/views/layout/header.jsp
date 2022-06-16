@@ -32,7 +32,7 @@
             <td><a href="/member/save-form">회원가입</a></td>
             </c:when>
             <c:when test="${sessionScope.loginMemberId == 'admin'}">
-                <td><a href="/member/afindAll">관리자페이지</a></td>
+                <td><a href="/member/admin-form">관리자페이지</a></td>
                 <td><a href="/member/logout-form">로그아웃</a></td>
                 <td><a href="/member/update-form">마이페이지</a></td>
             </c:when>

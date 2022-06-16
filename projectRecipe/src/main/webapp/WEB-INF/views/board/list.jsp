@@ -44,7 +44,7 @@
                             <li><a href="/member/save-form">회원가입</a></li>
                         </c:when>
                         <c:when test="${sessionScope.loginMemberId == 'khc4572'}">
-                            <li><a href="/member/findAll">관리자페이지</a></li>
+                            <li><a href="/member/admin-form">관리자페이지</a></li>
                             <li><a href="/member/logout-form">로그아웃</a></li>
                             <li><a href="/member/update-form">마이페이지</a></li>
                         </c:when>
@@ -93,7 +93,7 @@
                             <th>카테고리</th>
                             <th>제목</th>
                             <th>작성자</th>
-                            <th>작성시간</th>
+                            <th>작성일자</th>
                             <th>조회수</th>
                         </tr>
                         <c:forEach items="${boardList}" var="board">
@@ -102,7 +102,7 @@
                                 <td>${board.boardCategory}</td>
                                 <td><a href="/board/detail?page${paging.page}&id=${board.id}">${board.boardTitle}</a></td>
                                 <td>${board.boardWriter}</td>
-                                <td><fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss"
+                                <td><fmt:formatDate pattern="yyyy-MM-dd "
                                                     value="${board.boardCreatedDate}"></fmt:formatDate></td>
                                 <td>${board.boardHits}</td>
                             </tr>

@@ -41,7 +41,7 @@
 <%--        <li><a href="/member/save-form">회원가입</a></td>--%>
         </c:when>
         <c:when test="${sessionScope.loginMemberId == 'khc4572'}">
-            <li><a href="/member/findAll">관리자페이지</a></li>
+            <li><a href="/member/admin-form">관리자페이지</a></li>
             <li><a href="/member/logout-form">로그아웃</a></li>
             <li><a href="/member/update-form">마이페이지</a></li>
         </c:when>
@@ -69,7 +69,7 @@
                             <c:when test="${sessionScope.loginId == null}">
                                 <td><a href="/member/save-form" class="button big">시작하기</a></td>
                                 <td><a href="/member/login-form" class="button big">로그인</a></td>
-                            </c:when>
+                    </c:when>
                             <c:otherwise>
 
                             </c:otherwise>

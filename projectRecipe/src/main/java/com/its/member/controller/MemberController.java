@@ -8,6 +8,7 @@ import com.its.member.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -132,12 +133,19 @@ public class MemberController {
         return "member/admin";
     }
 
+    // 관리자페이지 회원목록 화면 이동
+    @GetMapping("/memberList-form")
+    public String memberListForm() {
+
+        return "redirect:/member/findAll";
+    }
+
     // 회원정보 목록
     @GetMapping("/findAll") // 아래 findAll 안에 Model model = 전체 데이터를 가져가야 하기때문에 사용
     public String findAll(Model model) {
         List<MemberDTO> memberDTOList = memberService.findAll();
         model.addAttribute("memberList", memberDTOList);
-        return "member/admin";
+        return "member/memberList";
     }
 
     // 삭제처리
@@ -153,5 +161,8 @@ public class MemberController {
             return "delete-fail";
         }
     }
+
+
+
 
 }
