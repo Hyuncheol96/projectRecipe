@@ -93,7 +93,7 @@
                         <form action="/member/update" method="post" name="updateForm">
                             회원번호: <input class="form-control mb-2" type="text" name="id" value="${updateMember.id}" readonly><br>
                             아이디: <input class="form-control mb-2" type="text" name="memberId" value="${sessionScope.loginMemberId}" readonly><br>
-                            현재비밀번호 or 변경비밀번호: <input type="password" id="memberPassword" name="memberPassword" placeholder="변경비밀번호 or 현재 비밀번호를 한번 더 입력 해 주세요"><br>
+                            변경비밀번호 or 현재비밀번호: <input type="password" id="memberPassword" name="memberPassword" placeholder="변경비밀번호 or 현재 비밀번호를 한번 더 입력 해 주세요"><br>
                             현재비밀번호 확인: <input class="form-control mb-2" type="password" id="pwConfirm" placeholder="비밀번호를 입력하세요"><br>
                             이름: <input class="form-control mb-2" type="text" name="memberName" value="${updateMember.memberName}" readonly><br>
                             Email: <input class="form-control mb-2" type="text" name="memberEmail" value="${updateMember.memberEmail}"><br>
