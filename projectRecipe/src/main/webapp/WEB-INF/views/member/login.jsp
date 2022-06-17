@@ -71,6 +71,7 @@
             &nbsp;&nbsp;&nbsp;&nbsp;
             <li><a href="/member/logout-form">로그아웃</a></li>
             <li><a href="/member/update-form">마이페이지</a></li>
+          </c:otherwise>
           </c:choose>
           <%--        <li><a href="/board/paging">글목록</a></td>--%>
         </ul>

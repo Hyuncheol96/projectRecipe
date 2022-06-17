@@ -81,7 +81,7 @@
                                 <td><a href="/member/login-form" class="button big">로그인</a></td>
                     </c:when>
                             <c:otherwise>
-
+                                <td><a href="/product/list-form" class="button big">상품조회</a></td>
                             </c:otherwise>
                         </c:choose></li>
                     </ul>
