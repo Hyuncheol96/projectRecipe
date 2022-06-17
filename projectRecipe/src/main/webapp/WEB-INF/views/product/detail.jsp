@@ -1,11 +1,10 @@
 <%--
   Created by IntelliJ IDEA.
   User: khc_9
-  Date: 2022-06-16
-  Time: 오후 3:18
+  Date: 2022-06-17
+  Time: 오전 11:14
   To change this template use File | Settings | File Templates.
 --%>
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
@@ -25,8 +24,6 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="\resources\css/main.css"/>
-    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
-
 </head>
 
 <body class="is-preload">
@@ -70,16 +67,20 @@
                     <%--        <li><a href="/board/paging">글목록</a></td>--%>
                 </ul>
 
+
+
             </header>
 
             <!-- Banner -->
             <section id="banner">
-                <h1> kakaoPay api 이용하기 </h1>
+                <div class="content">
+                    <header>
 
-                <form method="post" action="/kakaoPay">
-                    <button>카카오페이로 결제하기</button>
-                </form>
-
+                    </header>
+                    <ul class="actions">
+                        <td><a href="/product/list-form" class="button big">결제하기</a></td>
+                    </ul>
+                </div>
             </section>
 
 
@@ -154,39 +155,6 @@
 <script src="assets/js/breakpoints.min.js"></script>
 <script src="assets/js/util.js"></script>
 <script src="assets/js/main.js"></script>
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
-<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 
 </body>
-<script>
-
-
-    var IMP = window.IMP;
-    IMP.init(' 가맹점 식별 코드');
-    IMP.request_pay({
-        pg : "kakaopay",
-        pay_method : 'card',
-        merchant_uid : 'merchant_' + new Date().getTime(),
-        name : '결제',
-        amount : 주문개수,
-        buyer_email : '구매자 이메일',
-        buyer_name : '구매자 이름',
-        buyer_tel : '구매자 번호',
-        buyer_addr : '구매자 주소',
-        buyer_postcode : '구매자 주소',
-        m_redirect_url : 'redirect url'
-    }, function(rsp) {
-        if ( rsp.success ) {
-            var msg = '결제가 완료되었습니다.';
-            location.href='결제완료후 갈 url';
-        } else {
-            var msg = '결제에 실패하였습니다.';
-            rsp.error_msg;
-
-        }
-    });
-
-
-</script>
 </html>
-

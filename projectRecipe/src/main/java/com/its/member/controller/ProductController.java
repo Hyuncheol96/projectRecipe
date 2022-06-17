@@ -61,6 +61,12 @@ public class ProductController {
         return "product/list";
     }
 
+    // 상품 상세보기 화면 이동
+    @GetMapping("/detail-form")
+    public String detail() {
+
+        return "product/detail";
+    }
 
 
 

@@ -88,24 +88,23 @@
                                     <th>상품번호</th>
                                     <th>상품명</th>
                                     <th>상품가격</th>
-                                    <th>재고</th>
-                                    <th>상품분류</th>
-                                    <th>상품정보</th>
-                                    <th>상품 등록일</th>
+                                    <th>결제하기</th>
                                 </tr>
                                     <c:forEach items="${productList}" var="product">
                                         <tr>
                                             <td>${product.id}</td>
                                             <td>${product.productName}</td>
                                             <td>${product.productPrice}</td>
-                                            <td>${product.productStock}</td>
-                                            <td>${product.productDist}</td>
-                                            <td>${product.productInfo}</td>
-                                            <td><fmt:formatDate value="${product.productCreatedDate}" type="date" pattern="yyyy-MM-dd"/> </td>
+                                            <td> <form method="post" action="/proiamport">
+                                                <button type="button" onclick="sq()">카카오페이로 결제하기</button>
+                                            </form></td>
+
                                         </tr>
                                     </c:forEach>
                             </table>
                         </div>
+
+
             </section>
         </div>
     </div>
@@ -178,6 +177,39 @@
 <script src="assets/js/breakpoints.min.js"></script>
 <script src="assets/js/util.js"></script>
 <script src="assets/js/main.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+
+</body>
+<script>
+    const sq = () => {
+        var IMP = window.IMP;
+        IMP.init('imp62204713');
+        IMP.request_pay({
+            pg: "kakaopay",
+            pay_method: 'card',
+            merchant_uid: 'merchant_' + new Date().getTime(),
+            name: '결제',
+            amount: '2000',
+            buyer_email: '구매자 이메일',
+            buyer_name: '구매자 이름',
+            buyer_tel: '구매자 번호',
+            buyer_addr: '구매자 주소',
+            buyer_postcode: '구매자 주소',
+            m_redirect_url: 'redirect:/product/pay-form'
+        }, function (rsp) {
+            if (rsp.success) {
+                var msg = '결제가 완료되었습니다.';
+                location.href = '결제완료후 갈 url';
+            } else {
+                var msg = '결제에 실패하였습니다.';
+                rsp.error_msg;
+
+            }
+        });
+    }
+
+</script>
 
 </body>
 </html>
