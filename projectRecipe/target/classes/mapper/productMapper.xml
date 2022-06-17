@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="Product">
+<!--    <select id="findAll" resultType="product">-->
+<!--        select * from product_table-->
+<!--    </select>-->
+
+
+    <insert id="test" parameterType="product">
+        insert into product_table( productName, productPrice)
+        values ( 'test_product_name', 50000)
+    </insert>
+    <select id="findAll" resultType="product">
+            select * from product_table
+    </select>
+<!--    values (#{productName}, #{productPrice}, #{productStock}, #{productDist}, #{productInfo}, now())-->
+
+
+<!--    <insert id="findAll" parameterType="product">-->
+<!--        insert into product_table( productName, productPrice)-->
+<!--        values ( 'test_product_name', 50000)-->
+<!--    </insert>-->
+
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
