@@ -78,8 +78,7 @@
                         <li class="li_btns active"><a href="/member/memberList-form">회원 관리</a></li>
                         <li class="li_btns"><a href="/product/insert-form">상품 등록</a></li>
                         <li class="li_btns"><a href="/product/list-form">상품 조회</a></li>
-                        <li class="li_btns"><a href="/product/update-form">상품 정보 수정</a></li>
-                        <li class="li_btns"><a href="/product/delete-form">상품 삭제</a></li>
+
                     </ul>
                 </div>
 

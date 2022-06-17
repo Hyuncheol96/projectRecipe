@@ -88,32 +88,34 @@
                         <h3>Product List</h3>
                     </header>
                         <div class="container mt-3" ></div> <%-- mt-3 = 자기 기준으로 위를 3만큼 띄움 --%>
-                            <table class="table table-hover ac">
+                            <table class="table table-hover">
                                 <tr>
-                                    <th class="ac">상품번호</th>
+                                    <th>No</th>
                                     <th class="ac">상품명</th>
                                     <th class="ac">상품가격</th>
                                     <th class="ac">결제하기</th>
+                                    <c:if test="${sessionScope.loginMemberId == 'khc4572'}">
                                     <th class="ac">수정</th>
                                     <th class="ac">삭제</th>
+                                    </c:if>
                                 </tr>
                                     <c:forEach items="${productList}" var="product">
                                         <tr>
                                             <td>${product.id}</td>
-                                            <td>${product.productName}</td>
-                                            <td>${product.productPrice}</td>
+                                            <td class="ac">${product.productName}</td>
+                                            <td class="ac">${product.productPrice}</td>
                                                 <c:choose>
                                                     <c:when test="${sessionScope.loginId == null}">
                                                     </c:when>
                                                     <c:when test="${sessionScope.loginMemberId == 'khc4572'}">
-                                                         <td><form method="post" action="/">
+                                                         <td class="ac"><form method="post" action="/">
                                                             <button type="button" onclick="pay()">결제하기</button>
                                                         </form></td>
-                                                        <td><a href="/product/update-form?id=${product.id}" class="button big">수정</a></td>
-                                                        <td><a href="/product/delete-form?id=${product.id}" class="button big">삭제</a></td>
+                                                        <td class="ac"><a href="/product/update-form?id=${product.id}" class="button big">수정</a></td>
+                                                        <td class="ac"><a href="/product/delete-form?id=${product.id}" class="button big">삭제</a></td>
                                                     </c:when>
                                                     <c:otherwise>
-                                                        <td> <form method="post" action="/">
+                                                        <td class="ac"> <form method="post" action="/">
                                                             <button type="button" onclick="pay()">결제하기</button>
                                                         </form></td>
                                                     </c:otherwise>
