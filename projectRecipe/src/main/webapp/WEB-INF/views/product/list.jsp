@@ -93,15 +93,15 @@
                                     <th>상품정보</th>
                                     <th>상품 등록일</th>
                                 </tr>
-                                    <c:forEach items="${productList}" var="dto">
+                                    <c:forEach items="${productList}" var="product">
                                         <tr>
-                                            <td>${dto.productId}</td>
-                                            <td>${dto.productName}</td>
-                                            <td>${dto.price}</td>
-                                            <td>${dto.stock}</td>
-                                            <td>${dto.productDist}</td>
-                                            <td>${dto.productInfo}</td>
-                                            <td><fmt:formatDate value="${dto.productCreatedDate}" type="date" pattern="yyyy-MM-dd"/> </td>
+                                            <td>${product.id}</td>
+                                            <td>${product.productName}</td>
+                                            <td>${product.productPrice}</td>
+                                            <td>${product.productStock}</td>
+                                            <td>${product.productDist}</td>
+                                            <td>${product.productInfo}</td>
+                                            <td><fmt:formatDate value="${product.productCreatedDate}" type="date" pattern="yyyy-MM-dd"/> </td>
                                         </tr>
                                     </c:forEach>
                             </table>

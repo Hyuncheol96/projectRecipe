@@ -4,6 +4,26 @@
 
 
 <mapper namespace="Product">
+<!--    <select id="findAll" resultType="product">-->
+<!--        select * from product_table-->
+<!--    </select>-->
+
+
+    <insert id="test" parameterType="product">
+        insert into product_table( productName, productPrice)
+        values ( 'test_product_name', 50000)
+    </insert>
+    <select id="findAll" resultType="product">
+            select * from product_table
+    </select>
+<!--    values (#{productName}, #{productPrice}, #{productStock}, #{productDist}, #{productInfo}, now())-->
+
+
+<!--    <insert id="findAll" parameterType="product">-->
+<!--        insert into product_table( productName, productPrice)-->
+<!--        values ( 'test_product_name', 50000)-->
+<!--    </insert>-->
+
 
 </mapper>
 
