@@ -4,25 +4,28 @@
 
 
 <mapper namespace="Product">
-<!--    <select id="findAll" resultType="product">-->
-<!--        select * from product_table-->
-<!--    </select>-->
 
-
-    <insert id="test" parameterType="product">
-        insert into product_table( productName, productPrice)
-        values ( 'test_product_name', 50000)
+    <insert id="insert" parameterType="product">
+        insert into product_table(productName, productPrice)
+        values ( #{productName}, #{productPrice})
     </insert>
+
     <select id="findAll" resultType="product">
             select * from product_table
     </select>
-<!--    values (#{productName}, #{productPrice}, #{productStock}, #{productDist}, #{productInfo}, now())-->
 
+    <select id="findById" parameterType="Long" resultType="product">
+        select * from product_table where id=#{id}
+    </select>
 
-<!--    <insert id="findAll" parameterType="product">-->
-<!--        insert into product_table( productName, productPrice)-->
-<!--        values ( 'test_product_name', 50000)-->
-<!--    </insert>-->
+    <update id="update" parameterType="product">
+        update product_table set productName=#{productName}, productPrice=#{productPrice} where id=#{id}
+    </update>
+
+    <delete id="delete" parameterType="product">
+        delete from product_table where id=#{id}
+    </delete>
+
 
 
 </mapper>

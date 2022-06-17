@@ -29,7 +29,12 @@
     <script src="/resources/js/jquery.js"></script>
 
     <style>
-
+        .ac{
+            text-align: center;
+        }
+        .aa{
+            margin: 30px;
+        }
     </style>
 </head>
 
@@ -82,23 +87,38 @@
                     <header class="main">
                         <h3>Product List</h3>
                     </header>
-                        <div class="container mt-3"></div> <%-- mt-3 = 자기 기준으로 위를 3만큼 띄움 --%>
-                            <table class="table table-hover">
+                        <div class="container mt-3" ></div> <%-- mt-3 = 자기 기준으로 위를 3만큼 띄움 --%>
+                            <table class="table table-hover ac">
                                 <tr>
-                                    <th>상품번호</th>
-                                    <th>상품명</th>
-                                    <th>상품가격</th>
-                                    <th>결제하기</th>
+                                    <th class="ac">상품번호</th>
+                                    <th class="ac">상품명</th>
+                                    <th class="ac">상품가격</th>
+                                    <th class="ac">결제하기</th>
+                                    <th class="ac">수정</th>
+                                    <th class="ac">삭제</th>
                                 </tr>
                                     <c:forEach items="${productList}" var="product">
                                         <tr>
                                             <td>${product.id}</td>
                                             <td>${product.productName}</td>
                                             <td>${product.productPrice}</td>
-                                            <td> <form method="post" action="/proiamport">
-                                                <button type="button" onclick="sq()">카카오페이로 결제하기</button>
-                                            </form></td>
-
+                                                <c:choose>
+                                                    <c:when test="${sessionScope.loginId == null}">
+                                                    </c:when>
+                                                    <c:when test="${sessionScope.loginMemberId == 'khc4572'}">
+                                                         <td><form method="post" action="/">
+                                                            <button type="button" onclick="pay()">결제하기</button>
+                                                        </form></td>
+                                                        <td><a href="/product/update-form?id=${product.id}" class="button big">수정</a></td>
+                                                        <td><a href="/product/delete-form?id=${product.id}" class="button big">삭제</a></td>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <td> <form method="post" action="/">
+                                                            <button type="button" onclick="pay()">결제하기</button>
+                                                        </form></td>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </ul>
                                         </tr>
                                     </c:forEach>
                             </table>
@@ -182,7 +202,7 @@
 
 </body>
 <script>
-    const sq = () => {
+    const pay = () => {
         var IMP = window.IMP;
         IMP.init('imp62204713');
         IMP.request_pay({
@@ -191,16 +211,16 @@
             merchant_uid: 'merchant_' + new Date().getTime(),
             name: '결제',
             amount: '2000',
-            buyer_email: '구매자 이메일',
-            buyer_name: '구매자 이름',
-            buyer_tel: '구매자 번호',
-            buyer_addr: '구매자 주소',
-            buyer_postcode: '구매자 주소',
+            buyer_email: '${sessionScope.loginMemberEmail}',
+            buyer_name: '${sessionScope.loginMemberName}',
+            buyer_tel: '${sessionScope.loginMemberMobile}',
+            // buyer_addr: '구매자 주소',
+            // buyer_postcode: '구매자 주소',
             m_redirect_url: 'redirect:/product/pay-form'
         }, function (rsp) {
             if (rsp.success) {
                 var msg = '결제가 완료되었습니다.';
-                location.href = '결제완료후 갈 url';
+                location.href = 'redirect:/product/list';
             } else {
                 var msg = '결제에 실패하였습니다.';
                 rsp.error_msg;

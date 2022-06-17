@@ -13,7 +13,22 @@ public class ProductRepository {
     private SqlSessionTemplate sql;
 
     public List<ProductDTO> findAll() {
-        sql.insert("Product.test");
         return sql.selectList("Product.findAll");
+    }
+
+    public void insert(ProductDTO productDTO) {
+        sql.insert("Product.insert", productDTO);
+    }
+
+    public ProductDTO findById(Long id) {
+        return sql.selectOne("Product.findById", id);
+    }
+
+    public void update(ProductDTO productDTO) {
+        sql.update("Product.update", productDTO);
+    }
+
+    public void delete(Long id) {
+        sql.delete("Product.delete", id);
     }
 }

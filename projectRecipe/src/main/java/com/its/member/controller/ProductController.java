@@ -1,12 +1,13 @@
 package com.its.member.controller;
 
+import com.its.member.dto.BoardDTO;
+import com.its.member.dto.MemberDTO;
 import com.its.member.dto.ProductDTO;
 import com.its.member.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -40,17 +41,28 @@ public class ProductController {
 
     // 관리자페이지 상품수정 화면 이동
     @GetMapping("/update-form")
-    public String updateForm() {
-
+    public String update(@RequestParam("id") Long id, Model model) {
+        ProductDTO productDTO = productService.findById(id);
+        model.addAttribute("update", productDTO);
         return "product/update";
     }
 
-    // 관리자페이지 상품삭제 화면 이동
-    @GetMapping("/delete-form")
-    public String deleteForm() {
 
-        return "product/delete";
+
+    // 관리자페이지 상품수정 처리
+    @PostMapping("/update-form")
+    public String update(@ModelAttribute ProductDTO productDTO) {
+        productService.update(productDTO);
+        return "redirect:/product/findAll?="+productDTO.getId();
     }
+
+
+    // 관리자페이지 상품삭제 처리
+    @GetMapping("/delete-form")
+    public String delete(@RequestParam("id") Long id) {
+        productService.delete(id);
+        return "redirect:/product/findAll";
+        }
 
 
     // 상품목록 조회
@@ -67,6 +79,13 @@ public class ProductController {
 
         return "product/detail";
     }
+    @PostMapping("/insert")
+    public String insert(@ModelAttribute ProductDTO productDTO){
+        productService.insert(productDTO);
+        return "redirect:/product/findAll";
+    }
+
+
 
 
 
