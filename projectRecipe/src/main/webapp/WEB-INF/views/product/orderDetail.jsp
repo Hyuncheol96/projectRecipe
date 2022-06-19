@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: khc_9
-  Date: 2022-06-16
-  Time: 오후 5:45
+  Date: 2022-06-19
+  Time: 오후 10:09
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -87,45 +87,18 @@
                     <header class="main">
                         <h3>Product List</h3>
                     </header>
-                        <div class="container mt-3" ></div> <%-- mt-3 = 자기 기준으로 위를 3만큼 띄움 --%>
-                            <table class="table table-hover">
-                                <tr>
-                                    <th>No</th>
-                                    <th class="ac">상품명</th>
-                                    <th class="ac">상품가격</th>
-                                    <th class="ac">결제하기</th>
-                                    <c:if test="${sessionScope.loginMemberId == 'khc4572'}">
-                                    <th class="ac">수정</th>
-                                    <th class="ac">삭제</th>
-                                    </c:if>
-                                </tr>
-                                    <c:forEach items="${productList}" var="product">
-                                <form action="/product/orderList-form" name="blah" method="post">
-
-                                <tr>
-<%--                                <form action="/product/orderedList-form" name="blah" method="post" enctype="multipart/form-data">--%>
-                                            <td class="ac"><input type="text" name="productId" value="${product.id}"></td>
-                                            <td class="ac"><input type="hidden" name="memberId" value="${sessionScope.loginMemberId}"></td>
-                                            <td class="ac"><input type="text" name="productName" value="${product.productName}"></td>
-                                            <td class="ac"><input type="text" name="productPrice" value="${product.productPrice}"></td>
-                                                <c:choose>
-                                                    <c:when test="${sessionScope.loginMemberId == 'khc4572'}">
-                                                        <td class="ac"><a href="/product/update-form?id=${product.id}" class="button big">수정</a></td>
-                                                        <td class="ac"><a href="/product/delete-form?id=${product.id}" class="button big">삭제</a></td>
-                                                    </c:when>
-                                                    <c:otherwise>
-                                                        <td class="ac">
-                                                            <button type="button" onclick="pay('${product.productPrice}')">결제하기</button>
-                                                       </td>
-                                                    </c:otherwise>
-                                                </c:choose>
-                                            </ul>
-<%--                                </form>--%>
-                                        </tr>
-                                </form>
-                                    </c:forEach>
-                            </table>
-                        </div>
+                    <div class="container mt-3" ></div> <%-- mt-3 = 자기 기준으로 위를 3만큼 띄움 --%>
+                    <table class="table table-hover">
+                            <tr>
+                                <th class="ac">상품이름</th>
+                                <th class="ac">상품가격</th>
+                            </tr>
+                            <tr>
+                                <td class="ac">${order.productName}</td>
+                                <td class="ac">${order.productPrice}</td>
+                            </tr>
+                    </table>
+                </div>
 
 
             </section>
@@ -205,38 +178,8 @@
 
 </body>
 <script>
-    const pay = (productPrice) => {
-        var IMP = window.IMP;
-        IMP.init('imp62204713');
-        IMP.request_pay({
-            pg: "kakaopay",
-            pay_method: 'card',
-            merchant_uid: 'merchant_' + new Date().getTime(),
-            name: '결제',
-            amount: productPrice,
-            buyer_email: '${sessionScope.loginMemberEmail}',
-            buyer_name: '${sessionScope.loginMemberName}',
-            buyer_tel: '${sessionScope.loginMemberMobile}',
-            // buyer_addr: '구매자 주소',
-            // buyer_postcode: '구매자 주소',
-            // m_redirect_url: ''
-        }, function (rsp) {
-            if (rsp.success) {
-                var msg = '결제가 완료되었습니다.';
-                // location.href = '/';
-                blah.submit();
-            } else {
-                var msg = '결제에 실패하였습니다.';
-                rsp.error_msg;
-
-            }
-        });
-    }
-
-
 
 </script>
 
 </body>
 </html>
-

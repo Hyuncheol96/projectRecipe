@@ -85,38 +85,23 @@
             <section id="banner">
                 <div class="content">
                     <header class="main">
-                        <h3>Product List</h3>
+                        <h3>Order List</h3>
                     </header>
                     <div class="container mt-3" ></div> <%-- mt-3 = 자기 기준으로 위를 3만큼 띄움 --%>
                     <table class="table table-hover">
                         <tr>
-                            <th>No</th>
-                            <th class="ac">상품번호</th>
-                            <th class="ac">주문자</th>
+                            <th>No(주문번호)</th>
                             <th class="ac">상품이름</th>
+                            <th class="ac">주문자</th>
                             <th class="ac">상품가격</th>
-                            <c:if test="${sessionScope.loginMemberId == 'khc4572'}">
-                                <th class="ac">수정</th>
-                                <th class="ac">삭제</th>
-                            </c:if>
                         </tr>
-                        <c:forEach items="${productList}" var="product">
-                        <form action="/product/orderList-form" name="blah" method="post">
+                        <c:forEach items="${orderList}" var="order">
                             <tr>
-                                <td class="ac"><input type="text" name="productId" value="${product.id}"></td>
-<%--                                <td class="ac"><input type="hidden" name="productId" value="${product.productId}"></td>--%>
-                                <td class="ac"><input type="hidden" name="memberId" value="${sessionScope.loginMemberId}"></td>
-                                <td class="ac"><input type="text" name="productName" value="${product.productName}"></td>
-                                <td class="ac"><input type="text" name="productPrice" value="${product.productPrice}"></td>
-                                <c:choose>
-                                    <c:when test="${sessionScope.loginMemberId == 'khc4572'}">
-                                        <td class="ac"><a href="/product/update-form?id=${product.id}" class="button big">수정</a></td>
-                                        <td class="ac"><a href="/product/delete-form?id=${product.id}" class="button big">삭제</a></td>
-                                    </c:when>
-                                </c:choose>
-                                </ul>
+                                <td class="ac">${order.id}</td>
+                                <td class="ac">${order.productName}</td>
+                                <td class="ac">${order.memberId}</td>
+                                <td class="ac">${order.productPrice}</td>
                             </tr>
-                        </form>
                         </c:forEach>
                     </table>
                 </div>

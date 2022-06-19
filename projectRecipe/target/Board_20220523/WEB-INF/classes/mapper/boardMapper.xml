@@ -92,9 +92,14 @@
 <!--        values (#{boardWriter}, #{boardTitle}, #{boardContents}, now(), #{boardCategory})-->
 <!--    </insert>-->
 
+<!--    <select id="pagingList" parameterType="java.util.HashMap" resultType="board">-->
+<!--        select * from boardRecipe_table order by id desc limit #{start}, #{limit}-->
+<!--    </select>-->
+
     <select id="pagingList" parameterType="java.util.HashMap" resultType="board">
-        select * from boardRecipe_table order by id desc limit #{start}, #{limit}
+        select * from boardRecipe_table order by field(boardCategory, '공지사항') desc, id desc limit #{start}, #{limit}
     </select>
+
 
 <!--    <select id="westernPagingList" parameterType="java.util.HashMap" resultType="board">-->
 <!--        select * from boardRecipe_table order by id desc limit #{start}, #{limit}-->

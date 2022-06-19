@@ -3,14 +3,17 @@ package com.its.member.controller;
 
 import com.its.member.dto.BoardDTO;
 import com.its.member.dto.CommentDTO;
+import com.its.member.dto.OrderListDTO;
 import com.its.member.dto.PageDTO;
 import com.its.member.service.BoardService;
 import com.its.member.service.CommentService;
+import com.its.member.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
@@ -21,6 +24,8 @@ public class BoardController {
     private BoardService boardService;
     @Autowired
     private CommentService commentService;
+    @Autowired
+    private ProductService productService;
 
 
     // korean 검색처리
@@ -135,7 +140,7 @@ public class BoardController {
     // korean 상세조회
     @GetMapping("/detail")
     public String findById(@RequestParam("id") Long id, Model model,
-                                  @RequestParam(value="page", required = false, defaultValue = "1") int page) {
+                           @RequestParam(value="page", required = false, defaultValue = "1") int page) {
         BoardDTO boardDTO = boardService.findById(id); // 방법 1
 //        model.addAttribute("board", boardService.findById(id)); // 방법 2
         model.addAttribute("board", boardDTO);
@@ -237,11 +242,15 @@ public class BoardController {
 
     // korean 페이징 처리
     @GetMapping("/paging")
-    public String paging(@RequestParam(value="page", required=false, defaultValue="1") int page, Model model) {
+    public String paging(@RequestParam(value="page", required=false, defaultValue="1") int page, Model model, HttpSession session) {
         List<BoardDTO> boardList = boardService.pagingList(page); // 해당페이지리스트 호출
         PageDTO paging = boardService.paging(page);     // 해당페이지의 하단 글의 번호 호출
         model.addAttribute("boardList", boardList);
         model.addAttribute("paging", paging);
+        // 결제여부도 확인해야함 (결제한 사람만 게시글 상세조회 가능)
+        String memberId = (String) session.getAttribute("loginMemberId");
+        OrderListDTO orderListDTO = productService.orderFindById(memberId);
+        model.addAttribute("order", orderListDTO);
         return "board/list";
     }
 

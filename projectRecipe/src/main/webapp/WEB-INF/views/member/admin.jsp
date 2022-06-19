@@ -74,7 +74,7 @@
             <section id="banner">
                 <div class="row side_nav">
                     <ul class="nav nav-pills nav-stacked">
-                        <li class="li_btns"><a href="/product/orderedList">주문 현황</a></li>
+                        <li class="li_btns"><a href="/product/orderList-form">주문 현황</a></li>
                         <li class="li_btns active"><a href="/member/memberList-form">회원 관리</a></li>
                         <li class="li_btns"><a href="/product/insert-form">상품 등록</a></li>
                         <li class="li_btns"><a href="/product/list-form">상품 조회</a></li>

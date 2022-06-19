@@ -36,4 +36,19 @@ public class ProductRepository {
     public void orderList(OrderListDTO orderListDTO) {
         sql.insert("Product.orderList", orderListDTO);
     }
+
+
+    // 한개
+    public OrderListDTO orderFindById(String memberId) {
+        return sql.selectOne("Product.orderFindById", memberId);
+    }
+
+    // 두개
+//    public OrderListDTO orderFindById(String memberId) {
+//        return sql.selectList("Product.orderFindById", memberId);
+//    }
+
+    public List<OrderListDTO> orderFindAll() {
+        return sql.selectList("Product.orderFindAll");
+    }
 }

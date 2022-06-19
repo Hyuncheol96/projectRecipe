@@ -104,7 +104,7 @@
 
                                 <tr>
 <%--                                <form action="/product/orderedList-form" name="blah" method="post" enctype="multipart/form-data">--%>
-                                            <td class="ac"><input type="text" name="id" value="${product.id}"></td>
+                                            <td class="ac"><input type="text" name="productId" value="${product.id}"></td>
                                             <td class="ac"><input type="hidden" name="memberId" value="${sessionScope.loginMemberId}"></td>
                                             <td class="ac"><input type="text" name="productName" value="${product.productName}"></td>
                                             <td class="ac"><input type="text" name="productPrice" value="${product.productPrice}"></td>

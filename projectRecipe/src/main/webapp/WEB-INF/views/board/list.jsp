@@ -16,6 +16,15 @@
         const writeForm = () => {
             location.href = "/board/write-form";
         }
+        const boardDetail = (page, id) => {
+            const orderCheck = '${order}';
+            const loginMemberId = '${sessionScope.loginMemberId}';
+            if (orderCheck != '' || loginMemberId == 'khc4572') {
+                location.href = "/board/detail?page=" + page + "&id=" + id;
+            } else {
+                alert("결제 후에 열람 가능합니다.");
+            }
+        }
     </script>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
@@ -105,16 +114,16 @@
                             <th>조회수</th>
                         </tr>
                         <c:forEach items="${boardList}" var="board">
-<%--                            <c:if test="${board.boardCategory eq 'korean'}">--%>
+                            <%--                            <c:if test="${board.boardCategory eq 'korean'}">--%>
                             <tr>
                                 <td>${board.boardCategory}</td>
-                                <td><a href="/board/detail?page${paging.page}&id=${board.id}">${board.boardTitle}</a></td>
+                                <td><a onclick="boardDetail('${paging.page}','${board.id}')">${board.boardTitle}</a></td>
                                 <td>${board.boardWriter}</td>
                                 <td><fmt:formatDate pattern="yyyy-MM-dd "
                                                     value="${board.boardCreatedDate}"></fmt:formatDate></td>
                                 <td>${board.boardHits}</td>
                             </tr>
-<%--                        </c:if>--%>
+                            <%--                        </c:if>--%>
                         </c:forEach>
                     </table>
                 </div>

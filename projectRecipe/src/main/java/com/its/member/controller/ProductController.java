@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -20,16 +21,43 @@ public class ProductController {
     // 관리자페이지 주문현황 화면 이동
     @GetMapping("/orderList-form")
     public String orderListForm(@ModelAttribute OrderListDTO orderListDTO, Model model) {
+        List<OrderListDTO> orderListDTOList = productService.orderFindAll();
+        model.addAttribute("orderList", orderListDTOList);
         return "product/orderList";
     }
 
     // 관리자페이지 주문현황 처리
+//    @PostMapping("/orderList-form")
+//    public String orderList(@ModelAttribute OrderListDTO orderListDTO, Model model, HttpSession session) {
+//        productService.orderList(orderListDTO);
+//        String memberId = (String) session.getAttribute("loginMemberId");
+//        OrderListDTO order = productService.orderFindById(memberId);
+//        model.addAttribute("order", order);
+//        return "product/orderDetail";
+//
+//    }
+
     @PostMapping("/orderList-form")
-    public String orderList(@ModelAttribute OrderListDTO orderListDTO, Model model) {
+    public String orderList(@ModelAttribute OrderListDTO orderListDTO, Model model, HttpSession session) {
         productService.orderList(orderListDTO);
-        System.out.println("orderListDTO = " + orderListDTO + ", model = " + model);
-        return "product/orderList";
+        String memberId = (String) session.getAttribute("loginMemberId");
+        OrderListDTO order = productService.orderFindById(memberId);
+        model.addAttribute("order", order);
+        return "product/orderDetail";
+
     }
+
+//    @PostMapping("/orderList-form")
+//    public String orderList(@ModelAttribute OrderListDTO orderListDTO, Model model, HttpSession session) {
+//        productService.orderList(orderListDTO);
+//        String memberId = (String) session.getAttribute("loginMemberId");
+//        List<OrderListDTO> orderListDTOList = productService.orderFindById(memberId);
+//        model.addAttribute("orderList", orderListDTOList);
+//        return "product/orderDetail";
+//
+//    }
+
+
 
     // 관리자페이지 상품등록 화면 이동
     @GetMapping("/insert-form")

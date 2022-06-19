@@ -37,4 +37,18 @@ public class ProductService {
     public void orderList(OrderListDTO orderListDTO) {
         productRepository.orderList(orderListDTO);
     }
+
+
+
+    public OrderListDTO orderFindById(String memberId) {
+        return productRepository.orderFindById(memberId);
+    }
+
+//    public List<OrderListDTO> orderFindById(String memberId) {
+//        return productRepository.orderFindById(memberId);
+//    }
+
+    public List<OrderListDTO> orderFindAll() {
+        return productRepository.orderFindAll();
+    }
 }

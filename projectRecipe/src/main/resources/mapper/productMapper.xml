@@ -31,7 +31,13 @@
         values (#{productId},#{memberId}, #{productName}, #{productPrice})
     </insert>
 
+    <select id="orderFindById" parameterType="String" resultType="orderList">
+        select * from orderList_table where memberId=#{memberId}
+    </select>
 
+    <select id="orderFindAll" resultType="orderList">
+        select * from orderList_table order by id desc
+    </select>
 
 </mapper>
 
