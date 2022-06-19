@@ -100,28 +100,29 @@
                                     </c:if>
                                 </tr>
                                     <c:forEach items="${productList}" var="product">
-                                        <tr>
-                                            <td>${product.id}</td>
-                                            <td class="ac">${product.productName}</td>
-                                            <td class="ac">${product.productPrice}</td>
+                                <form action="/product/orderList-form" name="blah" method="post">
+
+                                <tr>
+<%--                                <form action="/product/orderedList-form" name="blah" method="post" enctype="multipart/form-data">--%>
+                                            <td class="ac"><input type="text" name="id" value="${product.id}"></td>
+                                            <td class="ac"><input type="hidden" name="memberId" value="${sessionScope.loginMemberId}"></td>
+                                            <td class="ac"><input type="text" name="productName" value="${product.productName}"></td>
+                                            <td class="ac"><input type="text" name="productPrice" value="${product.productPrice}"></td>
                                                 <c:choose>
-                                                    <c:when test="${sessionScope.loginId == null}">
-                                                    </c:when>
                                                     <c:when test="${sessionScope.loginMemberId == 'khc4572'}">
-                                                         <td class="ac"><form method="post" action="/">
-                                                            <button type="button" onclick="pay()">결제하기</button>
-                                                        </form></td>
                                                         <td class="ac"><a href="/product/update-form?id=${product.id}" class="button big">수정</a></td>
                                                         <td class="ac"><a href="/product/delete-form?id=${product.id}" class="button big">삭제</a></td>
                                                     </c:when>
                                                     <c:otherwise>
-                                                        <td class="ac"> <form method="post" action="/">
-                                                            <button type="button" onclick="pay()">결제하기</button>
-                                                        </form></td>
+                                                        <td class="ac">
+                                                            <button type="button" onclick="pay('${product.productPrice}')">결제하기</button>
+                                                       </td>
                                                     </c:otherwise>
                                                 </c:choose>
                                             </ul>
+<%--                                </form>--%>
                                         </tr>
+                                </form>
                                     </c:forEach>
                             </table>
                         </div>
@@ -204,7 +205,7 @@
 
 </body>
 <script>
-    const pay = () => {
+    const pay = (productPrice) => {
         var IMP = window.IMP;
         IMP.init('imp62204713');
         IMP.request_pay({
@@ -212,17 +213,18 @@
             pay_method: 'card',
             merchant_uid: 'merchant_' + new Date().getTime(),
             name: '결제',
-            amount: '2000',
+            amount: productPrice,
             buyer_email: '${sessionScope.loginMemberEmail}',
             buyer_name: '${sessionScope.loginMemberName}',
             buyer_tel: '${sessionScope.loginMemberMobile}',
             // buyer_addr: '구매자 주소',
             // buyer_postcode: '구매자 주소',
-            m_redirect_url: 'redirect:/product/pay-form'
+            // m_redirect_url: ''
         }, function (rsp) {
             if (rsp.success) {
                 var msg = '결제가 완료되었습니다.';
-                location.href = 'redirect:/product/list';
+                // location.href = '/';
+                blah.submit();
             } else {
                 var msg = '결제에 실패하였습니다.';
                 rsp.error_msg;
@@ -230,6 +232,8 @@
             }
         });
     }
+
+
 
 </script>
 

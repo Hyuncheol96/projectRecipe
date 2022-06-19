@@ -1,6 +1,7 @@
 package com.its.member.service;
 
 import com.its.member.dto.BoardDTO;
+import com.its.member.dto.OrderListDTO;
 import com.its.member.dto.ProductDTO;
 import com.its.member.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,5 +32,9 @@ public class ProductService {
 
     public void delete(Long id) {
         productRepository.delete(id);
+    }
+
+    public void orderList(OrderListDTO orderListDTO) {
+        productRepository.orderList(orderListDTO);
     }
 }

@@ -26,6 +26,11 @@
         delete from product_table where id=#{id}
     </delete>
 
+    <insert id="orderList" parameterType="product">
+        insert into orderList_table(productId, memberId, productName, productPrice)
+        values (#{productId},#{memberId}, #{productName}, #{productPrice})
+    </insert>
+
 
 
 </mapper>

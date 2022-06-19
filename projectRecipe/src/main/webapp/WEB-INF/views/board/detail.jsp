@@ -88,14 +88,14 @@
                     <label></label>
                 </div>
                 <div class="container mb-5 mt-3">
-                    <div id="Comment-write" class="input-group">
+                    <div id="comment-write" class="input-group">
                         <div class="form-floating mb-3">
                             <label for="commentContents">댓글 쓰기</label>
-                            <input type="text" size="50" id="commentWriter" class="form-control" value="${sessionScope.loginMemberId}" readonly>
+                            <input type="text" size="50" id="commentWriter" name="commentWriter" class="form-control" value="${sessionScope.loginMemberId}" readonly>
                             <%--                <label for="commentWriter">작성자</label>--%>
                         </div>
                         <div class="form-floating">
-                            <input type="text" id="commentContents" class="form-control" placeholder="내용">
+                            <input type="text" id="commentContents" name="commentContents" class="form-control" placeholder="내용">
                             <label></label>
 <%--                            <label for="commentContents">내용</label><br>--%>
                         </div>
@@ -107,14 +107,14 @@
                 <div id="comment-list">
                     <table class="table">
                         <tr>
-                            <%--                                <th>댓글번호</th>--%>
+                            <th>댓글번호</th>
                             <th>작성자</th>
                             <th>내용</th>
                             <th>작성시간</th>
                         </tr>
                         <c:forEach items="${commentList}" var="comment">
                             <tr>
-                                    <%--                                    <td>${comment.id}</td>--%>
+                                <td>${comment.id}</td>
                                 <td>${comment.commentWriter}</td>
                                 <td>${comment.commentContents}</td>
                                 <td><fmt:formatDate pattern="yyyy-MM-dd hh:mm" value="${comment.commentCreatedDate}"></fmt:formatDate></td>  <%-- 초 까지만 나옴. --%>
@@ -211,13 +211,14 @@
         const commentWriter = document.getElementById("commentWriter").value;
         const commentContents = $("#commentContents").val();    // 제이쿼리 형식
         const boardId = '${board.id}';
+        const productId = '${product.id}';
         $.ajax({
             type: "post",
             url: "/comment/save",
             data: {
                 "commentWriter": commentWriter,
                 "commentContents": commentContents,
-                "boardId": boardId
+                "boardId": boardId,
             },
             dataType: "json",
             success: function (result) {
@@ -232,7 +233,7 @@
                     output += "<td>"+result[i].id+"</td>";
                     output += "<td>"+result[i].commentWriter+"</td>";
                     output += "<td>"+result[i].commentContents+"</td>";
-                    output += "<td>"+moment(result[i].commentCreatedDate).format("yyyy-MM-dd hh:mm")+"</td>";
+                    output += "<td>"+moment(result[i].commentCreatedDate).format("YYYY-MM-DD HH:mm:ss")+"</td>";
                     output += "</tr>";
                 }
                 output += "</table>";

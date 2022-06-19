@@ -1,5 +1,6 @@
 package com.its.member.repository;
 
+import com.its.member.dto.OrderListDTO;
 import com.its.member.dto.ProductDTO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,5 +31,9 @@ public class ProductRepository {
 
     public void delete(Long id) {
         sql.delete("Product.delete", id);
+    }
+
+    public void orderList(OrderListDTO orderListDTO) {
+        sql.insert("Product.orderList", orderListDTO);
     }
 }

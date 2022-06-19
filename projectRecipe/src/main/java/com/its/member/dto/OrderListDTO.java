@@ -4,16 +4,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.sql.Timestamp;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CommentDTO {
+public class OrderListDTO {
     private Long id;
-    private String commentWriter;
-    private String commentContents;
-    private Long boardId;
     private Long productId;
-    private Timestamp commentCreatedDate;
+    private String memberId;
+    private String productName;
+    private int productPrice;
 }

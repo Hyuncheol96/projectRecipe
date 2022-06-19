@@ -1,7 +1,6 @@
 package com.its.member.controller;
 
-import com.its.member.dto.BoardDTO;
-import com.its.member.dto.MemberDTO;
+import com.its.member.dto.OrderListDTO;
 import com.its.member.dto.ProductDTO;
 import com.its.member.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +18,17 @@ public class ProductController {
     private ProductService productService;
 
     // 관리자페이지 주문현황 화면 이동
-    @GetMapping("/orderedList-form")
-    public String orderedListForm() {
+    @GetMapping("/orderList-form")
+    public String orderListForm(@ModelAttribute OrderListDTO orderListDTO, Model model) {
+        return "product/orderList";
+    }
 
-        return "product/orderedList";
+    // 관리자페이지 주문현황 처리
+    @PostMapping("/orderList-form")
+    public String orderList(@ModelAttribute OrderListDTO orderListDTO, Model model) {
+        productService.orderList(orderListDTO);
+        System.out.println("orderListDTO = " + orderListDTO + ", model = " + model);
+        return "product/orderList";
     }
 
     // 관리자페이지 상품등록 화면 이동
@@ -30,6 +36,13 @@ public class ProductController {
     public String insertForm() {
 
         return "product/insert";
+    }
+
+    // 관리자페이지 상품등록 처리
+    @PostMapping("/insert")
+    public String insert(@ModelAttribute ProductDTO productDTO){
+        productService.insert(productDTO);
+        return "redirect:/product/findAll";
     }
 
     // 관리자페이지 상품리스트 화면 이동
@@ -78,11 +91,6 @@ public class ProductController {
     public String detail() {
 
         return "product/detail";
-    }
-    @PostMapping("/insert")
-    public String insert(@ModelAttribute ProductDTO productDTO){
-        productService.insert(productDTO);
-        return "redirect:/product/findAll";
     }
 
 
