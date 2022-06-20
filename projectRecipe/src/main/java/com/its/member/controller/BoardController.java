@@ -180,24 +180,6 @@ public class BoardController {
 //        return "/board/dessertDetail";
 //    }
 
-    // korean 글 리스트 이동
-    @GetMapping("/list-form")
-    public String list() {
-        return "board/list";
-    }
-
-//    // western 글 리스트 이동
-//    @GetMapping("/western-form")
-//    public String westernRecipe() {
-//        return "board/westernList";
-//    }
-//
-//    // // dessert 글 리스트 이동
-//    @GetMapping("/dessert-form")
-//    public String dessertRecipe() {
-//        return "board/dessertList";
-//    }
-
 
 
     // korean 글 작성화면 이동

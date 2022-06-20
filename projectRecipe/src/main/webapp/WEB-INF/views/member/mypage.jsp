@@ -199,6 +199,7 @@
         // 비밀번호 일치하면 form태그에 입력한 내용을 컨트롤러로 요청.
         // 일치하지 않으면 alert으로 비밀번호 틀린다고 보여줌.
         if (pwConfirm == pwDB) {
+            alert("정보수정이 완료되었습니다.\n다시 로그인해주세요.");
             updateForm.submit(); // 해당 폼을 submit 하는 js 함수
         } else {
             alert("비밀번호가 틀립니다.");

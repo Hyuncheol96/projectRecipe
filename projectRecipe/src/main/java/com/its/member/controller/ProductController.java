@@ -18,13 +18,25 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-    // 관리자페이지 주문현황 화면 이동
+    // 관리자페이지 주문내역 화면 이동
     @GetMapping("/orderList-form")
     public String orderListForm(@ModelAttribute OrderListDTO orderListDTO, Model model) {
         List<OrderListDTO> orderListDTOList = productService.orderFindAll();
         model.addAttribute("orderList", orderListDTOList);
         return "product/orderList";
     }
+
+    // 관리자페이지 주문내역 처리
+    @PostMapping("/orderList-form")
+    public String orderList(@ModelAttribute OrderListDTO orderListDTO, Model model, HttpSession session) {
+        productService.orderList(orderListDTO);
+        String memberId = (String) session.getAttribute("loginMemberId");
+        OrderListDTO order = productService.orderFindById(memberId);
+        model.addAttribute("order", order);
+        return "product/orderDetail";
+
+    }
+
 
     // 관리자페이지 주문현황 처리
 //    @PostMapping("/orderList-form")
@@ -37,15 +49,6 @@ public class ProductController {
 //
 //    }
 
-    @PostMapping("/orderList-form")
-    public String orderList(@ModelAttribute OrderListDTO orderListDTO, Model model, HttpSession session) {
-        productService.orderList(orderListDTO);
-        String memberId = (String) session.getAttribute("loginMemberId");
-        OrderListDTO order = productService.orderFindById(memberId);
-        model.addAttribute("order", order);
-        return "product/orderDetail";
-
-    }
 
 //    @PostMapping("/orderList-form")
 //    public String orderList(@ModelAttribute OrderListDTO orderListDTO, Model model, HttpSession session) {
@@ -80,9 +83,18 @@ public class ProductController {
         return "redirect:/product/findAll";
     }
 
+
+    // 상품목록 조회
+    @GetMapping("findAll")
+    public String findAll(Model model) {
+        List<ProductDTO> productDTOList = productService.findAll();
+        model.addAttribute("productList", productDTOList);
+        return "product/list";
+    }
+
     // 관리자페이지 상품수정 화면 이동
     @GetMapping("/update-form")
-    public String update(@RequestParam("id") Long id, Model model) {
+    public String updateForm(@RequestParam("id") Long id, Model model) {
         ProductDTO productDTO = productService.findById(id);
         model.addAttribute("update", productDTO);
         return "product/update";
@@ -104,23 +116,6 @@ public class ProductController {
         productService.delete(id);
         return "redirect:/product/findAll";
         }
-
-
-    // 상품목록 조회
-    @GetMapping("findAll")
-    public String findAll(Model model) {
-        List<ProductDTO> productDTOList = productService.findAll();
-        model.addAttribute("productList", productDTOList);
-        return "product/list";
-    }
-
-    // 상품 상세보기 화면 이동
-    @GetMapping("/detail-form")
-    public String detail() {
-
-        return "product/detail";
-    }
-
 
 
 

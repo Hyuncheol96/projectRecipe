@@ -94,13 +94,14 @@ public class MemberController {
 
     // 회원정보 수정화면 처리
     @PostMapping("/update")
-    public String update(@ModelAttribute MemberDTO memberDTO) {
+    public String update(@ModelAttribute MemberDTO memberDTO, HttpSession session) {
         System.out.println("memberDTO = " + memberDTO);
         boolean updateResult = memberService.update(memberDTO);
         if (updateResult) {
             // 해당 회원의 상세정보
             System.out.println("memberDTO = " + memberDTO);
-            return "member/memberDetail";
+            session.invalidate();
+            return "index";
         } else {
             return "update-fail";
         }
@@ -129,7 +130,7 @@ public class MemberController {
 
     // 관리자 페이지 화면 이동
     @GetMapping("/admin-form")
-    public String adminForm() {
+    public String admin() {
         return "member/admin";
     }
 

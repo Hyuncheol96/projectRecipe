@@ -93,7 +93,8 @@
                                         <td><select name="searchType">
                                             <option value="boardTitle">제목</option>
                                             <option value="boardWriter">작성자</option>
-                                        </select></td>
+                                            <option value="boardCategory">카테고리</option>
+                                    </select></td>
                                         <td><input type="text" name="q" placeholder="검색어입력.."></td>
                                         <td><input type="submit" value="검색"></td>
                                         </th>
